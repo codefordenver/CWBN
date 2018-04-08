@@ -1,0 +1,3 @@
+{:require [cljlightmod2.client],
+ :init-fns [],
+ :compiler-options {:infer-externs true}}

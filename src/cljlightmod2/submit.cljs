@@ -1,4 +1,4 @@
-(ns cwbn.client
+(ns cljlightmod2.submit
   (:require [cljs.reader :refer [read-string]]
             [reagent.core :as r])
   (:import goog.net.XhrIo))
@@ -32,7 +32,7 @@
                :last_name (.-value last-name)}))))
 
 ; reagent component to be rendered
-(defn content []
+(defn submit-content []
   [:form {:on-submit on-submit
           :style {:margin "10px"}}
    [:div {:style {:display "flex"}}
@@ -53,11 +53,6 @@
          [:td (:first_name person)]
          [:td (:last_name person)]]))]])
 
-; tells reagent to begin rendering
-(r/render-component [content]
-  (.querySelector js/document "#app"))
-
-; runs the initial query
+;; runs the initial query
 (set! (.-onload js/window)
   (get-people))
-

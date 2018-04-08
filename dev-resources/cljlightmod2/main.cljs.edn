@@ -1,0 +1,3 @@
+{:require [nightlight.repl-server cljlightmod2.client],
+ :init-fns [cljs.spec.test.alpha/instrument],
+ :compiler-options {}}

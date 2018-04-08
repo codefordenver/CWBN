@@ -1,4 +1,4 @@
-(ns cwbn.server
+(ns cljlightmod2.server
   (:require [clojure.edn :as edn]
             [clojure.java.io :as io]
             [clojure.java.jdbc :as jdbc]
@@ -14,7 +14,7 @@
 ; defines basic parameters for the database
 (def db-spec
   {:dbtype "h2"
-   :dbname "./cwbn/main"
+   :dbname "./cljlightmod2/main"
    :user "admin"
    :password ""})
 
@@ -64,6 +64,6 @@
       (wrap-keyword-params)
       (wrap-params)
       (wrap-reload)
-      (wrap-resource "cwbn")
+      (wrap-resource "cljlightmod2")
       (run-server {:port 0})))
 
