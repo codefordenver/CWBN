@@ -1,7 +1,8 @@
 (ns cwbn.logged-in
   (:require [reagent.core :as r]
             [cwbn.submit :as submit]
-            
+            [cwbn.search :as search]
+            [cwbn.menubar :refer [edit-mode]]
             [cljs.reader :refer [read-string]]))
 
 
@@ -24,8 +25,12 @@
    [:div [delete-entity]]
    [:div [view-all]]])
    
+(defn what-component-to-show [edit-mode]
+  (if (= edit-mode "true")
+    (edit-component)
+    (search/search-component)))
 
 
 (defn logged-in-component[]
   [:div "logged-in-component"
-   [:div [edit-component]]])
+   [:div [what-component-to-show @edit-mode]]])
