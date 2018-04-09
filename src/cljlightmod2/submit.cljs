@@ -3,15 +3,15 @@
             [reagent.core :as r])
   (:import goog.net.XhrIo))
 
-; stores the people
-(def people (r/atom []))
+; stores the entities
+(def entities (r/atom []))
 
-; gets the people list
-(defn get-people []
+; gets the entities list
+(defn get-entities []
   (.send XhrIo
-    "/people"
+    "/entities"
     (fn [e]
-      (reset! people
+      (reset! entities
         (-> e .-target .getResponseText read-string)))
     "GET"))
 
@@ -19,40 +19,63 @@
 (defn on-submit [e]
   (.preventDefault e)
   (let [input (.querySelector js/document "#input")
-        first-name (.querySelector js/document "#first")
-        last-name (.querySelector js/document "#last")]
+        name (.querySelector js/document "#name")
+        type (.querySelector js/document "#type")
+        address (.querySelector js/document "#address")
+        support_type (.querySelector js/document "#support_type")]
+    
     (.send XhrIo
-      "/people"
+      "/entities"
       (fn [e]
-        (set! (.-value first-name) "")
-        (set! (.-value last-name) "")
-        (get-people))
+        (set! (.-value name) "")
+        (set! (.-value type) "")
+        (set! (.-value address) "")
+        (set! (.-value support_type) "")
+        (get-entities))
       "POST"
-      (pr-str {:first_name (.-value first-name)
-               :last_name (.-value last-name)}))))
+      (pr-str {:name (if (> (count (.-value name)) 0) (.-value name) nil)
+               :type (.-value type)
+               :address (.-value address)
+               :support_type (.-value support_type)}))))
+               
 
 ; reagent component to be rendered
 (defn submit-content []
   [:form {:on-submit on-submit
           :style {:margin "10px"}}
-   [:div {:style {:display "flex"}}
-    [:input {:id "first"
+   [:div 
+    [:input {:id "name"
              :type "text"
-             :placeholder "First name"
+             :placeholder "name"
              :style {:flex 1}}]
-    [:input {:id "last"
+    [:input {:id "type"
              :type "text"
-             :placeholder "Last name"
+             :placeholder "type"
+             :style {:flex 1}}]
+    [:input {:id "address"
+             :type "text"
+             :placeholder "address"
+             :style {:flex 1}}]
+    [:input {:id "support_type"
+             :type "text"
+             :placeholder "support_type"
+             :style {:flex 1}}]
+    [:input {:id "pre_idea"
+             :type "checkbox"
+             :placeholder "pre_idea"
              :style {:flex 1}}]
     [:button {:type "submit"}
      "Submit"]]
    [:table {:style {:overflow "auto"}}
     (into [:tbody]
-      (for [person @people]
+      (for [entity @entities]
         [:tr
-         [:td (:first_name person)]
-         [:td (:last_name person)]]))]])
+         [:td (:name entity)]
+         [:td (:type entity)]
+         [:td (:address entity)]
+         [:td (:support_type entity)]]))]])
+         ;;[:td (:pre_idea cooperative)]]))]])
 
 ;; runs the initial query
 (set! (.-onload js/window)
-  (get-people))
+  (get-entities))
