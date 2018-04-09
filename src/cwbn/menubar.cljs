@@ -1,4 +1,4 @@
-(ns cljlightmod2.menubar
+(ns cwbn.menubar
   (:require [reagent.core :as r]))
 
 (def logged-in-status (r/atom "false"))

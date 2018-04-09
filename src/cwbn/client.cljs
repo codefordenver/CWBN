@@ -1,11 +1,11 @@
-(ns cljlightmod2.client
+(ns cwbn.client
   (:require [cljs.reader :refer [read-string]]
             [reagent.core :as r]
-            [cljlightmod2.submit :as submit]
-            [cljlightmod2.menubar :as menu]
-            [cljlightmod2.menubar :refer [logged-in-status]]
-            [cljlightmod2.logged-out :as logout-comp]
-            [cljlightmod2.logged-in :as login-comp]))
+            [cwbn.submit :as submit]
+            [cwbn.menubar :as menu]
+            [cwbn.menubar :refer [logged-in-status]]
+            [cwbn.logged-out :as logout-comp]
+            [cwbn.logged-in :as login-comp]))
 
 ; conditional component depending on log-in status
 (defn conditional-component []

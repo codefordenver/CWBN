@@ -1,4 +1,4 @@
-(ns cljlightmod2.about
+(ns cwbn.about
   (:require [reagent.core :as r]))
 
 (defn about []

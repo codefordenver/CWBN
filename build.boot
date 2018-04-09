@@ -25,11 +25,11 @@
                   [honeysql "0.9.1"]])
 
 (task-options!
-  pom {:project 'cljlightmod2
+  pom {:project 'cwbn
        :version "1.0.0-SNAPSHOT"
        :description "FIXME: write description"}
-  aot {:namespace '#{cljlightmod2.server}}
-  jar {:main 'cljlightmod2.server}
+  aot {:namespace '#{cwbn.server}}
+  jar {:main 'cwbn.server}
   sift {:include #{#"\.jar$"}})
 
 (require
@@ -37,20 +37,20 @@
   '[nightlight.core :as nightlight]
   '[adzerk.boot-cljs :refer [cljs]]
   '[adzerk.boot-reload :refer [reload]]
-  'cljlightmod2.server)
+  'cwbn.server)
 
 (deftask run []
   (set-env! :resource-paths #{"resources" "dev-resources"})
   (comp
     (with-pass-thru _
       (instrument)
-      (let [server (cljlightmod2.server/-main)
+      (let [server (cwbn.server/-main)
             port (-> server meta :local-port)
             url (str "http://localhost:" port "/index.html")]
         (println "Started app on" url)
         (nightlight/start {:port 4000 :url url})))
     (watch)
-    (reload :asset-path "cljlightmod2")
+    (reload :asset-path "cwbn")
     (cljs
       :source-map true
       :optimizations :none

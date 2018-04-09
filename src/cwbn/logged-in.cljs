@@ -1,6 +1,6 @@
-(ns cljlightmod2.logged-in
+(ns cwbn.logged-in
   (:require [reagent.core :as r]
-            [cljlightmod2.submit :as submit]
+            [cwbn.submit :as submit]
             
             [cljs.reader :refer [read-string]]))
 

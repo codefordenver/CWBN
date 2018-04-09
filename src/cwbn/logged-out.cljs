@@ -1,4 +1,4 @@
-(ns cljlightmod2.logged-out
+(ns cwbn.logged-out
   (:require [reagent.core :as r]))
 
 

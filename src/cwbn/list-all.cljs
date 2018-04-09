@@ -1,4 +1,4 @@
-(ns cljlightmod2.list-all
+(ns cwbn.list-all
   (:require [reagent.core :as r]))
 
 (defn list-all []

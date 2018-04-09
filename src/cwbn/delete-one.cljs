@@ -1,4 +1,4 @@
-(ns cljlightmod2.delete-one
+(ns cwbn.delete-one
   (:require [reagent.core :as r]))
 
 (defn delete-one []
