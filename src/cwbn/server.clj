@@ -61,7 +61,23 @@
 ; selects all entities from the table
 (defn get-entities []
   (jdbc/with-db-connection [db-conn db-spec]
-    (jdbc/query db-conn "SELECT * FROM entity")))
+    [(jdbc/query db-conn "SELECT * FROM entity")
+     (jdbc/query db-conn "SELECT * FROM cooperative")]))
+
+; select one entity from the table
+(defn get-entity [search-term]
+  (jdbc/with-db-connection [db-conn db-spec]
+    (jdbc/query db-conn (str "SELECT * FROM ENTITY WHERE NAME='" search-term "'")))) 
+
+; update one entity from the table
+(defn update-entity [search-term new-term]
+  (jdbc/with-db-connection [db-conn db-spec]
+    (jdbc/update! db-conn :entity {:name new-term} ["NAME = ?" search-term])))
+
+; delete one entity from the table
+(defn delete-entity [name]
+  (jdbc/with-db-connection [db-conn db-spec]
+    (jdbc/delete! db-conn :entity ["NAME = ?" name])))
 
 ; adds an entry to the entity table
 (defn insert-entity [entity]
