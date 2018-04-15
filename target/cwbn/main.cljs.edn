@@ -1,0 +1,1 @@
+{:require [nightlight.repl-server cwbn.client adzerk.boot-reload.cwbn.main], :init-fns [cljs.spec.test.alpha/instrument], :compiler-options {}}

@@ -1,4 +1,4 @@
-(ns cwbn.logged-in
+(ns cwbn.ins
   (:require [reagent.core :as r]
             [cwbn.submit :as submit]
             [cwbn.search :as search]
@@ -31,6 +31,6 @@
     (search/search-component)))
 
 
-(defn logged-in-component[]
+(defn ins-component[]
   [:div "logged-in-component"
    [:div [what-component-to-show @edit-mode]]])

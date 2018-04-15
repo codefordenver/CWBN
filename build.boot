@@ -5,6 +5,7 @@
                   [org.clojure/test.check "0.9.0" :scope "test"]
                   [nightlight "RELEASE" :scope "test"]
                   ; project deps
+                  [pandeiro/boot-http "0.8.3" :scope "test"]
                   [org.clojure/clojure "1.9.0"]
                   [org.clojure/clojurescript "1.9.946"]
                   [org.clojure/core.async "0.3.443"]
