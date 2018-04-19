@@ -247,7 +247,7 @@ return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMP
 }
 });
 cljs.test.js_filename = (function cljs$test$js_filename(stack_element){
-var output_dir = "C:\\Users\\KyuBok\\.boot\\cache\\tmp\\Projects\\cwbn-clj\\cwbn\\a5o\\-9uliv9\\cwbn\\main.out";
+var output_dir = "C:\\Users\\KyuBok\\.boot\\cache\\tmp\\Projects\\cwbn-clj\\cwbn\\5u0\\-9uliv9\\cwbn\\main.out";
 var output_dir__$1 = (function (){var G__22622 = output_dir;
 if(!(clojure.string.ends_with_QMARK_.call(null,output_dir,"/"))){
 return [cljs.core.str.cljs$core$IFn$_invoke$arity$1(G__22622),"/"].join('');

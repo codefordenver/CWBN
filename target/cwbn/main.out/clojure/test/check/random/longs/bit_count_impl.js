@@ -4,14 +4,14 @@ goog.require('cljs.core');
 clojure.test.check.random.longs.bit_count_impl.lookup = (function (){var arr = [null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null];
 (arr[(0)] = (0));
 
-var n__9719__auto___18960 = (256);
-var i_18961 = (0);
+var n__9719__auto___19341 = (256);
+var i_19342 = (0);
 while(true){
-if((i_18961 < n__9719__auto___18960)){
-(arr[i_18961] = ((arr[(i_18961 >> (1))]) + (i_18961 & (1))));
+if((i_19342 < n__9719__auto___19341)){
+(arr[i_19342] = ((arr[(i_19342 >> (1))]) + (i_19342 & (1))));
 
-var G__18962 = (i_18961 + (1));
-i_18961 = G__18962;
+var G__19343 = (i_19342 + (1));
+i_19342 = G__19343;
 continue;
 } else {
 }

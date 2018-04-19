@@ -61,8 +61,8 @@
 ; selects all entities from the table
 (defn get-entities []
   (jdbc/with-db-connection [db-conn db-spec]
-    [(jdbc/query db-conn "SELECT * FROM entity")
-     (jdbc/query db-conn "SELECT * FROM cooperative")]))
+    [(jdbc/query db-conn "SELECT * FROM entity")]))
+     ;(jdbc/query db-conn "SELECT * FROM cooperative")]))
 
 ; select one entity from the table
 (defn get-entity [search-term]
@@ -86,6 +86,7 @@
 
 ; runs when any request is received
 (defn handler [{:keys [uri request-method] :as request}]
+  ;(clojure.pprint/pprint request)
   (or ; if the request is for the entity API
       (when (= uri "/entities")
         (case request-method

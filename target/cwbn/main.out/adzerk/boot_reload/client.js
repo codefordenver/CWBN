@@ -24,12 +24,12 @@ return null;
 adzerk.boot_reload.client.resolve_url = (function adzerk$boot_reload$client$resolve_url(url,ws_host){
 var passed_uri = (new goog.Uri(url));
 var protocol = passed_uri.getScheme();
-var hostname = (function (){var G__20826 = window;
-var G__20826__$1 = (((G__20826 == null))?null:G__20826.location);
-if((G__20826__$1 == null)){
+var hostname = (function (){var G__20833 = window;
+var G__20833__$1 = (((G__20833 == null))?null:G__20833.location);
+if((G__20833__$1 == null)){
 return null;
 } else {
-return G__20826__$1.hostname;
+return G__20833__$1.hostname;
 }
 })();
 var host = (cljs.core.truth_(ws_host)?ws_host:((cljs.core.seq.call(null,hostname))?hostname:(function (){
@@ -56,10 +56,10 @@ return new cljs.core.Keyword(null,"type","type",1174270348).cljs$core$IFn$_invok
 ,new cljs.core.Keyword(null,"default","default",-1987822328),hierarchy__9733__auto__,method_table__9729__auto__,prefer_table__9730__auto__,method_cache__9731__auto__,cached_hierarchy__9732__auto__));
 })();
 }
-cljs.core._add_method.call(null,adzerk.boot_reload.client.handle,new cljs.core.Keyword(null,"reload","reload",863702807),(function (p__20827,opts){
-var map__20828 = p__20827;
-var map__20828__$1 = ((((!((map__20828 == null)))?((((map__20828.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__20828.cljs$core$ISeq$)))?true:false):false))?cljs.core.apply.call(null,cljs.core.hash_map,map__20828):map__20828);
-var files = cljs.core.get.call(null,map__20828__$1,new cljs.core.Keyword(null,"files","files",-472457450));
+cljs.core._add_method.call(null,adzerk.boot_reload.client.handle,new cljs.core.Keyword(null,"reload","reload",863702807),(function (p__20834,opts){
+var map__20835 = p__20834;
+var map__20835__$1 = ((((!((map__20835 == null)))?((((map__20835.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__20835.cljs$core$ISeq$)))?true:false):false))?cljs.core.apply.call(null,cljs.core.hash_map,map__20835):map__20835);
+var files = cljs.core.get.call(null,map__20835__$1,new cljs.core.Keyword(null,"files","files",-472457450));
 return adzerk.boot_reload.reload.reload.call(null,files,opts);
 }));
 cljs.core._add_method.call(null,adzerk.boot_reload.client.handle,new cljs.core.Keyword(null,"visual","visual",942787224),(function (state,opts){
@@ -70,8 +70,8 @@ return null;
 }
 }));
 adzerk.boot_reload.client.connect = (function adzerk$boot_reload$client$connect(var_args){
-var G__20831 = arguments.length;
-switch (G__20831) {
+var G__20838 = arguments.length;
+switch (G__20838) {
 case 1:
 return adzerk.boot_reload.client.connect.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 

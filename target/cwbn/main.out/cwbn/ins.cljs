@@ -18,19 +18,30 @@
 (defn view-all []
   [:div "view"]) 
 
-(defn edit-component []
-  [:div 
-   [:div [add-entity]]
-   [:div [update-entity]]
-   [:div [delete-entity]]
-   [:div [view-all]]])
-   
-(defn what-component-to-show [edit-mode]
-  (if (= edit-mode "true")
-    (edit-component)
-    (search/search-component)))
+(def button-selection (r/atom 0))
 
+(defn component-selection []  
+  [:div    
+   [:button {:on-click (fn [] (reset! button-selection 1))} "View All"]   
+   [:button {:on-click (fn [] (reset! button-selection 2))} "Update"]   
+   [:button {:on-click (fn [] (reset! button-selection 3))} "Add"]   
+   [:button {:on-click (fn [] (reset! button-selection 4))} "Delete"]])
+   ;[:button {:on-click (fn [] (reset! clicks 1);"value"
 
-(defn ins-component[]
-  [:div "logged-in-component"
+(defn edit-component [button-selection]  
+  (if (= button-selection 1)    
+    [view-all]    
+    (if (= button-selection 2)      
+      [update-entity]      
+      (if (= button-selection 3)        
+        [add-entity]        
+        [delete-entity]))))
+
+(defn what-component-to-show [edit-mode]  
+  (if (= edit-mode "true")    
+    [:div [component-selection] [edit-component @button-selection]]    
+    [search/search-component]))
+
+(defn ins-component[]  
+  [:div "logged-in-component"   
    [:div [what-component-to-show @edit-mode]]])
