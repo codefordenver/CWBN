@@ -3,7 +3,8 @@
             [cwbn.submit :as submit]
             [cwbn.search :as search]
             [cwbn.menubar :refer [edit-mode]]
-            [cljs.reader :refer [read-string]]))
+            [cljs.reader :refer [read-string]]
+            [cwbn.list-all :as list-all]))
 
 
 (defn add-entity []
@@ -15,8 +16,6 @@
 (defn delete-entity[]
   [:div "Delete-one"])
 
-(defn view-all []
-  [:div "view"]) 
 
 (def button-selection (r/atom 0))
 
@@ -30,7 +29,7 @@
 
 (defn edit-component [button-selection]  
   (if (= button-selection 1)    
-    [view-all]    
+    [list-all/list-all]    
     (if (= button-selection 2)      
       [update-entity]      
       (if (= button-selection 3)        

@@ -24,8 +24,8 @@
 
 
 ; tells reagent to begin rendering
-(r/render-component [content]
-  (.querySelector js/document "#app"))
+; (r/render-component [content]
+;   (.querySelector js/document "#app"))
 
 
 

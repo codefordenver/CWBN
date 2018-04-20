@@ -30,8 +30,8 @@ throw cljs.core.missing_protocol.call(null,"IWebSocket.open?",this$);
 });
 
 adzerk.boot_reload.websocket.websocket_connection = (function adzerk$boot_reload$websocket$websocket_connection(var_args){
-var G__20825 = arguments.length;
-switch (G__20825) {
+var G__20818 = arguments.length;
+switch (G__20818) {
 case 0:
 return adzerk.boot_reload.websocket.websocket_connection.cljs$core$IFn$_invoke$arity$0();
 
@@ -102,10 +102,10 @@ goog.net.WebSocket.prototype.clojure$browser$event$IEventType$ = cljs.core.PROTO
 goog.net.WebSocket.prototype.clojure$browser$event$IEventType$event_types$arity$1 = (function (this$){
 var this$__$1 = this;
 return cljs.core.into.call(null,cljs.core.PersistentArrayMap.EMPTY,cljs.core.map.call(null,((function (this$__$1){
-return (function (p__20827){
-var vec__20828 = p__20827;
-var k = cljs.core.nth.call(null,vec__20828,(0),null);
-var v = cljs.core.nth.call(null,vec__20828,(1),null);
+return (function (p__20820){
+var vec__20821 = p__20820;
+var k = cljs.core.nth.call(null,vec__20821,(0),null);
+var v = cljs.core.nth.call(null,vec__20821,(1),null);
 return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.keyword.call(null,k.toLowerCase()),v], null);
 });})(this$__$1))
 ,cljs.core.merge.call(null,cljs.core.js__GT_clj.call(null,goog.net.WebSocket.EventType))));
