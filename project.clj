@@ -32,10 +32,11 @@
                  [ring/ring-core "1.6.3"]
                  [ring/ring-defaults "0.3.1"]
                  [secretary "1.2.3"]
-                 [selmer "1.11.7"]]
+                 [selmer "1.11.7"]
+                 [migratus "1.0.6"]]
 
   :min-lein-version "2.0.0"
-  
+
   :source-paths ["src/clj" "src/cljs" "src/cljc"]
   :test-paths ["test/clj"]
   :resource-paths ["resources" "target/cljsbuild"]
@@ -44,17 +45,18 @@
 
   :plugins [[lein-cljsbuild "1.1.5"]
             [lein-sassc "0.10.4"]
-            [lein-auto "0.1.2"]]
+            [lein-auto "0.1.2"]
+            [migratus-lein "0.4.1"]]
    :sassc
    [{:src "resources/scss/screen.scss"
      :output-to "resources/public/css/screen.css"
      :style "nested"
-     :import-path "resources/scss"}] 
-  
+     :import-path "resources/scss"}]
+
    :auto
    {"sassc"
-    {:file-pattern #"\.(scss|sass)$" :paths ["resources/scss"]}} 
-  
+    {:file-pattern #"\.(scss|sass)$" :paths ["resources/scss"]}}
+
   :hooks [leiningen.sassc]
   :clean-targets ^{:protect false}
   [:target-path [:cljsbuild :builds :app :compiler :output-dir] [:cljsbuild :builds :app :compiler :output-to]]
@@ -63,7 +65,7 @@
    :nrepl-port 7002
    :css-dirs ["resources/public/css"]
    :nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}
-  
+
 
   :profiles
   {:uberjar {:omit-source true
@@ -81,8 +83,8 @@
                  :closure-warnings
                  {:externs-validation :off :non-standard-jsdoc :off}
                  :externs ["react/externs/react.js"]}}}}
-             
-             
+
+
              :aot :all
              :uberjar-name "cwbn.jar"
              :source-paths ["env/prod/clj"]
@@ -120,9 +122,9 @@
                       :pretty-print true
                       :closure-defines {"re_frame.trace.trace_enabled_QMARK_" true}
                       :preloads [day8.re-frame-10x.preload]}}}}
-                  
-                  
-                  
+
+
+
                   :doo {:build "test"}
                   :source-paths ["env/dev/clj"]
                   :resource-paths ["env/dev/resources"]
@@ -140,7 +142,7 @@
                       :main "cwbn.doo-runner"
                       :optimizations :whitespace
                       :pretty-print true}}}}}
-                  
-                  
+
+
    :profiles/dev {}
    :profiles/test {}})
