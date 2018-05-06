@@ -15,22 +15,23 @@
     (migrations/migrate ["migrate"] (select-keys env [:database-url]))
     (f)))
 
-(deftest test-users
+(deftest test-org
   (jdbc/with-db-transaction [t-conn *db*]
     (jdbc/db-set-rollback-only! t-conn)
-    (is (= 1 (db/create-user!
-               t-conn
-               {:id         "1"
-                :first_name "Sam"
-                :last_name  "Smith"
-                :email      "sam.smith@example.com"
-                :pass       "pass"})))
-    (is (= {:id         "1"
-            :first_name "Sam"
-            :last_name  "Smith"
-            :email      "sam.smith@example.com"
-            :pass       "pass"
-            :admin      nil
-            :last_login nil
-            :is_active  nil}
-           (db/get-user t-conn {:id "1"})))))
+    (is (= 1 (db/create-org!
+              t-conn
+              {:id 1
+               :name "Org"
+               :type  "Type"
+               :address  "123 Address"
+               :support_type "Support"})))
+
+    (is (= {:id  1
+            :name "Org"
+            :type  "Type"
+            :address  "123 Address"
+            :support_type "Support"}
+            ;:admin      nil
+            ;:last_login nil
+            ;:is_active  nil}
+           (db/get-org t-conn {:id 1})))))

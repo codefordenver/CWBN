@@ -1,13 +1,13 @@
 -- :name create-org! :! :n
 -- :doc creates a new organization record
 INSERT INTO cwbn
-(name, type, address, support_type, timestamp)
-VALUES (:name, :type, :address, :support_type, :timestamp)
+(id, name, type, address, support_type)
+VALUES (:id, :name, :type, :address, :support_type)
 
 -- :name update-org! :! :n
 -- :doc updates an existing org record
 UPDATE cwbn
-SET name = :name, type = :type, address = :address, support_type = :support_type, timestamp = :timestamp
+SET name = :name, type = :type, address = :address, support_type = :support_type
 WHERE id = :id
 
 -- :name get-org :? :1

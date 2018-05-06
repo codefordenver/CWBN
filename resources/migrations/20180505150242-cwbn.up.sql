@@ -3,7 +3,4 @@
     name VARCHAR(30),
     type VARCHAR(30),
     address VARCHAR(200),
-    support_type VARCHAR(30),
-    timestamp TIMESTAMP);
-
-  
+    support_type VARCHAR(30));
