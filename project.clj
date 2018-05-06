@@ -144,5 +144,5 @@
                       :pretty-print true}}}}}
 
 
-   :profiles/dev {}
-   :profiles/test {}})
+   :profiles/dev {:env {:database-url "jdbc:h2:./cwbn_dev.db"}}
+   :profiles/test {:env {:database-url "jdbc:h2:./cwbn_test.db"}}})
