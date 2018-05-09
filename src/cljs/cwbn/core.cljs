@@ -7,7 +7,9 @@
             [markdown.core :refer [md->html]]
             [ajax.core :refer [GET POST]]
             [cwbn.ajax :refer [load-interceptors!]]
-            [cwbn.events])
+            [cwbn.events]
+            [cwbn.search :refer [search-component]]
+            [cwbn.list-all :refer [list-all-component]])
   (:import goog.History))
 
 (defn nav-link [uri title page]
@@ -27,7 +29,9 @@
    [:div#collapsing-navbar.collapse.navbar-collapse
     [:ul.nav.navbar-nav.mr-auto
      [nav-link "#/" "Home" :home]
-     [nav-link "#/about" "About" :about]]]])
+     [nav-link "#/about" "About" :about]
+     [nav-link "#/search" "Search" :search]
+     [nav-link "#/list" "list" :list]]]])
 
 (defn about-page []
   [:div.container
@@ -44,9 +48,17 @@
       [:div {:dangerouslySetInnerHTML
              {:__html (md->html docs)}}]])])
 
+(defn search-page []
+  [:div [search-component]])
+
+(defn list-page []
+  [:div [list-all-component]])
+
 (def pages
   {:home #'home-page
-   :about #'about-page})
+   :about #'about-page
+   :search #'search-page
+   :list #'list-page})
 
 (defn page []
   [:div
@@ -63,6 +75,11 @@
 (secretary/defroute "/about" []
   (rf/dispatch [:set-active-page :about]))
 
+(secretary/defroute "/search" []
+  (rf/dispatch [:set-active-page :search]))
+
+(secretary/defroute "/list" []
+  (rf/dispatch [:set-active-page :list]))
 ;; -------------------------
 ;; History
 ;; must be called after routes have been defined
