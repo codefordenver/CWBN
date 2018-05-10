@@ -1,10 +1,10 @@
-(ns cwbn.search
+(ns cwbn.client.search
   (:require [reagent.core :as r]))
 
 (def search-term (r/atom ""))
 
 (defn search-input[]
-  [:div 
+  [:div
    [:input {:type "text"
             :placeholder "Search ..."
             :value @search-term

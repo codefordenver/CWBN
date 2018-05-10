@@ -1,8 +1,8 @@
-(ns cwbn.list-all)
+(ns cwbn.client.list-all)
 ;  (:require [reagent.core :as r]
 ;            [cwbn.db.core :as db])
 
-(defn list-all-component []
+(defn list-all-orgs []
   [:div "list all here"
    (comment [:table {:style {:overflow "auto"}}]
     (into [:tbody]

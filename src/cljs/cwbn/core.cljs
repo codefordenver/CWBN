@@ -8,8 +8,8 @@
             [ajax.core :refer [GET POST]]
             [cwbn.ajax :refer [load-interceptors!]]
             [cwbn.events]
-            [cwbn.search :refer [search-component]]
-            [cwbn.list-all :refer [list-all-component]])
+            [cwbn.client :refer [client-content]])
+
   (:import goog.History))
 
 (defn nav-link [uri title page]
@@ -30,8 +30,8 @@
     [:ul.nav.navbar-nav.mr-auto
      [nav-link "#/" "Home" :home]
      [nav-link "#/about" "About" :about]
-     [nav-link "#/search" "Search" :search]
-     [nav-link "#/list" "list" :list]]]])
+     [nav-link "#/client" "Client" :client]]]])
+
 
 (defn about-page []
   [:div.container
@@ -48,17 +48,15 @@
       [:div {:dangerouslySetInnerHTML
              {:__html (md->html docs)}}]])])
 
-(defn search-page []
-  [:div [search-component]])
+(defn client-page []
+  [:div [client-content]])
 
-(defn list-page []
-  [:div [list-all-component]])
 
 (def pages
   {:home #'home-page
    :about #'about-page
-   :search #'search-page
-   :list #'list-page})
+   :client #'client-page})
+
 
 (defn page []
   [:div
@@ -75,11 +73,9 @@
 (secretary/defroute "/about" []
   (rf/dispatch [:set-active-page :about]))
 
-(secretary/defroute "/search" []
-  (rf/dispatch [:set-active-page :search]))
+(secretary/defroute "/client" []
+  (rf/dispatch [:set-active-page :client]))
 
-(secretary/defroute "/list" []
-  (rf/dispatch [:set-active-page :list]))
 ;; -------------------------
 ;; History
 ;; must be called after routes have been defined
