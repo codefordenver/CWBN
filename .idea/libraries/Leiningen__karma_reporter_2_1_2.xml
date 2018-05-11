@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Leiningen: karma-reporter:2.1.2">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/karma-reporter/karma-reporter/2.1.2/karma-reporter-2.1.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Leiningen: mount:0.1.12">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/mount/mount/0.1.12/mount-0.1.12.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Leiningen: cljsjs/react-dom-server:16.3.0-1">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/cljsjs/react-dom-server/16.3.0-1/react-dom-server-16.3.0-1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
