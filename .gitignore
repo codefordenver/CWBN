@@ -15,3 +15,4 @@ profiles.clj
 .idea
 cwbn_dev.db.mv.db
 cwbn_dev.db.trace.db
+figwheel_server.log
