@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="Leiningen: cljsjs/react-flip-move:2.9.17-0">
-    <CLASSES>
-      <root url="jar://$MAVEN_REPOSITORY$/cljsjs/react-flip-move/2.9.17-0/react-flip-move-2.9.17-0.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="Leiningen: com.layerware/hugsql-adapter-clojure-java-jdbc:0.4.8">
-    <CLASSES>
-      <root url="jar://$MAVEN_REPOSITORY$/com/layerware/hugsql-adapter-clojure-java-jdbc/0.4.8/hugsql-adapter-clojure-java-jdbc-0.4.8.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

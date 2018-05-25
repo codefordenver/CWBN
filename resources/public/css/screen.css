@@ -1,3 +1,35 @@
+#footer {
+  background-color: #2C208C;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  padding: 30px 40px;
+  text-transform: uppercase;
+  font-weight: 500; }
+  #footer a {
+    color: white; }
+  #footer #contact {
+    display: flex;
+    justify-content: space-between; }
+    #footer #contact span {
+      margin-left: 1em;
+      text-transform: none;
+      font-weight: normal; }
+  #footer #map {
+    width: 200px;
+    height: 200px;
+    background-color: black; }
+  #footer #social #icons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px; }
+    #footer #social #icons i {
+      font-size: 1.5em; }
+  #footer #about #copyright {
+    margin-top: 80px;
+    font-size: small;
+    font-weight: normal; }
+
 html, body {
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   height: 100%; }
