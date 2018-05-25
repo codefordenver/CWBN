@@ -578,3 +578,324 @@ notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/client
 Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
 [32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.561 seconds.[0m
 notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/client/submit.js
+Notifying browser that CSS file changed: resources/public/css/screen.css
+Notifying browser that CSS file changed: resources/public/css/screen.css
+Notifying browser that CSS file changed: resources/public/css/screen.css
+Notifying browser that CSS file changed: resources/public/css/screen.css
+Notifying browser that CSS file changed: resources/public/css/screen.css
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[31mFailed to compile build :app from ["src/cljs" "src/cljc" "env/dev/cljs"] in 0.701 seconds.[0m
+[36m----  Exception    ----[0m
+
+  [1mAssert failed: file:/Users/Zaden/CWBN/src/cljs/cwbn/components/footer.cljs does not provide a namespace
+(first provides)[0m
+
+[36m----  Exception Stack Trace  ----[0m
+
+java.lang.AssertionError: Assert failed: file:/Users/Zaden/CWBN/src/cljs/cwbn/components/footer.cljs does not provide a namespace
+(first provides)
+ at cljs.closure$javascript_file.invokeStatic (closure.clj:475)
+    cljs.closure$javascript_file.invoke (closure.clj:471)
+    cljs.closure$map__GT_javascript_file.invokeStatic (closure.clj:480)
+    cljs.closure$map__GT_javascript_file.invoke (closure.clj:478)
+    cljs.closure$compiled_file.invokeStatic (closure.clj:547)
+    cljs.closure$compiled_file.invoke (closure.clj:539)
+    cljs.closure$compile_file.invokeStatic (closure.clj:573)
+    cljs.closure$compile_file.invoke (closure.clj:564)
+    cljs.closure$fn__5124.invokeStatic (closure.clj:653)
+    cljs.closure/fn (closure.clj:647)
+    cljs.closure$fn__5052$G__5045__5059.invoke (closure.clj:521)
+    cljs.closure$compile_sources$iter__5250__5254$fn__5255.invoke (closure.clj:1011)
+    clojure.lang.LazySeq.sval (LazySeq.java:40)
+    clojure.lang.LazySeq.seq (LazySeq.java:49)
+    clojure.lang.Cons.next (Cons.java:39)
+    clojure.lang.RT.next (RT.java:706)
+    clojure.core$next__5108.invokeStatic (core.clj:64)
+    clojure.core$dorun.invokeStatic (core.clj:3134)
+    clojure.core$doall.invokeStatic (core.clj:3140)
+    clojure.core$doall.invoke (core.clj:3140)
+    cljs.closure$compile_sources.invokeStatic (closure.clj:1007)
+    cljs.closure$compile_sources.invoke (closure.clj:996)
+    cljs.closure$build.invokeStatic (closure.clj:2817)
+    cljs.closure$build.invoke (closure.clj:2718)
+    cljs.build.api$build.invokeStatic (api.clj:208)
+    cljs.build.api$build.invoke (api.clj:189)
+    figwheel_sidecar.components.cljs_autobuild$cljs_build.invokeStatic (cljs_autobuild.clj:28)
+    figwheel_sidecar.components.cljs_autobuild$cljs_build.invoke (cljs_autobuild.clj:27)
+    figwheel_sidecar.build_middleware.injection$hook$fn__21255.invoke (injection.clj:88)
+    figwheel_sidecar.components.cljs_autobuild$notify_command_hook$fn__21577.invoke (cljs_autobuild.clj:69)
+    figwheel_sidecar.components.cljs_autobuild$figwheel_start_and_end_messages$fn__21567.invoke (cljs_autobuild.clj:48)
+    figwheel_sidecar.build_middleware.notifications$hook$fn__21436.invoke (notifications.clj:179)
+    figwheel_sidecar.build_middleware.clj_reloading$hook$fn__21493.invoke (clj_reloading.clj:111)
+    figwheel_sidecar.build_middleware.javascript_reloading$hook$fn__21526.invoke (javascript_reloading.clj:48)
+    figwheel_sidecar.components.cljs_autobuild$color_output$fn__21581.invoke (cljs_autobuild.clj:80)
+    figwheel_sidecar.components.cljs_autobuild$execute_build$fn__21623.invoke (cljs_autobuild.clj:234)
+    figwheel_sidecar.utils$sync_exec$fn__717$fn__718.invoke (utils.clj:13)
+    figwheel_sidecar.utils$sync_exec$fn__717.invoke (utils.clj:12)
+    clojure.core$binding_conveyor_fn$fn__5476.invoke (core.clj:2025)
+    clojure.lang.AFn.applyToHelper (AFn.java:154)
+    clojure.lang.RestFn.applyTo (RestFn.java:132)
+    clojure.lang.Agent$Action.doRun (Agent.java:114)
+    clojure.lang.Agent$Action.run (Agent.java:163)
+    java.util.concurrent.ThreadPoolExecutor.runWorker (ThreadPoolExecutor.java:1142)
+    java.util.concurrent.ThreadPoolExecutor$Worker.run (ThreadPoolExecutor.java:617)
+    java.lang.Thread.run (Thread.java:745)
+
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.575 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/goog/deps.js
+notifying browser that file changed:  target/cljsbuild/public/js/out/cljs_deps.js
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/footer.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.595 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/footer.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.579 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/footer.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.238 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cljs_deps.js
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/core.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.381 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/core.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.386 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/core.js
+Notifying browser that CSS file changed: resources/public/css/screen.css
+Notifying browser that CSS file changed: resources/public/css/screen.css
+Notifying browser that CSS file changed: resources/public/css/screen.css
+Notifying browser that CSS file changed: resources/public/css/screen.css
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.665 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/footer.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.197 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/footer.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[31mFailed to compile build :app from ["src/cljs" "src/cljc" "env/dev/cljs"] in 0.093 seconds.[0m
+[36m----  Could not Analyze  src/cljs/cwbn/components/footer.cljs   line:1  column:1  ----[0m
+
+  [1mOnly [lib.ns & options] and lib.ns specs supported in :require / :require-macros; offending spec: :as at line 1 src/cljs/cwbn/components/footer.cljs[0m
+
+  [33m1[0m  [1m(ns cwbn.components.footer[0m
+  [0m [0m  [33m^--- Only [lib.ns & options] and lib.ns specs supported in :require / :require-macros; offending spec: :as at line 1 src/cljs/cwbn/components/footer.cljs[0m
+  [36m2[0m  [36m  (:require goog.string :as s))[0m
+  [36m3[0m  [36m[0m
+  [36m4[0m  [36m(defn footer-component [][0m
+
+[36m----  Analysis Error : Please see src/cljs/cwbn/components/footer.cljs  ----[0m
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[31mFailed to compile build :app from ["src/cljs" "src/cljc" "env/dev/cljs"] in 0.124 seconds.[0m
+[36m----  Could not Analyze  src/cljs/cwbn/components/footer.cljs   line:1  column:1  ----[0m
+
+  [1mOnly [lib.ns & options] and lib.ns specs supported in :require / :require-macros; offending spec: :as at line 1 src/cljs/cwbn/components/footer.cljs[0m
+
+  [33m1[0m  [1m(ns cwbn.components.footer[0m
+  [0m [0m  [33m^--- Only [lib.ns & options] and lib.ns specs supported in :require / :require-macros; offending spec: :as at line 1 src/cljs/cwbn/components/footer.cljs[0m
+  [36m2[0m  [36m  (:require goog.string :as s))[0m
+  [36m3[0m  [36m[0m
+  [36m4[0m  [36m(defn footer-component [][0m
+
+[36m----  Analysis Error : Please see src/cljs/cwbn/components/footer.cljs  ----[0m
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[31mFailed to compile build :app from ["src/cljs" "src/cljc" "env/dev/cljs"] in 0.092 seconds.[0m
+[36m----  Could not Analyze  src/cljs/cwbn/components/footer.cljs   line:1  column:1  ----[0m
+
+  [1mOnly [lib.ns & options] and lib.ns specs supported in :require / :require-macros; offending spec: :as at line 1 src/cljs/cwbn/components/footer.cljs[0m
+
+  [33m1[0m  [1m(ns cwbn.components.footer[0m
+  [0m [0m  [33m^--- Only [lib.ns & options] and lib.ns specs supported in :require / :require-macros; offending spec: :as at line 1 src/cljs/cwbn/components/footer.cljs[0m
+  [36m2[0m  [36m  (:require goog.string :as s))[0m
+  [36m3[0m  [36m[0m
+  [36m4[0m  [36m(defn footer-component [][0m
+
+[36m----  Analysis Error : Please see src/cljs/cwbn/components/footer.cljs  ----[0m
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.542 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cljs_deps.js
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/footer.js
+Notifying browser that CSS file changed: resources/public/css/screen.css
+Notifying browser that CSS file changed: resources/public/css/screen.css
+Notifying browser that CSS file changed: resources/public/css/screen.css
+Notifying browser that CSS file changed: resources/public/css/screen.css
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.373 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/footer.js
+Notifying browser that CSS file changed: resources/public/css/screen.css
+Notifying browser that CSS file changed: resources/public/css/screen.css
+Notifying browser that CSS file changed: resources/public/css/screen.css
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.143 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/footer.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.182 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/footer.js
+Notifying browser that CSS file changed: resources/public/css/screen.css
+Notifying browser that CSS file changed: resources/public/css/screen.css
+Notifying browser that CSS file changed: resources/public/css/screen.css
+Notifying browser that CSS file changed: resources/public/css/screen.css
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.267 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/footer.js
+Notifying browser that CSS file changed: resources/public/css/screen.css
+Notifying browser that CSS file changed: resources/public/css/screen.css
+Notifying browser that CSS file changed: resources/public/css/screen.css
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.147 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/footer.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.298 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/footer.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.181 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/footer.js
+Notifying browser that CSS file changed: resources/public/css/screen.css
+Notifying browser that CSS file changed: resources/public/css/screen.css
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.231 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/footer.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.115 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/footer.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.079 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/footer.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.118 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/footer.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.079 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/footer.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.326 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/footer.js
+Notifying browser that CSS file changed: resources/public/css/screen.css
+Notifying browser that CSS file changed: resources/public/css/screen.css
+Notifying browser that CSS file changed: resources/public/css/screen.css
+Notifying browser that CSS file changed: resources/public/css/screen.css
+Notifying browser that CSS file changed: resources/public/css/screen.css
+Notifying browser that CSS file changed: resources/public/css/screen.css
+Notifying browser that CSS file changed: resources/public/css/screen.css
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.191 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/footer.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.414 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/footer.js
+Notifying browser that CSS file changed: resources/public/css/screen.css
+Notifying browser that CSS file changed: resources/public/css/screen.css
+Notifying browser that CSS file changed: resources/public/css/screen.css
+Notifying browser that CSS file changed: resources/public/css/screen.css
+Notifying browser that CSS file changed: resources/public/css/screen.css
+Notifying browser that CSS file changed: resources/public/css/screen.css
+Notifying browser that CSS file changed: resources/public/css/screen.css
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.097 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/footer.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.137 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/footer.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.131 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/footer.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.175 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/footer.js
+Notifying browser that CSS file changed: resources/public/css/screen.css
+Notifying browser that CSS file changed: resources/public/css/screen.css
+Notifying browser that CSS file changed: resources/public/css/screen.css
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.283 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/footer.js
+Notifying browser that CSS file changed: resources/public/css/screen.css
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.165 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/footer.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.127 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/footer.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.29 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/footer.js
+Notifying browser that CSS file changed: resources/public/css/screen.css
+Notifying browser that CSS file changed: resources/public/css/screen.css
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 0.994 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/footer.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.143 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/footer.js
+Notifying browser that CSS file changed: resources/public/css/screen.css
+Notifying browser that CSS file changed: resources/public/css/screen.css
+Notifying browser that CSS file changed: resources/public/css/screen.css
+Notifying browser that CSS file changed: resources/public/css/screen.css
+Notifying browser that CSS file changed: resources/public/css/screen.css
+Notifying browser that CSS file changed: resources/public/css/screen.css
+Notifying browser that CSS file changed: resources/public/css/screen.css
+Notifying browser that CSS file changed: resources/public/css/screen.css
+Notifying browser that CSS file changed: resources/public/css/screen.css
+Notifying browser that CSS file changed: resources/public/css/screen.css
+Notifying browser that CSS file changed: resources/public/css/screen.css
+Notifying browser that CSS file changed: resources/public/css/screen.css
+Notifying browser that CSS file changed: resources/public/css/screen.css
+Notifying browser that CSS file changed: resources/public/css/screen.css
+Notifying browser that CSS file changed: resources/public/css/screen.css
+Notifying browser that CSS file changed: resources/public/css/screen.css
+Notifying browser that CSS file changed: resources/public/css/screen.css
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.055 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/footer.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.078 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/footer.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.366 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/footer.js
+Notifying browser that CSS file changed: resources/public/css/screen.css
+Notifying browser that CSS file changed: resources/public/css/screen.css
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.111 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/footer.js
+Notifying browser that CSS file changed: resources/public/css/screen.css
+Notifying browser that CSS file changed: resources/public/css/screen.css
+Notifying browser that CSS file changed: resources/public/css/screen.css
+Notifying browser that CSS file changed: resources/public/css/screen.css
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.017 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/footer.js
+Notifying browser that CSS file changed: resources/public/css/screen.css
+Notifying browser that CSS file changed: resources/public/css/screen.css
+Notifying browser that CSS file changed: resources/public/css/screen.css
+Notifying browser that CSS file changed: resources/public/css/screen.css
+Notifying browser that CSS file changed: resources/public/css/screen.css
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.085 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/footer.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.12 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/footer.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.403 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/footer.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.191 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/core.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.071 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/core.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.163 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/core.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.042 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/core.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.033 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/core.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.085 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/core.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.188 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/core.js

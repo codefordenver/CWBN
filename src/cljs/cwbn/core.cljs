@@ -8,7 +8,8 @@
             [ajax.core :refer [GET POST]]
             [cwbn.ajax :refer [load-interceptors!]]
             [cwbn.events]
-            [cwbn.client :refer [client-content]])
+            [cwbn.client :refer [client-content]]
+            [cwbn.components.footer :refer [footer-component]])
 
   (:import goog.History))
 
@@ -61,7 +62,8 @@
 (defn page []
   [:div
    [navbar]
-   [(pages @(rf/subscribe [:page]))]])
+   [(pages @(rf/subscribe [:page]))]
+   [footer-component]])
 
 ;; -------------------------
 ;; Routes

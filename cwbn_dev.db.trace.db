@@ -1,3 +1,0 @@
-2018-05-05 09:12:27 jdbc[3]: exception
-org.h2.jdbc.JdbcSQLException: Table "SCHEMA_MIGRATIONS" not found; SQL statement:
-SELECT 1 FROM schema_migrations [42102-196]
