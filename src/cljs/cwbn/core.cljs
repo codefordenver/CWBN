@@ -9,29 +9,10 @@
             [cwbn.ajax :refer [load-interceptors!]]
             [cwbn.events]
             [cwbn.client :refer [client-content]]
-            [cwbn.components.footer :refer [footer-component]])
+            [cwbn.components.footer :refer [footer-component]]
+            [cwbn.components.top-bar :refer [top-bar-component]])
 
   (:import goog.History))
-
-(defn nav-link [uri title page]
-  [:li.nav-item
-   {:class (when (= page @(rf/subscribe [:page])) "active")}
-   [:a.nav-link {:href uri} title]])
-
-(defn navbar []
-  [:nav.navbar.navbar-dark.bg-primary.navbar-expand-md
-   {:role "navigation"}
-   [:button.navbar-toggler.hidden-sm-up
-    {:type "button"
-     :data-toggle "collapse"
-     :data-target "#collapsing-navbar"}
-    [:span.navbar-toggler-icon]]
-   [:a.navbar-brand {:href "#/"} "cwbn"]
-   [:div#collapsing-navbar.collapse.navbar-collapse
-    [:ul.nav.navbar-nav.mr-auto
-     [nav-link "#/" "Home" :home]
-     [nav-link "#/about" "About" :about]
-     [nav-link "#/client" "Client" :client]]]])
 
 
 (defn about-page []
@@ -61,7 +42,7 @@
 
 (defn page []
   [:div
-   [navbar]
+   [top-bar-component]
    [(pages @(rf/subscribe [:page]))]
    [footer-component]])
 
