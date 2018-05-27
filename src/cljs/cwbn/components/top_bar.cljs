@@ -3,7 +3,7 @@
 
 (defn nav-link [uri title page]
   [:span
-   {:class (when (= page @(rf/subscribe [:page])) "active")}
+   {:class (when (= page @(rf/subscribe [:active-page])) "active")}
    [:a.nav-link {:href uri} title]])
 
 (defn top-bar-component []

@@ -32,4 +32,5 @@
      [:a {:href ""}
       "Terms & Conditions"]
      [:br]
-     [:div#copyright (str (s/unescapeEntities "&copy;") " Community Wealth Building, 2018")]]]])
+     [:div#copyright (str (s/unescapeEntities "&copy;") " 2018")
+      [:br] "Community Wealth Building"]]]])

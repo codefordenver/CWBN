@@ -1,6 +1,9 @@
+@import url("https://fonts.googleapis.com/css?family=Hind+Siliguri:400,600");
 #footer {
   background-color: #2C208C;
   color: white;
+  margin-top: auto;
+  flex-shrink: 0;
   display: flex;
   justify-content: space-between;
   padding: 30px 40px;
@@ -43,7 +46,8 @@
     display: flex;
     justify-content: space-between;
     font-weight: 300;
-    letter-spacing: 1px; }
+    letter-spacing: 1px;
+    padding: 0 15px; }
     #top-bar #nav a {
       text-decoration: none;
       color: white;
@@ -52,5 +56,15 @@
       font-weight: 500; }
 
 html, body {
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: 'Hind Siliguri', sans-serif;
   height: 100%; }
+
+#app {
+  height: 100%; }
+
+.page-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%; }
+  .page-wrapper .content {
+    flex-grow: 1; }

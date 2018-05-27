@@ -1,6 +1,8 @@
 #footer {
   background-color: $indigo;
   color: white;
+  margin-top: auto;
+  flex-shrink: 0;
   display: flex;
   justify-content: space-between;
   padding: 30px 40px;
