@@ -8,8 +8,9 @@
 
 (defn top-bar-component []
   [:div#top-bar
-   [:img#logo {:src "img/logo.png"
-               :alt "Community Wealth Building logo"}]
+   [:a {:href "#/"}
+    [:img#logo {:src "img/logo.png"
+                :alt "Community Wealth Building logo"}]]
    [:div#nav
     [nav-link "#/" "Home" :home]
     [nav-link "#/about" "About" :about]
