@@ -1,40 +1,32 @@
 @import url("https://fonts.googleapis.com/css?family=Hind+Siliguri:400,600");
 #footer {
+  padding: 30px 25px 25px 25px;
   background-color: #2C208C;
   color: white;
   margin-top: auto;
-  flex-shrink: 0;
+  flex-shrink: 0; }
+
+.footer-row {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
-  padding: 30px;
   text-transform: uppercase;
   font-weight: 500; }
-  #footer a {
+  .footer-row a {
     color: white; }
-  #footer #contact, #footer #map, #footer #social, #footer #about {
+  .footer-row #social, .footer-row #about, .footer-row #copyright, .footer-row #cfd {
     margin: 1em; }
-  #footer #contact {
-    display: flex;
-    justify-content: space-between; }
-    #footer #contact span {
-      margin-left: 1em;
-      text-transform: none;
-      font-weight: normal; }
-  #footer #map {
-    width: 200px;
-    height: 200px;
-    background-color: black; }
-  #footer #social #icons {
+  .footer-row #social #icons {
     display: flex;
     justify-content: space-between;
     margin-top: 15px; }
-    #footer #social #icons i {
+    .footer-row #social #icons i {
       font-size: 1.5em; }
-  #footer #about #copyright {
-    margin-top: 80px;
-    font-size: x-small;
+  .footer-row #copyright, .footer-row #cfd {
+    font-size: small;
     font-weight: normal; }
+    .footer-row #copyright i, .footer-row #cfd i {
+      color: red; }
 
 #top-bar {
   background-color: #2C208C;
