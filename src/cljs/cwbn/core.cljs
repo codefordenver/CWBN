@@ -1,79 +1,35 @@
 (ns cwbn.core
   (:require [reagent.core :as r]
             [re-frame.core :as rf]
-            [secretary.core :as secretary]
-            [goog.events :as events]
-            [goog.history.EventType :as HistoryEventType]
-            [markdown.core :refer [md->html]]
             [ajax.core :refer [GET POST]]
             [cwbn.ajax :refer [load-interceptors!]]
             [cwbn.events]
+            [cwbn.routes :as routes]
             [cwbn.client :refer [client-content]]
+            [cwbn.pages.about :refer [about-page]]
+            [cwbn.pages.contact :refer [contact-page]]
+            [cwbn.pages.home :refer [home-page]]
+            [cwbn.pages.not-found :refer [not-found-page]]
             [cwbn.components.footer :refer [footer-component]]
-            [cwbn.components.top-bar :refer [top-bar-component]])
+            [cwbn.components.top-bar :refer [top-bar-component]]))
 
-  (:import goog.History))
-
-
-(defn about-page []
-  [:div.container
-   [:div.row
-    [:div.col-md-12
-     [:img {:src "/img/warning_clojure.png"}]]]])
-
-(defn home-page []
-  [:div.container
-   [:div.row>div.col-sm-12
-    [:h2.alert.alert-info "Hello Ubuntu: try pressing CTRL+H to open re-frame tracing menu"]]
-   (when-let [docs @(rf/subscribe [:docs])]
-     [:div.row>div.col-sm-12
-      [:div {:dangerouslySetInnerHTML
-             {:__html (md->html docs)}}]])])
-
-(defn client-page []
-  [:div [client-content]])
-
-
-(def pages
-  {:home #'home-page
-   :about #'about-page
-   :client #'client-page})
-
+(defn- show-page [page-name]
+  (case page-name
+        :home [home-page]
+        :about [about-page]
+        :contact [contact-page]
+        :not-found [not-found-page]
+        [:div]))
 
 (defn page []
-  [:div
+  [:div.page-wrapper
    [top-bar-component]
-   [(pages @(rf/subscribe [:page]))]
+   [:div.content.container.mv4.pv1
+    (show-page @(rf/subscribe [:active-page]))]
    [footer-component]])
 
 ;; -------------------------
-;; Routes
-(secretary/set-config! :prefix "#")
-
-(secretary/defroute "/" []
-  (rf/dispatch [:set-active-page :home]))
-
-(secretary/defroute "/about" []
-  (rf/dispatch [:set-active-page :about]))
-
-(secretary/defroute "/client" []
-  (rf/dispatch [:set-active-page :client]))
-
-;; -------------------------
-;; History
-;; must be called after routes have been defined
-(defn hook-browser-navigation! []
-  (doto (History.)
-    (events/listen
-      HistoryEventType/NAVIGATE
-      (fn [event]
-        (secretary/dispatch! (.-token event))))
-    (.setEnabled true)))
-
-;; -------------------------
 ;; Initialize app
-(defn fetch-docs! []
-  (GET "/docs" {:handler #(rf/dispatch [:set-docs %])}))
 
 (defn mount-components []
   (rf/clear-subscription-cache!)
@@ -82,6 +38,5 @@
 (defn init! []
   (rf/dispatch-sync [:initialize-db])
   (load-interceptors!)
-  (fetch-docs!)
-  (hook-browser-navigation!)
+  (routes/app-routes)
   (mount-components))

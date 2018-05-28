@@ -3,13 +3,14 @@
 
 (defn nav-link [uri title page]
   [:span
-   {:class (when (= page @(rf/subscribe [:page])) "active")}
+   {:class (when (= page @(rf/subscribe [:active-page])) "active")}
    [:a.nav-link {:href uri} title]])
 
 (defn top-bar-component []
   [:div#top-bar
-   [:img#logo {:src "img/logo.png"
-               :alt "Community Wealth Building logo"}]
+   [:a {:href "#/"}
+    [:img#logo {:src "img/logo.png"
+                :alt "Community Wealth Building logo"}]]
    [:div#nav
     [nav-link "#/" "Home" :home]
     [nav-link "#/about" "About" :about]

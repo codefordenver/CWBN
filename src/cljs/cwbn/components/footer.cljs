@@ -3,33 +3,33 @@
 
 (defn footer-component []
   [:div#footer
-   [:div#contact
-    [:div "Contact"]
-    [:span
-     "+1 234 567 8910"
-     [:br]
-     "community-wealth@gmail.com"]]
-   [:div#map]
-   [:div#social "Stay in Touch"
-    [:div#icons
-     [:a {:href ""}
-      [:i.fab.fa-facebook-f]]
-     [:a {:href ""}
-      [:i.fab.fa-twitter]]
-     [:a {:href ""}
-      [:i.fab.fa-instagram]]]]
-   [:div#about
-    [:div
-     [:a {:href ""}
-      "FAQ"]
-     [:br]
-     [:a {:href ""}
-      "About Us"]
-     [:br]
-     [:a {:href ""}
-      "Privacy Policy"]
-     [:br]
-     [:a {:href ""}
-      "Terms & Conditions"]
-     [:br]
-     [:div#copyright (str (s/unescapeEntities "&copy;") " Community Wealth Building, 2018")]]]])
+   [:div.footer-row
+    [:div#about
+     [:div
+      [:a {:href ""}
+       "FAQ"]
+      [:br]
+      [:a {:href "#/about"}
+       "About Us"]
+      [:br]
+      [:a {:href ""}
+       "Privacy Policy"]
+      [:br]
+      [:a {:href ""}
+       "Terms & Conditions"]]]
+    [:div#social "Stay in Touch"
+     [:div#icons
+      [:a {:href "https://www.facebook.com/cwbndenver/"}
+       [:i.fab.fa-facebook-f]]
+      [:a {:href "https://twitter.com/cwbnetwork"}
+       [:i.fab.fa-twitter]]
+      [:a {:href "mailto:"}
+       [:i.fa.fa-envelope]]]]]
+   [:div.footer-row {:style {:text-transform "none"}}
+    [:div#copyright (str (s/unescapeEntities "&copy;") " 2018 Community Wealth Building")]
+    [:div#cfd
+     "Made with ( "
+     [:i.fas.fa-heart]
+     " ) by "
+     [:a {:href "codefordenver.org"}
+      "Code for Denver"]]]])

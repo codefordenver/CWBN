@@ -1,39 +1,38 @@
+@import url("https://fonts.googleapis.com/css?family=Hind+Siliguri:400,600");
 #footer {
+  padding: 30px 25px 25px 25px;
   background-color: #2C208C;
   color: white;
+  margin-top: auto;
+  flex-shrink: 0; }
+
+.footer-row {
   display: flex;
+  flex-flow: row wrap;
   justify-content: space-between;
-  padding: 30px 40px;
   text-transform: uppercase;
   font-weight: 500; }
-  #footer a {
+  .footer-row a {
     color: white; }
-  #footer #contact {
-    display: flex;
-    justify-content: space-between; }
-    #footer #contact span {
-      margin-left: 1em;
-      text-transform: none;
-      font-weight: normal; }
-  #footer #map {
-    width: 200px;
-    height: 200px;
-    background-color: black; }
-  #footer #social #icons {
+  .footer-row #social, .footer-row #about, .footer-row #copyright, .footer-row #cfd {
+    margin: 1em; }
+  .footer-row #social #icons {
     display: flex;
     justify-content: space-between;
     margin-top: 15px; }
-    #footer #social #icons i {
+    .footer-row #social #icons i {
       font-size: 1.5em; }
-  #footer #about #copyright {
-    margin-top: 80px;
-    font-size: x-small;
+  .footer-row #copyright, .footer-row #cfd {
+    font-size: small;
     font-weight: normal; }
+    .footer-row #copyright i, .footer-row #cfd i {
+      color: red; }
 
 #top-bar {
   background-color: #2C208C;
   color: white;
   display: flex;
+  flex-flow: row wrap;
   align-items: center;
   justify-content: space-between; }
   #top-bar #logo {
@@ -43,7 +42,8 @@
     display: flex;
     justify-content: space-between;
     font-weight: 300;
-    letter-spacing: 1px; }
+    letter-spacing: 1px;
+    padding: 0 15px; }
     #top-bar #nav a {
       text-decoration: none;
       color: white;
@@ -52,5 +52,15 @@
       font-weight: 500; }
 
 html, body {
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: 'Hind Siliguri', sans-serif;
   height: 100%; }
+
+#app {
+  height: 100%; }
+
+.page-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%; }
+  .page-wrapper .content {
+    flex-grow: 1; }

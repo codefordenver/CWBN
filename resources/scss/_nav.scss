@@ -2,6 +2,7 @@
   background-color: $indigo;
   color: white;
   display: flex;
+  flex-flow: row wrap;
   align-items: center;
   justify-content: space-between;
   #logo {
@@ -13,6 +14,7 @@
     justify-content: space-between;
     font-weight: 300;
     letter-spacing: 1px;
+    padding: 0 15px;
     a {
       text-decoration: none;
       color: white;

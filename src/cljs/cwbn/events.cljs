@@ -12,21 +12,11 @@
 (reg-event-db
   :set-active-page
   (fn [db [_ page]]
-    (assoc db :page page)))
-
-(reg-event-db
-  :set-docs
-  (fn [db [_ docs]]
-    (assoc db :docs docs)))
+    (assoc db :active-page page)))
 
 ;;subscriptions
 
 (reg-sub
-  :page
+  :active-page
   (fn [db _]
-    (:page db)))
-
-(reg-sub
-  :docs
-  (fn [db _]
-    (:docs db)))
+    (:active-page db)))
