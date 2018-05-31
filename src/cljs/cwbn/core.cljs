@@ -5,7 +5,6 @@
             [cwbn.ajax :refer [load-interceptors!]]
             [cwbn.events]
             [cwbn.routes :as routes]
-            [cwbn.client :refer [client-content]]
             [cwbn.pages.about :refer [about-page]]
             [cwbn.pages.contact :refer [contact-page]]
             [cwbn.pages.home :refer [home-page]]
