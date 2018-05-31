@@ -4,8 +4,10 @@
 @import 'nav';
 
 html, body {
+    background: $indigo;
     font-family: 'Hind Siliguri', sans-serif;
     height: 100%;
+    color: white;
 }
 
 #app {
