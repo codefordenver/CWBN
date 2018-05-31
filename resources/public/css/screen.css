@@ -51,6 +51,11 @@
     #top-bar #nav .active {
       font-weight: 500; }
 
+.search-bar-wrapper {
+  padding: 2em; }
+  .search-bar-wrapper .search-bar {
+    font-size: 4em; }
+
 html, body {
   background: #2C208C;
   font-family: 'Hind Siliguri', sans-serif;

@@ -2,28 +2,34 @@
   (:require [re-com.core :refer [typeahead]]
             [reagent.core :as reagent]))
 
-(declare md-icon-names)
+(declare demo-test-data)
 
-(defn md-classes-for-icon [name]
-  (str "zmdi zmdi-" name " zmdi-hc-2x"))
+(def status (reagent/atom nil)) ;; TODO: not sure what this does, maybe we dont need it
+
+(def model (reagent/atom nil))
+
+(add-watch model :watcher
+           (fn [key atom old-state new-state]
+             (prn "-- Atom Changed --")
+             (prn "key" key)
+             (prn "atom" atom)
+             (prn "old-state" old-state)
+             (prn "new-state" new-state)))
 
 (defn component []
-  (let [model (reagent/atom {})
-        status (reagent/atom nil)
-        md-icon-result #(-> {:name % :more :stuff})
+  (let [format-result #(-> {:name %})
         suggestions-for-search
         (fn [s]
           (into []
                 (take 16
-                      (for [n md-icon-names
+                      (for [n demo-test-data
                             :when (re-find (re-pattern (str "(?i)" s)) n)]
-                        (md-icon-result n)))))
+                        (format-result n)))))
         data-source (fn [s] (suggestions-for-search s))
         render-suggestion
         (fn [{:keys [name]}]
-          (js/console.log (md-classes-for-icon name))
           [:span
-           [:i {:style {:width "40px"} :class (md-classes-for-icon name)}]
+           [:i {:style {:width "40px"}}]
            name])]
     (fn []
       [:section.search-bar-wrapper
@@ -32,13 +38,11 @@
            :width "100%"
            :model model
            :render-suggestion render-suggestion
-           ;:change-on-blur? true
-           ;:rigid? true
-           ;:status status
+           :status status
            :data-source data-source
-           :placeholder "Search for companies and services you  need!"]])))
+           :placeholder "Search for companies and services"]])))
 
-(def ^:test-data md-icon-names
+(def ^:test-data demo-test-data
   ["google"
    "google-plus-box"
    "google-plus"
