@@ -23,7 +23,7 @@
        [:i.fab.fa-facebook-f]]
       [:a {:href "https://twitter.com/cwbnetwork"}
        [:i.fab.fa-twitter]]
-      [:a {:href "mailto:"}
+      [:a {:href "mailto:connect@communitywealthbuilding.org"}
        [:i.fa.fa-envelope]]]]]
    [:div.footer-row {:style {:text-transform "none"}}
     [:div#copyright (str (s/unescapeEntities "&copy;") " 2018 Community Wealth Building")]
@@ -31,5 +31,5 @@
      "Made with ( "
      [:i.fas.fa-heart]
      " ) by "
-     [:a {:href "codefordenver.org"}
+     [:a {:href "http://codefordenver.org"}
       "Code for Denver"]]]])
