@@ -1,5 +1,7 @@
 (ns cwbn.components.search-bar
+  (:require-macros [cljs.core.async.macros :refer [go]])
   (:require [re-com.core :refer [typeahead]]
+            [cljs.core.async :refer [timeout]]
             [reagent.core :as reagent]))
 
 (declare demo-test-data)
@@ -25,12 +27,21 @@
                       (for [n demo-test-data
                             :when (re-find (re-pattern (str "(?i)" s)) n)]
                         (format-result n)))))
-        data-source (fn [s] (suggestions-for-search s))
         render-suggestion
         (fn [{:keys [name]}]
           [:span
            [:i {:style {:width "40px"}}]
-           name])]
+           name])
+        async-data-source
+        (fn [s callback]
+          (go
+            (<! (timeout 500)) ;; blocking operation
+            (callback
+              (suggestions-for-search s)))
+          ;; !!!
+          ;; return value must be falsey for async :data-source to work))]
+          nil)]
+
     (fn []
       [:section.search-bar-wrapper
          [typeahead
@@ -39,7 +50,7 @@
            :model model
            :render-suggestion render-suggestion
            :status status
-           :data-source data-source
+           :data-source async-data-source
            :placeholder "Search for companies and services"]])))
 
 (def ^:test-data demo-test-data
