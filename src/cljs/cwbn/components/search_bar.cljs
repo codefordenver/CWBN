@@ -48,7 +48,7 @@
            :render-suggestion render-suggestion
            :status status
            :data-source async-data-source
-           :placeholder "Search for companies and services"
+           :placeholder "Search for companies & services you need"
            :suggestion-to-string suggestion-to-string]])))
 
 (def ^:test-data demo-test-data
