@@ -899,49 +899,246 @@ notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/core.j
 Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
 [32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.188 seconds.[0m
 notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/core.js
-Notifying browser that CSS file changed: resources/public/css/screen.css
 Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
-[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.797 seconds.[0m
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.998 seconds.[0m
 notifying browser that file changed:  target/cljsbuild/public/js/out/goog/deps.js
 notifying browser that file changed:  target/cljsbuild/public/js/out/cljs_deps.js
-notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/db.js
-notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/top_bar.js
-notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/events.js
-notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/core.js
-notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/footer.js
-Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
-[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.577 seconds.[0m
-notifying browser that file changed:  target/cljsbuild/public/js/out/cljs_deps.js
-notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/footer.js
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/search_bar.js
+Notifying browser that CSS file changed: resources/public/css/screen.css
+Notifying browser that CSS file changed: resources/public/css/screen.css
+Notifying browser that CSS file changed: resources/public/css/screen.css
 Notifying browser that CSS file changed: resources/public/css/screen.css
 Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
-[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 2.208 seconds.[0m
-notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/db.js
-notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/pages/not_found.js
-notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/top_bar.js
-notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/events.js
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 4.4 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cljs_deps.js
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/search_bar.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 2.823 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/goog/deps.js
+notifying browser that file changed:  target/cljsbuild/public/js/out/cljs_deps.js
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/core.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 2.639 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/goog/deps.js
+notifying browser that file changed:  target/cljsbuild/public/js/out/cljs_deps.js
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/search_bar.js
+Notifying browser that CSS file changed: resources/public/css/screen.css
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[36m----  Compiler Warning on   src/cljs/cwbn/components/search_bar.cljs   line:8  column:35  ----[0m
+
+  [1mUse of undeclared Var cwbn.components.search-bar/s[0m
+
+  [36m 5[0m  [36m(defn component [][0m
+  [36m 6[0m  [36m  (let [model (reagent/atom [1 2 3 4 5])[0m
+  [36m 7[0m  [36m        status (reagent/atom nil)[0m
+  [33m 8[0m  [1m        data-source (fn [search] (s model))][0m
+  [0m  [0m  [33m                                  ^--- Use of undeclared Var cwbn.components.search-bar/s[0m
+  [36m 9[0m  [36m    (fn [][0m
+  [36m10[0m  [36m      [:section.search-bar-wrapper[0m
+  [36m11[0m  [36m         [typeahead[0m
+  [36m12[0m  [36m           :class "search-bar"[0m
+  [36m13[0m  [36m           :width "100%"[0m
+
+[36m----  Compiler Warning : Please see src/cljs/cwbn/components/search_bar.cljs  ----[0m
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.564 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/search_bar.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[36m----  Compiler Warning on   src/cljs/cwbn/components/search_bar.cljs   line:14  column:26  ----[0m
+
+  [1mUse of undeclared Var cwbn.components.search-bar/md-icon-result[0m
+
+  [36m10[0m  [36m      (into [][0m
+  [36m11[0m  [36m            (take 16[0m
+  [36m12[0m  [36m                  (for [n md-icon-names[0m
+  [36m13[0m  [36m                        :when (re-find (re-pattern (str "(?i)" s)) n)][0m
+  [33m14[0m  [1m                    (md-icon-result n)))))[0m
+  [0m  [0m  [33m                     ^--- Use of undeclared Var cwbn.components.search-bar/md-icon-result[0m
+  [36m15[0m  [36m    data-source (fn [s] (suggestions-for-search s))][0m
+  [36m16[0m  [36m(fn [][0m
+  [36m17[0m  [36m  [:section.search-bar-wrapper[0m
+  [36m18[0m  [36m     [typeahead[0m
+  [36m19[0m  [36m       :class "search-bar"[0m
+
+[36m----  Compiler Warning : Please see src/cljs/cwbn/components/search_bar.cljs  ----[0m
+[36m----  Compiler Warning on   src/cljs/cwbn/components/search_bar.cljs   line:14  column:26  ----[0m
+
+  [1mUse of undeclared Var cwbn.components.search-bar/md-icon-result[0m
+
+  [36m10[0m  [36m      (into [][0m
+  [36m11[0m  [36m            (take 16[0m
+  [36m12[0m  [36m                  (for [n md-icon-names[0m
+  [36m13[0m  [36m                        :when (re-find (re-pattern (str "(?i)" s)) n)][0m
+  [33m14[0m  [1m                    (md-icon-result n)))))[0m
+  [0m  [0m  [33m                     ^--- Use of undeclared Var cwbn.components.search-bar/md-icon-result[0m
+  [36m15[0m  [36m    data-source (fn [s] (suggestions-for-search s))][0m
+  [36m16[0m  [36m(fn [][0m
+  [36m17[0m  [36m  [:section.search-bar-wrapper[0m
+  [36m18[0m  [36m     [typeahead[0m
+  [36m19[0m  [36m       :class "search-bar"[0m
+
+[36m----  Compiler Warning : Please see src/cljs/cwbn/components/search_bar.cljs  ----[0m
+[36m----  Compiler Warning on   src/cljs/cwbn/components/search_bar.cljs   line:12  column:31  ----[0m
+
+  [1mUse of undeclared Var cwbn.components.search-bar/md-icon-names[0m
+
+  [36m 8[0m  [36m    suggestions-for-search[0m
+  [36m 9[0m  [36m    (fn [s][0m
+  [36m10[0m  [36m      (into [][0m
+  [36m11[0m  [36m            (take 16[0m
+  [33m12[0m  [1m                  (for [n md-icon-names[0m
+  [0m  [0m  [33m                          ^--- Use of undeclared Var cwbn.components.search-bar/md-icon-names[0m
+  [36m13[0m  [36m                        :when (re-find (re-pattern (str "(?i)" s)) n)][0m
+  [36m14[0m  [36m                    (md-icon-result n)))))[0m
+  [36m15[0m  [36m    data-source (fn [s] (suggestions-for-search s))][0m
+  [36m16[0m  [36m(fn [][0m
+  [36m17[0m  [36m  [:section.search-bar-wrapper[0m
+
+[36m----  Compiler Warning : Please see src/cljs/cwbn/components/search_bar.cljs  ----[0m
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.878 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/search_bar.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[36m----  Compiler Warning on   src/cljs/cwbn/components/search_bar.cljs   line:16  column:26  ----[0m
+
+  [1mUse of undeclared Var cwbn.components.search-bar/md-icon-result[0m
+
+  [36m12[0m  [36m      (into [][0m
+  [36m13[0m  [36m            (take 16[0m
+  [36m14[0m  [36m                  (for [n md-icon-names[0m
+  [36m15[0m  [36m                        :when (re-find (re-pattern (str "(?i)" s)) n)][0m
+  [33m16[0m  [1m                    (md-icon-result n)))))[0m
+  [0m  [0m  [33m                     ^--- Use of undeclared Var cwbn.components.search-bar/md-icon-result[0m
+  [36m17[0m  [36m    data-source (fn [s] (suggestions-for-search s))][0m
+  [36m18[0m  [36m(fn [][0m
+  [36m19[0m  [36m  [:section.search-bar-wrapper[0m
+  [36m20[0m  [36m     [typeahead[0m
+  [36m21[0m  [36m       :class "search-bar"[0m
+
+[36m----  Compiler Warning : Please see src/cljs/cwbn/components/search_bar.cljs  ----[0m
+[36m----  Compiler Warning on   src/cljs/cwbn/components/search_bar.cljs   line:16  column:26  ----[0m
+
+  [1mUse of undeclared Var cwbn.components.search-bar/md-icon-result[0m
+
+  [36m12[0m  [36m      (into [][0m
+  [36m13[0m  [36m            (take 16[0m
+  [36m14[0m  [36m                  (for [n md-icon-names[0m
+  [36m15[0m  [36m                        :when (re-find (re-pattern (str "(?i)" s)) n)][0m
+  [33m16[0m  [1m                    (md-icon-result n)))))[0m
+  [0m  [0m  [33m                     ^--- Use of undeclared Var cwbn.components.search-bar/md-icon-result[0m
+  [36m17[0m  [36m    data-source (fn [s] (suggestions-for-search s))][0m
+  [36m18[0m  [36m(fn [][0m
+  [36m19[0m  [36m  [:section.search-bar-wrapper[0m
+  [36m20[0m  [36m     [typeahead[0m
+  [36m21[0m  [36m       :class "search-bar"[0m
+
+[36m----  Compiler Warning : Please see src/cljs/cwbn/components/search_bar.cljs  ----[0m
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.47 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/search_bar.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.384 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/search_bar.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 2.11 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cljs_deps.js
 notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/pages/home.js
-notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/pages/contact.js
-notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/pages/about.js
-notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/core.js
-notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/routes.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.587 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/search_bar.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[36m----  Compiler Warning on   src/cljs/cwbn/components/search_bar.cljs   line:22  column:48  ----[0m
+
+  [1mUse of undeclared Var cwbn.components.search-bar/md-classes-for-icon[0m
+
+  [36m18[0m  [36m    data-source (fn [s] (suggestions-for-search s))[0m
+  [36m19[0m  [36m    render-suggestion[0m
+  [36m20[0m  [36m    (fn [{:keys [name]}][0m
+  [36m21[0m  [36m      [:span[0m
+  [33m22[0m  [1m       [:i {:style {:width "40px"} :class (md-classes-for-icon name)}][0m
+  [0m  [0m  [33m                                           ^--- Use of undeclared Var cwbn.components.search-bar/md-classes-for-icon[0m
+  [36m23[0m  [36m       name])][0m
+  [36m24[0m  [36m(fn [][0m
+  [36m25[0m  [36m  [:section.search-bar-wrapper[0m
+  [36m26[0m  [36m     [typeahead[0m
+  [36m27[0m  [36m       :class "search-bar"[0m
+
+[36m----  Compiler Warning : Please see src/cljs/cwbn/components/search_bar.cljs  ----[0m
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.415 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/search_bar.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.336 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/search_bar.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 2.689 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/search_bar.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.763 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/search_bar.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.307 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/search_bar.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.811 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/search_bar.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[31mFailed to compile build :app from ["src/cljs" "src/cljc" "env/dev/cljs"] in 0.604 seconds.[0m
+[36m----  Could not Read  src/cljs/cwbn/components/search_bar.cljs   line:813 ----[0m
+
+  [1m/Users/mmm/local/cfd/CWBN/src/cljs/cwbn/components/search_bar.cljs [line 813, col 11] Unexpected EOF while reading item 3 of list, starting at line 41 and column 1.[0m
+
+  [36m811[0m  [36m"sec-10"[0m
+  [36m812[0m  [36m"sec-3"[0m
+  [33m813[0m  [1m"zero"][0m
+  [0m   [0m  [33m/Users/mmm/local/cfd/CWBN/src/cljs/cwbn/components/search_bar.cljs [line 813, col 11] Unexpected EOF while reading item 3 of list, starting at line 41 and column 1.[0m
+
+[36m----  Reader Error : Please see src/cljs/cwbn/components/search_bar.cljs  ----[0m
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[31mFailed to compile build :app from ["src/cljs" "src/cljc" "env/dev/cljs"] in 0.834 seconds.[0m
+[36m----  Could not Read  src/cljs/cwbn/components/search_bar.cljs   line:812 ----[0m
+
+  [1m/Users/mmm/local/cfd/CWBN/src/cljs/cwbn/components/search_bar.cljs [line 812, col 11] Unexpected EOF while reading item 3 of list, starting at line 40 and column 1.[0m
+
+  [36m810[0m  [36m"sec-10"[0m
+  [36m811[0m  [36m"sec-3"[0m
+  [33m812[0m  [1m"zero"][0m
+  [0m   [0m  [33m/Users/mmm/local/cfd/CWBN/src/cljs/cwbn/components/search_bar.cljs [line 812, col 11] Unexpected EOF while reading item 3 of list, starting at line 40 and column 1.[0m
+
+[36m----  Reader Error : Please see src/cljs/cwbn/components/search_bar.cljs  ----[0m
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.789 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/search_bar.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.365 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/search_bar.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.36 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/search_bar.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.265 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/search_bar.js
 Notifying browser that CSS file changed: resources/public/css/screen.css
 Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
-[31mFailed to compile build :app from ["src/cljs" "src/cljc" "env/dev/cljs"] in 0.508 seconds.[0m
-[36m----  Could not Analyze  src/cljs/cwbn/components/search_bar.cljs  ----[0m
-
-  [1mNo such namespace: re-com.core, could not locate re_com/core.cljs, re_com/core.cljc, or JavaScript source providing "re-com.core" [0m
-
-[36m----  Analysis Error : Please see src/cljs/cwbn/components/search_bar.cljs  ----[0m
-Notifying browser that CSS file changed: resources/public/css/screen.css
-Notifying browser that CSS file changed: resources/public/css/screen.css
-Notifying browser that CSS file changed: resources/public/css/screen.css
-Notifying browser that CSS file changed: resources/public/css/screen.css
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.824 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/search_bar.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.251 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/search_bar.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.331 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/search_bar.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.298 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/search_bar.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.378 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/search_bar.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.265 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/search_bar.js
 Notifying browser that CSS file changed: resources/public/css/screen.css
 Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
-[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.885 seconds.[0m
-notifying browser that file changed:  target/cljsbuild/public/js/out/goog/deps.js
-notifying browser that file changed:  target/cljsbuild/public/js/out/cljs_deps.js
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.775 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/search_bar.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.552 seconds.[0m
 notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/search_bar.js
 Notifying browser that CSS file changed: resources/public/css/screen.css
 Notifying browser that CSS file changed: resources/public/css/screen.css
@@ -956,13 +1153,336 @@ Notifying browser that CSS file changed: resources/public/css/screen.css
 Notifying browser that CSS file changed: resources/public/css/screen.css
 Notifying browser that CSS file changed: resources/public/css/screen.css
 Notifying browser that CSS file changed: resources/public/css/screen.css
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.763 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/search_bar.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.357 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/search_bar.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.378 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/search_bar.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.842 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/pages/home.js
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/search_bar.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.278 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/pages/home.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.287 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/pages/home.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.253 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cljs_deps.js
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/pages/home.js
 Notifying browser that CSS file changed: resources/public/css/screen.css
 Notifying browser that CSS file changed: resources/public/css/screen.css
-Notifying browser that CSS file changed: resources/public/css/screen.css
-Notifying browser that CSS file changed: resources/public/css/screen.css
-Notifying browser that CSS file changed: resources/public/css/screen.css
-Notifying browser that CSS file changed: resources/public/css/screen.css
-Notifying browser that CSS file changed: resources/public/css/screen.css
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.324 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/search_bar.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.246 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/search_bar.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.297 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/search_bar.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.412 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/search_bar.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.28 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/search_bar.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.267 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/search_bar.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.232 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/search_bar.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.331 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/search_bar.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.277 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/search_bar.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[36m----  Compiler Warning on   src/cljs/cwbn/components/search_bar.cljs   line:15  column:31  ----[0m
+
+  [1mUse of undeclared Var cwbn.components.search-bar/demo-test-data[0m
+
+  [36m11[0m  [36msuggestions-for-search[0m
+  [36m12[0m  [36m(fn [s][0m
+  [36m13[0m  [36m  (into [][0m
+  [36m14[0m  [36m        (take 16[0m
+  [33m15[0m  [1m              (for [n demo-test-data[0m
+  [0m  [0m  [33m                      ^--- Use of undeclared Var cwbn.components.search-bar/demo-test-data[0m
+  [36m16[0m  [36m                    :when (re-find (re-pattern (str "(?i)" s)) n)][0m
+  [36m17[0m  [36m                (md-icon-result n)))))[0m
+  [36m18[0m  [36mdata-source (fn [s] (suggestions-for-search s))[0m
+  [36m19[0m  [36mrender-suggestion[0m
+  [36m20[0m  [36m(fn [{:keys [name]}][0m
+
+[36m----  Compiler Warning : Please see src/cljs/cwbn/components/search_bar.cljs  ----[0m
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.293 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/search_bar.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[36m----  Compiler Warning on   src/cljs/cwbn/components/search_bar.cljs   line:15  column:31  ----[0m
+
+  [1mUse of undeclared Var cwbn.components.search-bar/demo-test-data[0m
+
+  [36m11[0m  [36msuggestions-for-search[0m
+  [36m12[0m  [36m(fn [s][0m
+  [36m13[0m  [36m  (into [][0m
+  [36m14[0m  [36m        (take 16[0m
+  [33m15[0m  [1m              (for [n demo-test-data[0m
+  [0m  [0m  [33m                      ^--- Use of undeclared Var cwbn.components.search-bar/demo-test-data[0m
+  [36m16[0m  [36m                    :when (re-find (re-pattern (str "(?i)" s)) n)][0m
+  [36m17[0m  [36m                (format-result n)))))[0m
+  [36m18[0m  [36mdata-source (fn [s] (suggestions-for-search s))[0m
+  [36m19[0m  [36mrender-suggestion[0m
+  [36m20[0m  [36m(fn [{:keys [name]}][0m
+
+[36m----  Compiler Warning : Please see src/cljs/cwbn/components/search_bar.cljs  ----[0m
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.29 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/search_bar.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.27 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/search_bar.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.809 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/search_bar.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.285 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/search_bar.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.757 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/search_bar.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.287 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/search_bar.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.386 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/search_bar.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.512 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/search_bar.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.252 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/search_bar.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.826 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/search_bar.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.241 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/search_bar.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[36m----  Compiler Warning on   src/cljs/cwbn/components/search_bar.cljs   line:38  column:18  ----[0m
+
+  [1mUse of undeclared Var cwbn.components.search-bar/timeout[0m
+
+  [36m34[0m  [36m           name])[0m
+  [36m35[0m  [36m        async-data-source[0m
+  [36m36[0m  [36m        (fn [s callback][0m
+  [36m37[0m  [36m          (go[0m
+  [33m38[0m  [1m            (<! (timeout 500))[0m
+  [0m  [0m  [33m                 ^--- Use of undeclared Var cwbn.components.search-bar/timeout[0m
+  [36m39[0m  [36m            (callback[0m
+  [36m40[0m  [36m              (suggestions-for-search s))))][0m
+  [36m41[0m  [36m[0m
+  [36m42[0m  [36m    (fn [][0m
+  [36m43[0m  [36m      [:section.search-bar-wrapper[0m
+
+[36m----  Compiler Warning : Please see src/cljs/cwbn/components/search_bar.cljs  ----[0m
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.36 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/search_bar.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[36m----  Compiler Warning on   src/cljs/cwbn/components/search_bar.cljs   line:38  column:18  ----[0m
+
+  [1mUse of undeclared Var cwbn.components.search-bar/timeout[0m
+
+  [36m34[0m  [36m   name])[0m
+  [36m35[0m  [36masync-data-source[0m
+  [36m36[0m  [36m(fn [s callback][0m
+  [36m37[0m  [36m  (go[0m
+  [33m38[0m  [1m    (<! (timeout 500))[0m
+  [0m  [0m  [33m         ^--- Use of undeclared Var cwbn.components.search-bar/timeout[0m
+  [36m39[0m  [36m    (callback[0m
+  [36m40[0m  [36m      (suggestions-for-search s))))][0m
+  [36m41[0m  [36m    ;; !!![0m
+  [36m42[0m  [36m    ;; return value must be falsey for async :data-source to work))][0m
+
+[36m----  Compiler Warning : Please see src/cljs/cwbn/components/search_bar.cljs  ----[0m
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.38 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/search_bar.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[36m----  Compiler Warning on   src/cljs/cwbn/components/search_bar.cljs   line:38  column:18  ----[0m
+
+  [1mUse of undeclared Var cwbn.components.search-bar/timeout[0m
+
+  [36m34[0m  [36m   name])[0m
+  [36m35[0m  [36masync-data-source[0m
+  [36m36[0m  [36m(fn [s callback][0m
+  [36m37[0m  [36m  (go[0m
+  [33m38[0m  [1m    (<! (timeout 500))[0m
+  [0m  [0m  [33m         ^--- Use of undeclared Var cwbn.components.search-bar/timeout[0m
+  [36m39[0m  [36m    (callback[0m
+  [36m40[0m  [36m      (suggestions-for-search s)))[0m
+  [36m41[0m  [36m  nil)][0m
+  [36m42[0m  [36m    ;; !!![0m
+  [36m43[0m  [36m    ;; return value must be falsey for async :data-source to work))][0m
+
+[36m----  Compiler Warning : Please see src/cljs/cwbn/components/search_bar.cljs  ----[0m
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.293 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/search_bar.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[36m----  Compiler Warning on   src/cljs/cwbn/components/search_bar.cljs   line:38  column:18  ----[0m
+
+  [1mUse of undeclared Var cwbn.components.search-bar/timeout[0m
+
+  [36m34[0m  [36m   name])[0m
+  [36m35[0m  [36masync-data-source[0m
+  [36m36[0m  [36m(fn [s callback][0m
+  [36m37[0m  [36m  (go[0m
+  [33m38[0m  [1m    (<! (timeout 500))[0m
+  [0m  [0m  [33m         ^--- Use of undeclared Var cwbn.components.search-bar/timeout[0m
+  [36m39[0m  [36m    (callback[0m
+  [36m40[0m  [36m      (suggestions-for-search s)))[0m
+  [36m41[0m  [36m  nil)][0m
+  [36m42[0m  [36m    ;; !!![0m
+  [36m43[0m  [36m    ;; return value must be falsey for async :data-source to work))][0m
+
+[36m----  Compiler Warning : Please see src/cljs/cwbn/components/search_bar.cljs  ----[0m
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.284 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/search_bar.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[36m----  Compiler Warning on   src/cljs/cwbn/components/search_bar.cljs   line:37  column:18  ----[0m
+
+  [1mUse of undeclared Var cwbn.components.search-bar/timeout[0m
+
+  [36m33[0m  [36m   name])[0m
+  [36m34[0m  [36masync-data-source[0m
+  [36m35[0m  [36m(fn [s callback][0m
+  [36m36[0m  [36m  (go[0m
+  [33m37[0m  [1m    (<! (timeout 500))[0m
+  [0m  [0m  [33m         ^--- Use of undeclared Var cwbn.components.search-bar/timeout[0m
+  [36m38[0m  [36m    (callback[0m
+  [36m39[0m  [36m      (suggestions-for-search s)))[0m
+  [36m40[0m  [36m  nil)][0m
+  [36m41[0m  [36m    ;; !!![0m
+  [36m42[0m  [36m    ;; return value must be falsey for async :data-source to work))][0m
+
+[36m----  Compiler Warning : Please see src/cljs/cwbn/components/search_bar.cljs  ----[0m
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.321 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/search_bar.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[36m----  Compiler Warning on   src/cljs/cwbn/components/search_bar.cljs   line:37  column:18  ----[0m
+
+  [1mUse of undeclared Var cwbn.components.search-bar/timeout[0m
+
+  [36m33[0m  [36m   name])[0m
+  [36m34[0m  [36masync-data-source[0m
+  [36m35[0m  [36m(fn [s callback][0m
+  [36m36[0m  [36m  (go[0m
+  [33m37[0m  [1m    (<! (timeout 500))[0m
+  [0m  [0m  [33m         ^--- Use of undeclared Var cwbn.components.search-bar/timeout[0m
+  [36m38[0m  [36m    (callback[0m
+  [36m39[0m  [36m      (suggestions-for-search s)))[0m
+  [36m40[0m  [36m  nil)][0m
+  [36m41[0m  [36m  ;; !!![0m
+  [36m42[0m  [36m  ;; return value must be falsey for async :data-source to work))][0m
+
+[36m----  Compiler Warning : Please see src/cljs/cwbn/components/search_bar.cljs  ----[0m
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.313 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/search_bar.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[36m----  Compiler Warning on   src/cljs/cwbn/components/search_bar.cljs   line:37  column:18  ----[0m
+
+  [1mUse of undeclared Var cwbn.components.search-bar/timeout[0m
+
+  [36m33[0m  [36m   name])[0m
+  [36m34[0m  [36masync-data-source[0m
+  [36m35[0m  [36m(fn [s callback][0m
+  [36m36[0m  [36m  (go[0m
+  [33m37[0m  [1m    (<! (timeout 500))[0m
+  [0m  [0m  [33m         ^--- Use of undeclared Var cwbn.components.search-bar/timeout[0m
+  [36m38[0m  [36m    (callback[0m
+  [36m39[0m  [36m      (suggestions-for-search s)))[0m
+  [36m40[0m  [36m  ;; !!![0m
+  [36m41[0m  [36m  ;; return value must be falsey for async :data-source to work))][0m
+  [36m42[0m  [36m  nil)][0m
+
+[36m----  Compiler Warning : Please see src/cljs/cwbn/components/search_bar.cljs  ----[0m
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.331 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/search_bar.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.285 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cljs_deps.js
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/search_bar.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.286 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/search_bar.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.772 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/search_bar.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.269 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/search_bar.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.744 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/search_bar.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.306 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/search_bar.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.293 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/search_bar.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.275 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/search_bar.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.652 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/search_bar.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 3.653 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/search_bar.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.233 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/search_bar.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.332 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/search_bar.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[31mFailed to compile build :app from ["src/cljs" "src/cljc" "env/dev/cljs"] in 0.509 seconds.[0m
+[36m----  Could not Analyze  src/cljs/cwbn/components/search_bar.cljs   line:22  column:3  ----[0m
+
+  [1mUnsupported binding key: :suggestion-to-string[0m
+
+  [36m21[0m  [36m(defn component [][0m
+  [33m22[0m  [1m  (let [format-result #(-> {:name %})[0m
+  [0m  [0m  [33m  ^--- Unsupported binding key: :suggestion-to-string[0m
+  [36m23[0m  [36m        suggestions-for-search[0m
+  [36m24[0m  [36m        (fn [s][0m
+  [36m25[0m  [36m          (into [][0m
+
+[36m----  Analysis Error : Please see src/cljs/cwbn/components/search_bar.cljs  ----[0m
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.263 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/search_bar.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.284 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/search_bar.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.293 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/search_bar.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.39 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/search_bar.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.277 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/search_bar.js
+Compiling build :app to "target/cljsbuild/public/js/app.js" from ["src/cljs" "src/cljc" "env/dev/cljs"]...
+[32mSuccessfully compiled build :app to "target/cljsbuild/public/js/app.js" in 1.283 seconds.[0m
+notifying browser that file changed:  target/cljsbuild/public/js/out/cwbn/components/search_bar.js
 Notifying browser that CSS file changed: resources/public/css/screen.css
 Notifying browser that CSS file changed: resources/public/css/screen.css
 Notifying browser that CSS file changed: resources/public/css/screen.css
