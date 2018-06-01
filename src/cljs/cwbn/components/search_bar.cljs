@@ -27,11 +27,9 @@
                       (for [n demo-test-data
                             :when (re-find (re-pattern (str "(?i)" s)) n)]
                         (format-result n)))))
+        suggestion-to-string #(:name %)
         render-suggestion
-        (fn [{:keys [name]}]
-          [:span
-           [:i {:style {:width "40px"}}]
-           name])
+        (fn [{:keys [name]}] [:span name])
         async-data-source
         (fn [s callback]
           (go
@@ -41,7 +39,6 @@
           ;; !!!
           ;; return value must be falsey for async :data-source to work))]
           nil)]
-
     (fn []
       [:section.search-bar-wrapper
          [typeahead
@@ -51,7 +48,8 @@
            :render-suggestion render-suggestion
            :status status
            :data-source async-data-source
-           :placeholder "Search for companies and services"]])))
+           :placeholder "Search for companies and services"
+           :suggestion-to-string suggestion-to-string]])))
 
 (def ^:test-data demo-test-data
   ["google"
