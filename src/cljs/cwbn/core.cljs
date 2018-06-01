@@ -5,7 +5,6 @@
             [cwbn.ajax :refer [load-interceptors!]]
             [cwbn.events]
             [cwbn.routes :as routes]
-            [cwbn.client :refer [client-content]]
             [cwbn.pages.about :refer [about-page]]
             [cwbn.pages.contact :refer [contact-page]]
             [cwbn.pages.home :refer [home-page]]
@@ -24,7 +23,7 @@
 (defn page []
   [:div.page-wrapper
    [top-bar-component]
-   [:div.content.container.mv4.pv1
+   [:div.content.pv5.ph5-l
     (show-page @(rf/subscribe [:active-page]))]
    [footer-component]])
 

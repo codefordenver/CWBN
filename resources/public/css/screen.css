@@ -51,9 +51,24 @@
     #top-bar #nav .active {
       font-weight: 500; }
 
+.search-bar-wrapper {
+  padding: 2em; }
+  .search-bar-wrapper .search-bar {
+    font-size: 1.5em;
+    padding: 1em 3em 1em 1em !important;
+    background-image: url("../img/search.png");
+    background-size: auto 45%;
+    background-repeat: no-repeat;
+    background-position: 98%; }
+    @media screen and (max-width: 800px) {
+      .search-bar-wrapper .search-bar {
+        background-position: 95%; } }
+
 html, body {
+  background: #2C208C;
   font-family: 'Hind Siliguri', sans-serif;
-  height: 100%; }
+  height: 100%;
+  color: black; }
 
 #app {
   height: 100%; }
@@ -63,4 +78,5 @@ html, body {
   flex-direction: column;
   min-height: 100%; }
   .page-wrapper .content {
-    flex-grow: 1; }
+    flex-grow: 1;
+    background-color: whitesmoke; }

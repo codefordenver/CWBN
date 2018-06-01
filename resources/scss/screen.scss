@@ -2,10 +2,13 @@
 @import 'vars';
 @import 'footer';
 @import 'nav';
+@import "search-bar";
 
 html, body {
+    background: $indigo;
     font-family: 'Hind Siliguri', sans-serif;
     height: 100%;
+    color: black;
 }
 
 #app {
@@ -17,6 +20,7 @@ html, body {
   flex-direction: column;
   min-height: 100%;
   .content {
-    flex-grow: 1
+    flex-grow: 1;
+    background-color: whitesmoke;
   }
 }
