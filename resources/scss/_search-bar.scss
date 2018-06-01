@@ -2,10 +2,13 @@
   padding: 2em;
   .search-bar {
     font-size: 1.5em;
-    padding: 1em 0 1em 2em;
+    padding: 1em 3em 1em 1em !important;
     background-image: url('../img/search.png');
     background-size: auto 45%;
     background-repeat:no-repeat;
-    background-position: .75%;
+    background-position: 98%;
+    @media screen and (max-width: 800px) {
+      background-position: 95%;
+    }
   }
 }

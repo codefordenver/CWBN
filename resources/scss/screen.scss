@@ -8,7 +8,7 @@ html, body {
     background: $indigo;
     font-family: 'Hind Siliguri', sans-serif;
     height: 100%;
-    color: white;
+    color: black;
 }
 
 #app {
@@ -20,6 +20,7 @@ html, body {
   flex-direction: column;
   min-height: 100%;
   .content {
-    flex-grow: 1
+    flex-grow: 1;
+    background-color: whitesmoke;
   }
 }

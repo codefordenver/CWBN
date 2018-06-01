@@ -23,7 +23,7 @@
 (defn page []
   [:div.page-wrapper
    [top-bar-component]
-   [:div.content.container.mv4.pv1
+   [:div.content.pv5.ph5-l
     (show-page @(rf/subscribe [:active-page]))]
    [footer-component]])
 

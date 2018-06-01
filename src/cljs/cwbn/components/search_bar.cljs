@@ -42,7 +42,7 @@
     (fn []
       [:section.search-bar-wrapper
          [typeahead
-           :class "search-bar"
+           :class "search-bar truncate"
            :width "100%"
            :model model
            :render-suggestion render-suggestion
