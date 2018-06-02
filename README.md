@@ -4,7 +4,10 @@ generated using Luminus version "2.9.12.52"
 
 ## Prerequisites
 
-You will need [Leiningen][1] 2.0 or above installed.
+You will need 
+- Java
+- [Leiningen][1] 2.0 or above
+- sassc (on a Mac it can be installed with homebrew)
 
 [1]: https://github.com/technomancy/leiningen
 
@@ -20,7 +23,8 @@ You will need [Leiningen][1] 2.0 or above installed.
 
 To start a web server for the application, run:
 
-    lein run 
+- `lein run`
+- `lein figwheel` (can be started from a separate terminal)
 
 ## License
 
