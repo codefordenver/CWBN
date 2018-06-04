@@ -11,8 +11,12 @@
 
 (reg-event-db
   :set-active-page
-  (fn [db [_ page]]
-    (assoc db :active-page page)))
+  (fn [db [_ page & [params]]]
+    (if-let [service-route (:service params)]
+      (assoc db :active-page page
+                :service-route service-route)
+      (assoc db :active-page page))))
+
 
 ;;subscriptions
 
@@ -20,3 +24,8 @@
   :active-page
   (fn [db _]
     (:active-page db)))
+
+(reg-sub
+  :service-route
+  (fn [db _]
+    (:service-route db)))

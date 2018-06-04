@@ -30,6 +30,9 @@
   (defroute "/contact" []
             (rf/dispatch [:set-active-page :contact]))
 
+  (defroute "/services/:service" {:as params} []
+            (rf/dispatch [:set-active-page :service params]))
+
   (defroute "/404" []
             (rf/dispatch [:set-active-page :not-found]))
 

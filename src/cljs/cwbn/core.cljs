@@ -8,6 +8,7 @@
             [cwbn.pages.about :refer [about-page]]
             [cwbn.pages.contact :refer [contact-page]]
             [cwbn.pages.home :refer [home-page]]
+            [cwbn.pages.service :refer [service-page]]
             [cwbn.pages.not-found :refer [not-found-page]]
             [cwbn.components.footer :refer [footer-component]]
             [cwbn.components.top-bar :refer [top-bar-component]]))
@@ -17,6 +18,7 @@
         :home [home-page]
         :about [about-page]
         :contact [contact-page]
+        :service [service-page]
         :not-found [not-found-page]
         [:div]))
 
