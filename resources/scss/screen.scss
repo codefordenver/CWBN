@@ -1,14 +1,15 @@
-@import url('https://fonts.googleapis.com/css?family=Hind+Siliguri:400,600');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
 @import 'vars';
 @import 'footer';
 @import 'nav';
 @import "search-bar";
+@import "home";
 
 html, body {
     background: $indigo;
-    font-family: 'Hind Siliguri', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     height: 100%;
-    color: black;
+    color: $blackish;
 }
 
 #app {
