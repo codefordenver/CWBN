@@ -32,5 +32,6 @@
      [:i.fas.fa-heart]
      " ) by "
      [:a {:href "https://www.codefordenver.org"
-          :target "_blank"}
+          :target "_blank"
+          :rel "noopener noreferrer"}
       "Code for Denver"]]]])
