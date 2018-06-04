@@ -11,7 +11,7 @@
 
 (defn home-page []
   [:div
-   [:h1.tc.f2 "Let's build a stronger local economy"]
+   [:h1.tc.f2.fw7 "Let's build a stronger local economy"]
    [search-bar/component]
    [:div {:class "service-links flex flex-wrap justify-between"}
     [service-link "Financial Investment" "financial" ""]

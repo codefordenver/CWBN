@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,700");
 #footer {
-  padding: 30px 25px 25px 25px;
+  padding: 25px;
   background-color: #2C208C;
   color: white;
   margin-top: auto;
@@ -54,7 +54,7 @@
     @media screen and (max-width: 713px) {
       #top-bar #nav {
         margin-left: auto;
-        margin-bottom: 0.3em;
+        margin-bottom: 10px;
         font-size: 0.8em; } }
 
 .search-bar-wrapper {
