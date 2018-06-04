@@ -10,14 +10,6 @@
 
 (def model (reagent/atom nil))
 
-(add-watch model :watcher
-           (fn [key atom old-state new-state]
-             (prn "-- Atom Changed --")
-             (prn "key" key)
-             (prn "atom" atom)
-             (prn "old-state" old-state)
-             (prn "new-state" new-state)))
-
 (defn component []
   (let [format-result #(-> {:name %})
         suggestions-for-search
@@ -27,7 +19,7 @@
                       (for [n demo-test-data
                             :when (re-find (re-pattern (str "(?i)" s)) n)]
                         (format-result n)))))
-        suggestion-to-string #(:name %)
+        ;suggestion-to-string #(:name %)
         render-suggestion
         (fn [{:keys [name]}] [:span name])
         async-data-source
@@ -48,8 +40,8 @@
            :render-suggestion render-suggestion
            :status status
            :data-source async-data-source
-           :placeholder "Search for companies & services you need"
-           :suggestion-to-string suggestion-to-string]])))
+           :placeholder "Search for companies & services you need"]])))
+           ;:suggestion-to-string suggestion-to-string]])))
 
 (def ^:test-data demo-test-data
   ["google"
