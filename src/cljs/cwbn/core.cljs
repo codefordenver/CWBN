@@ -8,6 +8,7 @@
             [cwbn.pages.about :refer [about-page]]
             [cwbn.pages.contact :refer [contact-page]]
             [cwbn.pages.home :refer [home-page]]
+            [cwbn.pages.service :refer [service-page]]
             [cwbn.pages.not-found :refer [not-found-page]]
             [cwbn.components.footer :refer [footer-component]]
             [cwbn.components.top-bar :refer [top-bar-component]]))
@@ -17,13 +18,14 @@
         :home [home-page]
         :about [about-page]
         :contact [contact-page]
+        :service [service-page]
         :not-found [not-found-page]
         [:div]))
 
 (defn page []
   [:div.page-wrapper
    [top-bar-component]
-   [:div.content.pv5.ph5-l
+   [:div {:class "content pv5-ns pv4 ph5-l ph4-m ph3"}
     (show-page @(rf/subscribe [:active-page]))]
    [footer-component]])
 

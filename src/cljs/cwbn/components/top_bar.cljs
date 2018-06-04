@@ -7,7 +7,7 @@
    [:a.nav-link {:href uri} title]])
 
 (defn top-bar-component []
-  [:div#top-bar
+  [:div#top-bar {:class "flex flex-wrap items-center justify-between"}
    [:a {:href "#/"}
     [:img#logo {:src "img/logo.png"
                 :alt "Community Wealth Building logo"}]]

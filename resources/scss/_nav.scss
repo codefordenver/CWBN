@@ -1,13 +1,14 @@
 #top-bar {
   background-color: $indigo;
   color: white;
-  display: flex;
-  flex-flow: row wrap;
-  align-items: center;
-  justify-content: space-between;
   #logo {
-      height: 100px;
-      margin: 10px 0;
+    height: 100px;
+    margin: 10px 0;
+    @media screen and (max-width: 500px) {
+      width: 95%;
+      height: auto;
+      margin-bottom: 0;
+    }
   }
   #nav {
     display: flex;
@@ -22,6 +23,11 @@
     }
     .active {
       font-weight: 500;
+    }
+    @media screen and (max-width: 713px) {
+      margin-left: auto;
+      margin-bottom: 10px;
+      font-size: 0.8em;
     }
   }
 }

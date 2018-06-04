@@ -1,6 +1,6 @@
-@import url("https://fonts.googleapis.com/css?family=Hind+Siliguri:400,600");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,700");
 #footer {
-  padding: 30px 25px 25px 25px;
+  padding: 25px;
   background-color: #2C208C;
   color: white;
   margin-top: auto;
@@ -30,14 +30,15 @@
 
 #top-bar {
   background-color: #2C208C;
-  color: white;
-  display: flex;
-  flex-flow: row wrap;
-  align-items: center;
-  justify-content: space-between; }
+  color: white; }
   #top-bar #logo {
     height: 100px;
     margin: 10px 0; }
+    @media screen and (max-width: 500px) {
+      #top-bar #logo {
+        width: 95%;
+        height: auto;
+        margin-bottom: 0; } }
   #top-bar #nav {
     display: flex;
     justify-content: space-between;
@@ -50,6 +51,11 @@
       text-transform: uppercase; }
     #top-bar #nav .active {
       font-weight: 500; }
+    @media screen and (max-width: 713px) {
+      #top-bar #nav {
+        margin-left: auto;
+        margin-bottom: 10px;
+        font-size: 0.8em; } }
 
 .search-bar-wrapper {
   padding: 2em; }
@@ -64,11 +70,19 @@
       .search-bar-wrapper .search-bar {
         background-position: 95%; } }
 
+.service-links a {
+  text-decoration: none;
+  color: #343a40; }
+
+@media screen and (max-width: 500px) {
+  .service-links .service-link {
+    width: 50%; } }
+
 html, body {
   background: #2C208C;
-  font-family: 'Hind Siliguri', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   height: 100%;
-  color: black; }
+  color: #343a40; }
 
 #app {
   height: 100%; }
