@@ -12,9 +12,9 @@
 (reg-event-db
   :set-active-page
   (fn [db [_ page & [params]]]
-    (if-let [service-route (:service params)]
+    (if-let [category-route (:category params)]
       (assoc db :active-page page
-                :service-route service-route)
+                :category-route category-route)
       (assoc db :active-page page))))
 
 
@@ -26,6 +26,6 @@
     (:active-page db)))
 
 (reg-sub
-  :service-route
+  :category-route
   (fn [db _]
-    (:service-route db)))
+    (:category-route db)))
