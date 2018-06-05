@@ -25,7 +25,7 @@
 (defn page []
   [:div.page-wrapper
    [top-bar-component]
-   [:div {:class "content pv5-ns pv4 ph5-l ph4-m ph3"}
+   [:div {:class "content pv4-ns pv3 ph4-ns ph3"}
     (show-page @(rf/subscribe [:active-page]))]
    [footer-component]])
 

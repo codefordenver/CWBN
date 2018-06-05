@@ -78,6 +78,27 @@
   .category-links .category-link {
     width: 50%; } }
 
+@media screen and (max-width: 700px) {
+  .category-page .category-header img.category-icon {
+    display: none; } }
+
+@media screen and (min-width: 701px) {
+  .category-page .category-header div.category-services {
+    margin-left: 1em; } }
+
+.category-page .category-header span.service-link {
+  padding-right: 0.5em; }
+  .category-page .category-header span.service-link a {
+    color: #2C208C;
+    font-weight: 700; }
+  .category-page .category-header span.service-link:not(:first-child) {
+    padding-left: 0.5em; }
+  .category-page .category-header span.service-link:not(:last-child) {
+    border-right: 1px solid black; }
+
+.category-page .category-listings div.letter {
+  color: #2C208C; }
+
 html, body {
   background: #2C208C;
   font-family: 'Open Sans', sans-serif;

@@ -29,3 +29,8 @@
   :category-route
   (fn [db _]
     (:category-route db)))
+
+(reg-sub
+  :services-by-category
+  (fn [db _]
+    (:services-by-category db)))
