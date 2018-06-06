@@ -10,7 +10,8 @@
   flex-flow: row wrap;
   justify-content: space-between;
   text-transform: uppercase;
-  font-weight: 500;
+  font-size: 0.8em;
+  font-weight: 300;
   a {
     color: white;
   }
@@ -28,8 +29,7 @@
     }
   }
   #copyright, #cfd {
-    font-size: small;
-    font-weight: normal;
     i { color: red }
+    a { text-decoration: underline }
   }
 }

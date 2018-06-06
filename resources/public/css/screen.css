@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,700");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700");
 #footer {
   padding: 25px;
   background-color: #2C208C;
@@ -11,7 +11,8 @@
   flex-flow: row wrap;
   justify-content: space-between;
   text-transform: uppercase;
-  font-weight: 500; }
+  font-size: 0.8em;
+  font-weight: 300; }
   .footer-row a {
     color: white; }
   .footer-row #social, .footer-row #about, .footer-row #copyright, .footer-row #cfd {
@@ -22,11 +23,10 @@
     margin-top: 15px; }
     .footer-row #social #icons i {
       font-size: 1.5em; }
-  .footer-row #copyright, .footer-row #cfd {
-    font-size: small;
-    font-weight: normal; }
-    .footer-row #copyright i, .footer-row #cfd i {
-      color: red; }
+  .footer-row #copyright i, .footer-row #cfd i {
+    color: red; }
+  .footer-row #copyright a, .footer-row #cfd a {
+    text-decoration: underline; }
 
 #top-bar {
   background-color: #2C208C;
@@ -50,7 +50,7 @@
       color: white;
       text-transform: uppercase; }
     #top-bar #nav .active {
-      font-weight: 500; }
+      font-weight: 700; }
     @media screen and (max-width: 713px) {
       #top-bar #nav {
         margin-left: auto;
@@ -70,19 +70,42 @@
       .search-bar-wrapper .search-bar {
         background-position: 95%; } }
 
-.service-links a {
+.category-links a {
   text-decoration: none;
   color: #343a40; }
 
 @media screen and (max-width: 500px) {
-  .service-links .service-link {
+  .category-links .category-link {
     width: 50%; } }
+
+@media screen and (max-width: 700px) {
+  .category-page .category-header img.category-icon {
+    display: none; } }
+
+@media screen and (min-width: 701px) {
+  .category-page .category-header div.category-services {
+    margin-left: 1em; } }
+
+.category-page .category-header span.service-link {
+  padding-right: 0.5em; }
+  .category-page .category-header span.service-link a {
+    color: #2C208C; }
+  .category-page .category-header span.service-link:not(:first-child) {
+    padding-left: 0.5em; }
+  .category-page .category-header span.service-link:not(:last-child) {
+    border-right: 1px solid black; }
+
+.category-page .category-listings div.letter {
+  color: #2C208C; }
 
 html, body {
   background: #2C208C;
   font-family: 'Open Sans', sans-serif;
   height: 100%;
   color: #343a40; }
+
+b {
+  font-weight: 600; }
 
 #app {
   height: 100%; }

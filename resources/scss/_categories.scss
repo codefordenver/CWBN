@@ -1,0 +1,43 @@
+.category-links {
+  a {
+    text-decoration: none;
+    color: $blackish;
+  }
+  @media screen and (max-width: 500px) {
+    .category-link {
+      width: 50%;
+    }
+  }
+}
+
+.category-page {
+  .category-header {
+    img.category-icon {
+      @media screen and (max-width: 700px) {
+        display: none;
+      }
+    }
+    div.category-services {
+      @media screen and (min-width: 701px) {
+        margin-left: 1em;
+      }
+    }
+    span.service-link {
+      a {
+        color: $indigo;
+      }
+      padding-right: 0.5em;
+      &:not(:first-child) {
+        padding-left: 0.5em;
+      }
+      &:not(:last-child) {
+        border-right: 1px solid black;
+      }
+    }
+  }
+  .category-listings {
+    div.letter {
+      color: $indigo;
+    }
+  }
+}
