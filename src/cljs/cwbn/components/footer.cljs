@@ -31,5 +31,7 @@
      "Made with ( "
      [:i.fas.fa-heart]
      " ) by "
-     [:a {:href "http://codefordenver.org"}
+     [:a {:href "https://www.codefordenver.org"
+          :target "_blank"
+          :rel "noopener noreferrer"}
       "Code for Denver"]]]])
