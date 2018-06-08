@@ -34,3 +34,8 @@
   :services-by-category
   (fn [db _]
     (:services-by-category db)))
+
+(reg-sub
+  :orgs
+  (fn [db _]
+    (:orgs db)))

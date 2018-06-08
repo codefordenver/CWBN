@@ -37,7 +37,10 @@
   }
   .category-listings {
     div.letter {
-      color: $indigo;
+      background-color: $indigo;
+      color: white;
+      height: 50px;
+      width: 50px;
     }
   }
 }
