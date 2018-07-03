@@ -48,6 +48,7 @@ ORDER BY s.service_sort_order, s.service_name
 -- :doc retrieves all the active organizations with categories and services as a list
 SELECT o.*,ot.org_type_name,  cl.categories, sl.services
 FROM organizations o
+LEFT OUTER JOIN org_types ot ON (o.org_type_code = ot.org_type_code)
 LEFT OUTER JOIN
 (SELECT os.org_id, group_concat(s.service_name) services
 FROM  organization_services os, services s

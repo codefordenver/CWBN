@@ -32,7 +32,6 @@ CREATE TABLE IF NOT EXISTS services
 CREATE TABLE IF NOT EXISTS organizations
    (org_id        INTEGER PRIMARY KEY AUTO_INCREMENT,
     org_name      VARCHAR(300) NOT NULL,
-    org_type_code VARCHAR(10) NOT NULL ,
     org_type_code VARCHAR(10) ,
     related_org_name         VARCHAR(200),
     service_description    VARCHAR(200),
@@ -111,7 +110,6 @@ CREATE TABLE IF NOT EXISTS organization_services
     ('IND','Individual'),
     ('OG','Organizing'),
     ('SE','Social Enterprise'),
-    ('UNIV','University'),
     ('UNIV','University');
 
     COMMIT;
