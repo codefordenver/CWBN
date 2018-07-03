@@ -1,6 +1,7 @@
 (ns cwbn.pages.category
   (:require [re-frame.core :as rf]
-            [clojure.string :as s]))
+            [clojure.string :as s]
+            [reagent.core :as reagent]))
 
 (defn org-details [{:keys [name
                            type
@@ -34,6 +35,7 @@
    (when-not (nil? population)
      [:h3.f6.mb0 phone])])
 
+(def current-letter (reagent/atom nil))
 
 (defn category-page []
   (let [services-by-category @(rf/subscribe [:services-by-category])
@@ -43,12 +45,18 @@
         category-key (keyword category-route)
         category-services (services-by-category category-key)
         all-orgs @(rf/subscribe [:orgs])
-        orgs (filter (fn [org]
-                       (some (fn [cat]
-                               (when (= category-key cat)
-                                     cat))
-                             (:categories org)))
-                    all-orgs)]
+        orgs (sort-by :name (filter (fn [org]
+                                      (some (fn [cat]
+                                              (when (= category-key cat)
+                                                    cat))
+                                            (:categories org)))
+                                   all-orgs))
+        org-letters (distinct (map #(first (:name %)) orgs))
+        orgs-by-letter (as-> '{} os
+                         (map (fn [l]
+                                (assoc os (keyword l) (filter #(= l (first (:name %))) orgs)))
+                              org-letters)
+                         (apply merge os))]
     [:div.category-page
      [:div {:class "category-header flex items-center"}
       [:img {:class "category-icon"
@@ -60,12 +68,14 @@
           ^{:key (gensym "service-")}
           [:span {:class "service-link fw6"}
            [:a {:href category-route} service]])]]]
-     [:div {:class "category-listings mt4 pt1"}
-      [:div {:class "orgs-by-letter flex"}
-       [:div {:class "flex justify-center f3 b tl tc-ns w-20 w-10-l"}
-        [:div {:class "letter flex flex-column justify-center items-center br-100"}
-         [:div "A"]]]
-       [:div {:class "orgs w-80 w-90-l"}
-        (for [org orgs]
-          ^{:key (gensym "org-")}
-          [org-details org])]]]]))
+     [:div {:class "category-listings mt4 pt1 flex"}
+      (doall
+        (for [letter orgs-by-letter]
+          ^{:key (gensym "letter-")}
+          [:div {:class "orgs-by-letter flex"}
+           [:div {:class "letter-parent"}
+            [:div {:class "letter f3 b tl tc-ns w-20 w-10-l"} (first letter)]]
+           [:div {:class "orgs w-80 w-90-l"}
+            (for [org (nth letter 1)]
+              ^{:key (gensym "org-")}
+              [org-details org])]]))]]))
