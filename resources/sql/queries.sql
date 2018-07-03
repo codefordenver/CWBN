@@ -46,7 +46,7 @@ ORDER BY s.service_sort_order, s.service_name
 
 -- :name get-active-orgs :? :*
 -- :doc retrieves all the active organizations with categories and services as a list
-SELECT o.*, cl.categories, sl.services
+SELECT o.*,ot.org_type_name,  cl.categories, sl.services
 FROM organizations o
 LEFT OUTER JOIN
 (SELECT os.org_id, group_concat(s.service_name) services
@@ -65,8 +65,9 @@ ORDER BY o.org_name
 
 -- :name get-org :? :1
 -- :doc retrieves all the organization data for an orgid. The org categories and services are groups as a list
-SELECT o.*, cl.categories, sl.services
+SELECT o.*, ot.org_type_name, cl.categories, sl.services
 FROM organizations o
+LEFT OUTER JOIN org_types ot ON (o.org_type_code = ot.org_type_code)
 LEFT OUTER JOIN
 (SELECT os.org_id, group_concat(s.service_name) services
 FROM  organization_services os, services s
@@ -81,8 +82,9 @@ WHERE o.org_id = :org_id
 
 -- :name get-orgs-by-category_code :? :*
 -- :doc retrieves all the active organizations for a category_code. The org categories and services are groups as a list SELECT o.org_id, cl.categories, o.org_name, sl.services, oc2.category_code
-SELECT o.*, cl.categories, sl.services
+SELECT o.*, ot.org_type_name, cl.categories, sl.services
 FROM organizations o
+LEFT OUTER JOIN org_types ot ON (o.org_type_code = ot.org_type_code)
 JOIN (organization_categories oc2)
 ON  (o.org_id = oc2.org_id
 AND oc2.category_code = :category_code)
