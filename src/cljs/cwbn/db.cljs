@@ -65,7 +65,7 @@
       :services "Technical Assistance for Coop Development"
       :population "Urban areas"
       :area "Denver"
-      :website "rmfu.org"
+      :website "https://rmfu.org"
       :contact-name "Bill Stevenson"
       :email "bill.stevenson@rmfu.org"}
      {:name "Rocky Mountain Employee Ownership Center"
@@ -74,7 +74,7 @@
       :services "Technical Assistance"
       :population "Business seeking to transition into an employee-owned business model"
       :area "Colorado"
-      :website "rmeoc.org"
+      :website "https://rmeoc.org"
       :contact-name "Halisi Vinson"
       :email "halisi@rmeoc.org"}
      {:name "Mi Casa Resource Center"
@@ -83,7 +83,7 @@
       :services "Business Technical Assistance, Lending"
       :population "Entrepreneurs, women, Latinos"
       :area "Denver Metro"
-      :website "micasaresourcecenter.org"
+      :website "https://micasaresourcecenter.org"
       :contact-name "Elena Vasconez"
       :email "evasconez@MiCasaResourceCenter.org"
       :phone "(303) 573-1302"}
@@ -93,7 +93,7 @@
       :services "Technical Assistance, Microloans, IDAs"
       :population "Refugees, entrepreneurs, consumers"
       :area "Metro Area"
-      :website "scorecard.prosperitynow.org/2016"
+      :website "https://scorecard.prosperitynow.org/2016"
       :contact-name "Bishal Kafle"
       :email "bkafle@cedsfinance.org"
       :phone "(303) 569-8165"}
