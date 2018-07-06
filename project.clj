@@ -58,7 +58,6 @@
    {"sassc"
     {:file-pattern #"\.(scss|sass)$" :paths ["resources/scss"]}}
 
-  :hooks [leiningen.sassc]
   :clean-targets ^{:protect false}
   [:target-path [:cljsbuild :builds :app :compiler :output-dir] [:cljsbuild :builds :app :compiler :output-to]]
   :figwheel
