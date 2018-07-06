@@ -55,7 +55,7 @@
       #top-bar #nav {
         margin-left: auto;
         margin-bottom: 10px;
-        font-size: 0.8em; } }
+        font-size: 0.9em; } }
 
 .search-bar-wrapper {
   padding: 2em; }
@@ -95,8 +95,24 @@
   .category-page .category-header span.service-link:not(:last-child) {
     border-right: 1px solid black; }
 
-.category-page .category-listings div.letter {
-  color: #2C208C; }
+.category-page .category-listings {
+  flex-direction: column; }
+  .category-page .category-listings div.letter-parent {
+    width: 20%;
+    display: flex;
+    justify-content: center; }
+    @media (min-width: 60em) {
+      .category-page .category-listings div.letter-parent {
+        width: 10%; } }
+  .category-page .category-listings div.letter {
+    background-color: #2C208C;
+    color: white;
+    height: 50px;
+    width: 50px;
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center; }
 
 html, body {
   background: #2C208C;

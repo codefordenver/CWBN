@@ -36,8 +36,24 @@
     }
   }
   .category-listings {
+    flex-direction: column;
+    div.letter-parent {
+      width: 20%;
+      display: flex;
+      justify-content: center;
+      @media (min-width: 60em) {
+        width: 10%;
+      }
+    }
     div.letter {
-      color: $indigo;
+      background-color: $indigo;
+      color: white;
+      height: 50px;
+      width: 50px;
+      border-radius: 25px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
   }
 }
