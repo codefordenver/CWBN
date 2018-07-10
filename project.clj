@@ -34,7 +34,8 @@
                  [secretary "1.2.3"]
                  [selmer "1.11.7"]
                  [migratus "1.0.6"]
-                 [re-com "0.9.0"]]
+                 [re-com "0.9.0"]
+                 [com.taoensso/carmine "2.18.1"]]
 
   :min-lein-version "2.0.0"
 
