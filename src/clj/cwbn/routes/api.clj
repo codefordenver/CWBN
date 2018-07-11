@@ -7,8 +7,10 @@
 
 (defmacro wcar* [& body] `(car/wcar server1-conn ~@body))
 
-(prn (wcar* (car/ping)))
+(defn redis-handler [_]
+  (let [ping (wcar* (car/ping))]
+    (response/ok {:ok ping})))
 
 (defroutes api-routes
            (context "/api" []
-             (GET "/foobar" [] '(prn (wcar* (car/ping))))))
+             (GET "/foobar" {} redis-handler)))
