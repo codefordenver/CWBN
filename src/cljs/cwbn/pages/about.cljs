@@ -2,4 +2,5 @@
 
 (defn about-page []
   [:div
-   [:img {:src "/img/warning_clojure.png"}]])
+   [:p "A partnership of individuals, groups, and organizations from public, private and nonprofit sectors dedicated to
+        elevating awareness and capacity for community wealth building (CWB) efforts in the Denver metro region."]])
