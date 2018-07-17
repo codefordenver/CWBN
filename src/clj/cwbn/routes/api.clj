@@ -17,7 +17,7 @@
 
 ;; TODO
 ;; - use clojure.spec to validarete key in map - explain when key is not in airtable-records map
-;; - re-download cache
+;; - re-download cache every hour
 
 (def airtable-records "Airtable's Domain model"
   {:organizations "/Organizations"
@@ -30,8 +30,8 @@
   (log/info "_*_ Airtable Cache _*_ " "started")
   (doseq [r airtable-records
           :let [[k v] r]]
-    (let [op (get-airtable-data k)]
-      (wcar* (car/set v op))))
+    (let [data (get-airtable-data k)]
+      (wcar* (car/set v data))))
   (log/info "_*_ Airtable Cache _*_ " "completed"))
 
 (defn get-airtable-data [resource]
@@ -45,10 +45,14 @@
         error)
       body)))
 
-(defn redis-handler [_]
-  (let []
-    (response/ok {:ok (json/read-value (get-airtable-data :tags))})))
+(defn redis-handler [{path-info :path-info}]
+  (let [[k _] (filter (comp #{path-info} airtable-records) (keys airtable-records))]
+    (response/ok {:ok (json/read-value (get-airtable-data k))})))
 
 (defroutes api-routes
            (context "/api" []
-             (GET "/foobar" {} redis-handler)))
+             (GET "/Organizations" {params :params} redis-handler)
+             (GET "/Categories" {params :params} redis-handler)
+             (GET "/Services" {params :params} redis-handler)
+             (GET "/Types" {params :params} redis-handler)
+             (GET "/Tags" {params :params} redis-handler)))
