@@ -36,7 +36,9 @@
                  [migratus "1.0.6"]
                  [re-com "0.9.0"]
                  [com.taoensso/carmine "2.18.1"]
-                 [http-kit "2.2.0"]]
+                 [http-kit "2.2.0"]
+                 [metosin/jsonista "0.2.1"]
+                 [com.walmartlabs/lacinia "0.28.0"]]
 
   :min-lein-version "2.0.0"
 
@@ -49,16 +51,16 @@
   :plugins [[lein-cljsbuild "1.1.5"]
             [lein-sassc "0.10.4"]
             [lein-auto "0.1.2"]
-            [migratus-lein "0.4.1"]]
-   :sassc
-   [{:src "resources/scss/screen.scss"
-     :output-to "resources/public/css/screen.css"
-     :style "nested"
-     :import-path "resources/scss"}]
+            [migratus-lein "0.4.1"]
+            [lein-ring "0.12.4"]]
 
-   :auto
-   {"sassc"
-    {:file-pattern #"\.(scss|sass)$" :paths ["resources/scss"]}}
+  :sassc
+  [{:src         "resources/scss/screen.scss"
+    :output-to   "resources/public/css/screen.css"
+    :style       "nested"
+    :import-path "resources/scss"}]
+
+  :auto {"sassc" {:file-pattern #"\.(scss|sass)$" :paths ["resources/scss"]}}
 
   :clean-targets ^{:protect false}
   [:target-path [:cljsbuild :builds :app :compiler :output-dir] [:cljsbuild :builds :app :compiler :output-to]]

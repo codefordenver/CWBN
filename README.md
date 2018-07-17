@@ -5,6 +5,8 @@ You will need
 - Java
 - [Leiningen][1] 2.0 or above
 - sassc (on a Mac it can be installed with homebrew)
+- [redis](https://redis.io/)
+
 [1]: https://github.com/technomancy/leiningen
 - For Windows users, follow the Prerequisite Setup below.
 ## Setup
@@ -13,6 +15,14 @@ You will need
 - `(restart)`
 - `(migrate)`
 - exit lein repl (ctrl-d)
+
+### Environment variables
+- `AIRTABLE_API_KEY=xyz` (get these from a CfD core-contributor)
+
+## Test (After running setup)
+- Create file at root called "test-config.edn" and populate the following database connection information `{:database-url "jdbc:h2:./cwbn_test.db"}`
+- `lein test`
+
 ## Running
 To start a web server for the application, run:
 - `lein run`
