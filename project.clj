@@ -38,7 +38,7 @@
                  [com.taoensso/carmine "2.18.1"]
                  [http-kit "2.2.0"]
                  [metosin/jsonista "0.2.1"]
-                 [com.walmartlabs/lacinia "0.28.0"]]
+                 [org.clojure/core.async "0.4.474"]]
 
   :min-lein-version "2.0.0"
 

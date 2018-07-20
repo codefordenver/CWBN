@@ -2,10 +2,35 @@
   (:require [compojure.core :refer [defroutes GET context]]
             [ring.util.http-response :as response]
             [org.httpkit.client :as http]
-            [clojure.spec.alpha :as spec]
             [clojure.tools.logging :as log]
             [jsonista.core :as json]
-            [taoensso.carmine :as car :refer [wcar]]))
+            [taoensso.carmine :as car :refer [wcar]]
+            [clojure.core.async :as async :refer [<! timeout chan go]]))
+
+(declare init-cache)
+
+(def condition (atom true))
+
+(defn hours
+  "Converts hours -> milliseconds"
+  [n] (* n 36e5))
+
+(def run-every (hours 1/2))
+
+(defn schedule-work []
+  (log/info "_*_ Airtable Cache: FETCHING DATA _*_")
+  (init-cache))
+
+(defn evaluating-condition []
+  @condition)
+
+(defn stop-periodic-function []
+  (reset! condition false))
+
+(go
+  (while (evaluating-condition)
+    (<! (timeout run-every))
+    (schedule-work)))
 
 (declare get-airtable-data)
 
@@ -27,12 +52,12 @@
    :tags          "/Tags"})
 
 (defn init-cache []
-  (log/info "_*_ Airtable Cache _*_ " "started")
+  (log/info "_*_ Airtable Cache: STARTED _*_")
   (doseq [r airtable-records
           :let [[k v] r]]
     (let [data (get-airtable-data k)]
       (wcar* (car/set v data))))
-  (log/info "_*_ Airtable Cache _*_ " "completed"))
+  (log/info "_*_ Airtable Cache: COMPLETED _*_"))
 
 (defn get-airtable-data [resource]
   (let [airtable-api-endpoint "https://api.airtable.com/v0/appIy3ycDv8Xf4dR3" ;; root api domain
@@ -42,7 +67,7 @@
     (if error
       (do
         (println "Failed, exception: " error)
-        error)
+        (response/internal-server-error error))
       body)))
 
 (defn redis-handler [{path-info :path-info}]
