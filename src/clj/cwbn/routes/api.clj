@@ -41,8 +41,7 @@
 (defmacro wcar* [& body] `(car/wcar server1-conn ~@body))
 
 ;; TODO
-;; - use clojure.spec to validarete key in map - explain when key is not in airtable-records map
-;; - re-download cache every hour
+  ;; - use clojure.spec to validarete key in map - explain when key is not in airtable-records map
 
 (def airtable-records "Airtable's Domain model"
   {:organizations "/Organizations"
@@ -63,7 +62,7 @@
   (let [airtable-api-endpoint "https://api.airtable.com/v0/appIy3ycDv8Xf4dR3" ;; root api domain
         headers {:headers {"Authorization" (str "Bearer " AIRTABLE_API_KEY)}}
         endpoint (str airtable-api-endpoint (get airtable-records resource))
-        {:keys [status headers body error] :as resp} @(http/get endpoint headers)]
+        {:keys [body error]} @(http/get endpoint headers)]
     (if error
       (do
         (println "Failed, exception: " error)
