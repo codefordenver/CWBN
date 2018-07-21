@@ -4,8 +4,8 @@ generated using Luminus version "2.9.12.52"
 You will need
 - Java
 - [Leiningen][1] 2.0 or above
-- sassc (on a Mac it can be installed with homebrew)
-- [redis](https://redis.io/)
+- sassc (on a Mac it can be installed via homebrew: `brew install sassc`)
+- [redis](https://redis.io/) (on a Mac it can be installed via homebrew: `brew install redis`)
 
 [1]: https://github.com/technomancy/leiningen
 - For Windows users, follow the Prerequisite Setup below.
