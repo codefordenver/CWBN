@@ -41,7 +41,7 @@
 (defmacro wcar* [& body] `(car/wcar server1-conn ~@body))
 
 ;; TODO
-  ;; - use clojure.spec to validarete key in map - explain when key is not in airtable-records map
+;; - use clojure.spec to validate key in map - explain when key is not in airtable-records map
 
 (def airtable-records "Airtable's Domain model"
   {:organizations "/Organizations"
@@ -58,6 +58,10 @@
       (wcar* (car/set v data))))
   (log/info "_*_ Airtable Cache: COMPLETED _*_"))
 
+(def mapper
+  (json/object-mapper
+    {:decode-key-fn keyword}))
+
 (defn get-airtable-data [resource]
   (let [airtable-api-endpoint "https://api.airtable.com/v0/appIy3ycDv8Xf4dR3" ;; root api domain
         headers {:headers {"Authorization" (str "Bearer " AIRTABLE_API_KEY)}}
@@ -70,8 +74,15 @@
       body)))
 
 (defn redis-handler [{path-info :path-info}]
-  (let [[k _] (filter (comp #{path-info} airtable-records) (keys airtable-records))]
-    (response/ok {:ok (json/read-value (get-airtable-data k))})))
+  (let [[resource _] (filter (comp #{path-info} airtable-records) (keys airtable-records))
+        redis-data (wcar* (car/get path-info))]
+    ;; filter :draft orgs
+    (if (= :organizations resource)
+      (let [json->body (-> redis-data (json/read-value mapper))
+            {:keys [records offset]} json->body
+            records (remove #(= (-> % :fields :Status) "Draft") records)]
+        (response/ok {:offset offset :records records}))
+      (response/ok (json/read-value redis-data)))))
 
 (defroutes api-routes
            (context "/api" []
