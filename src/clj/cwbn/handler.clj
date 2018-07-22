@@ -2,6 +2,7 @@
   (:require [compojure.core :refer [routes wrap-routes]]
             [cwbn.layout :refer [error-page]]
             [cwbn.routes.home :refer [home-routes]]
+            [cwbn.routes.api :refer [api-routes]]
             [compojure.route :as route]
             [cwbn.env :refer [defaults]]
             [mount.core :as mount]
@@ -17,6 +18,8 @@
     (routes
       (-> #'home-routes
           (wrap-routes middleware/wrap-csrf)
+          (wrap-routes middleware/wrap-formats))
+      (-> #'api-routes
           (wrap-routes middleware/wrap-formats))
       (route/not-found
         (:body

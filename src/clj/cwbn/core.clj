@@ -43,6 +43,7 @@
                         mount/start-with-args
                         :started)]
     (log/info component "started"))
+  (cwbn.routes.api/init-cache)
   (.addShutdownHook (Runtime/getRuntime) (Thread. stop-app)))
 
 (defn -main [& args]
@@ -62,4 +63,4 @@
       (System/exit 0))
     :else
     (start-app args)))
-  
+
