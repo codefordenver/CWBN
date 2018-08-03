@@ -54,18 +54,14 @@
    :types         "/Types"
    :tags          "/Tags"})
 
-;; (response/internal-server-error error)
-
 (defn init-cache []
   (log/info "_*_ Airtable Cache: STARTED _*_")
   (doseq [r airtable-records
           :let [[k v] r]]
-    (let [{:keys [error body]} @(fetch-airtable-records k)]
-      (when-not error
-        (let [{offset :offset} (json/read-value body mapper)]
-          (if offset
-            (prn offset)
-            (wcar* (car/set v body)))))))
+    (let [{:keys [error body]} (fetch-airtable-records k)]
+      (if-not error
+        (wcar* (car/set v body))
+        (log/info "_*_ Airtable Cache: Failed to fetch: \n" error))))
   (log/info "_*_ Airtable Cache: COMPLETED _*_"))
 
 (def mapper
@@ -80,17 +76,25 @@
         options {:query-params (when offset {:offset offset})
                  :headers      {"Authorization" (str "Bearer " AIRTABLE_API_KEY)}}
         endpoint (str endpoint (get airtable-records resource))]
-    (http/get endpoint options)))
+    (let [{:keys [error body]} @(http/get endpoint options)]
+      (if-not error
+        (let [{:keys [offset records]} (json/read-value body mapper)]
+          (if offset
+              (let [offset-records (:body (fetch-airtable-records resource offset))
+                    json-records (json/read-value offset-records mapper)
+                    body (json/write-value-as-string (concat records (:records json-records)))]
+                {:body body})
+            {:body body}))
+        {:error error}))))
 
 (defn redis-handler [{path-info :path-info}]
   (let [[resource _] (filter (comp #{path-info} airtable-records) (keys airtable-records))
         redis-data (wcar* (car/get path-info))]
     ;; filter :draft orgs
     (if (= :organizations resource)
-      (let [{:keys [records offset]} (json/read-value redis-data mapper)
-            records (remove #(= (-> % :fields :Status) "Draft") records)]
-        (response/ok {:offset offset :records records}))
-      (response/ok (json/read-value redis-data)))))
+      (let [records (remove #(= (-> % :fields :Status) "Draft") (json/read-value redis-data mapper))]
+        (response/ok {:records records}))
+      (response/ok (json/read-value redis-data mapper)))))
 
 (defroutes api-routes
            (context "/api" []
