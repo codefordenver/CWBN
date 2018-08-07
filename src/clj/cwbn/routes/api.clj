@@ -82,9 +82,9 @@
           (if offset
               (let [offset-records (:body (fetch-airtable-records resource offset))
                     json-records (json/read-value offset-records mapper)
-                    body (json/write-value-as-string (concat records (:records json-records)))]
+                    body (json/write-value-as-string (concat records json-records))]
                 {:body body})
-            {:body body}))
+              {:body (json/write-value-as-string records)}))
         {:error error}))))
 
 (defn redis-handler [{path-info :path-info}]

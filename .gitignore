@@ -18,4 +18,4 @@ cwbn_dev.db.trace.db
 cwbn_test.db.mv.db
 cwbn_test.db.trace.db
 figwheel_server.log
-dumb.rdb
+dump.rdb
