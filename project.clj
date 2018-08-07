@@ -42,6 +42,9 @@
 
   :min-lein-version "2.0.0"
 
+  ;; necessary workaround for working in java 9+
+  :jvm-opts ["--add-modules" "java.xml.bind"]
+
   :source-paths ["src/clj" "src/cljs" "src/cljc"]
   :test-paths ["test/clj"]
   :resource-paths ["resources" "target/cljsbuild"]
