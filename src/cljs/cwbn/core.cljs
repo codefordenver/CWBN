@@ -11,7 +11,8 @@
             [cwbn.pages.category :refer [category-page]]
             [cwbn.pages.not-found :refer [not-found-page]]
             [cwbn.components.footer :refer [footer-component]]
-            [cwbn.components.top-bar :refer [top-bar-component]]))
+            [cwbn.components.top-bar :refer [top-bar-component]]
+            [re-frisk.core :refer [enable-re-frisk!]]))
 
 (defn- show-page [page-name]
   (case page-name
@@ -29,6 +30,14 @@
     (show-page @(rf/subscribe [:active-page]))]
    [footer-component]])
 
+;; Redis routes to fetch
+(def redis-records
+  {:organizations "/Organizations"
+   :categories "/Categories"
+   :services "/Services"
+   :types "/Types"
+   :tags "/Tags"})
+
 ;; -------------------------
 ;; Initialize app
 
@@ -38,7 +47,12 @@
 
 (defn init! []
   (rf/dispatch-sync [:initialize-db])
-  (rf/dispatch [:get-api-tags])
+  (enable-re-frisk!)
+  (rf/dispatch [:get-api-data [:organizations "/Organizations"]])
+  (rf/dispatch [:get-api-data [:categories "/Categories"]])
+  (rf/dispatch [:get-api-data [:services "/Services"]])
+  (rf/dispatch [:get-api-data [:types "/Types"]])
+  (rf/dispatch [:get-api-data [:tags "/Tags"]])
   (load-interceptors!)
   (routes/app-routes)
   (mount-components))

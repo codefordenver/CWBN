@@ -45,23 +45,27 @@
 ;; something
 
 (rf/reg-event-fx
-  :get-api-tags
-  (fn [{db :db}]
-    (when-not (seq (:tags db))
-      {:http-xhrio {:method          :get
-                    :uri             "/api/Tags"
-                    :response-format (ajax/json-response-format {:keywords? true})
-                    :on-success      [:get-api-tags-success]
-                    :on-failure      [:get-api-tags-failure]}}
+  :get-api-data
+  (fn [{db :db} [_ record]]
+    (let [k (first record)
+          v (last record)]
+      (when-not (seq (k db))
+        {:http-xhrio {:method          :get
+                      :uri             (str "/api" v)
+                      :response-format (ajax/json-response-format {:keywords? true})
+                      :on-success      [:get-api-data-success k]
+                      :on-failure      [:get-api-data-failure k]}}))))
+    
       ;;{:dispatch [route-dispatch route-param]}
-      )))
+      
 
-(rf/reg-event-fx
-  :get-api-tags-success
-  (fn [{db :db} [_ tags]]
-    (prn tags)))
+(rf/reg-event-db
+  :get-api-data-success
+  (fn [db [_ key data]]
+    (assoc db key data)))
 
-(rf/reg-event-fx
-  :get-api-tags-failure
-  (fn [_]
-    (prn "Failed to fetch tags")))
+(rf/reg-event-db
+  :get-api-data-failure
+  (fn [db [_ k]]
+    (prn (str "Failed to fetch " k))
+    db))
