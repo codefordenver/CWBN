@@ -17,7 +17,8 @@ You will need
 - exit lein repl (ctrl-d)
 
 ### Environment variables
-- `AIRTABLE_API_KEY=xyz` (get these from a CfD core-contributor)
+- Get the api key from a DfD core-contributor
+- In your .bashrc file (or the analagous config file for non-bash terminals), add the line: `export AIRTABLE_API_KEY=<api-key>`
 
 ## Test (After running setup)
 - Create file at root called "test-config.edn" and populate the following database connection information `{:database-url "jdbc:h2:./cwbn_test.db"}`
