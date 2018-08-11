@@ -38,7 +38,8 @@
                  [com.taoensso/carmine "2.18.1"]
                  [http-kit "2.2.0"]
                  [metosin/jsonista "0.2.1"]
-                 [org.clojure/core.async "0.4.474"]]
+                 [org.clojure/core.async "0.4.474"]
+                 [day8.re-frame/http-fx "0.1.6"]]
 
   :min-lein-version "2.0.0"
 

@@ -1,6 +1,8 @@
 (ns cwbn.events
   (:require [cwbn.db :as db]
-            [re-frame.core :refer [dispatch reg-event-db reg-sub]]))
+            [re-frame.core :refer [dispatch reg-event-db reg-sub] :as rf]
+            [day8.re-frame.http-fx]
+            [ajax.core :as ajax :refer [GET POST PUT]]))
 
 ;;dispatchers
 
@@ -39,3 +41,27 @@
   :orgs
   (fn [db _]
     (:orgs db)))
+
+;; something
+
+(rf/reg-event-fx
+  :get-api-tags
+  (fn [{db :db}]
+    (when-not (seq (:tags db))
+      {:http-xhrio {:method          :get
+                    :uri             "/api/Tags"
+                    :response-format (ajax/json-response-format {:keywords? true})
+                    :on-success      [:get-api-tags-success]
+                    :on-failure      [:get-api-tags-failure]}}
+      ;;{:dispatch [route-dispatch route-param]}
+      )))
+
+(rf/reg-event-fx
+  :get-api-tags-success
+  (fn [{db :db} [_ tags]]
+    (prn tags)))
+
+(rf/reg-event-fx
+  :get-api-tags-failure
+  (fn [_]
+    (prn "Failed to fetch tags")))

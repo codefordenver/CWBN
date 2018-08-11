@@ -38,6 +38,7 @@
 
 (defn init! []
   (rf/dispatch-sync [:initialize-db])
+  (rf/dispatch [:get-api-tags])
   (load-interceptors!)
   (routes/app-routes)
   (mount-components))
