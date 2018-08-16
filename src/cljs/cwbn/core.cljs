@@ -11,7 +11,8 @@
             [cwbn.pages.category :refer [category-page]]
             [cwbn.pages.not-found :refer [not-found-page]]
             [cwbn.components.footer :refer [footer-component]]
-            [cwbn.components.top-bar :refer [top-bar-component]]))
+            [cwbn.components.top-bar :refer [top-bar-component]]
+            [cwbn.pages.microloans :refer [microloans-display]])) ;;microloans imported here
 
 (defn- show-page [page-name]
   (case page-name
@@ -20,6 +21,7 @@
         :contact [contact-page]
         :category [category-page]
         :not-found [not-found-page]
+        :microloans [microloans-display]                    ;;microloans page here
         [:div]))
 
 (defn page []
