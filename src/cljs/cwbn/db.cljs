@@ -39,7 +39,7 @@
                  "GED Classes",
                  "Youth Development",
                  "Citizenship Classes"]
-     :direct-service ["Food Bank",
+     :social-enterprise ["Food Bank",
                       "Healthy Food Access",
                       "Shared Space",
                       "Transit/Transportation",

@@ -26,4 +26,4 @@
     [category-link "Organizing"]
     [category-link "Workforce Development"]
     [category-link "Education"]
-    [category-link "Direct Service"]]])
+    [category-link "Social Enterprise"]]])
