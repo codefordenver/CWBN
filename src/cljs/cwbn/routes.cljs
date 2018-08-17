@@ -37,6 +37,6 @@
             (rf/dispatch [:set-active-page :not-found]))
 
   (defroute "/microloans" []
-            (rf/dispatch [:set-active-page :microloans]))
+            (rf/dispatch [:set-active-page :microloans]))   ;;microloans route
   ;; --------------------
   (hook-browser-navigation!))

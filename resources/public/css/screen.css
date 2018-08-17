@@ -133,3 +133,7 @@ b {
   .page-wrapper .content {
     flex-grow: 1;
     background-color: whitesmoke; }
+
+.float {
+  float: left;
+  margin-right: 5px;}
