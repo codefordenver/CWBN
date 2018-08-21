@@ -1,0 +1,12 @@
+(ns cwbn.routes.services
+  (:require [ring.util.http-response :refer :all]
+            [compojure.api.sweet :refer :all]
+            [cwbn.routes.services.graphql :as graphql]
+            [schema.core :as s]))
+
+(defapi service-routes
+  (context "/api" []
+    :tags ["thingie"]
+
+    (POST "/graphql" [:as {body :body}]
+          (ok (graphql/execute-request (slurp body))))))

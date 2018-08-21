@@ -7,6 +7,8 @@
                  [clj-time "0.14.3"]
                  [cljs-ajax "0.7.3"]
                  [com.h2database/h2 "1.4.196"]
+                 [com.walmartlabs/lacinia "0.29.0-rc-1"]
+                 [com.workframe/artemis "0.1.0-SNAPSHOT"]
                  [compojure "1.6.1"]
                  [conman "0.7.8"]
                  [cprop "0.1.11"]
@@ -16,6 +18,7 @@
                  [luminus-nrepl "0.1.4"]
                  [luminus/ring-ttl-session "0.3.2"]
                  [markdown-clj "1.0.2"]
+                 [metosin/compojure-api "1.1.12"]
                  [metosin/muuntaja "0.5.0"]
                  [metosin/ring-http-response "0.9.0"]
                  [mount "0.1.12"]
@@ -26,6 +29,7 @@
                  [org.webjars.bower/tether "1.4.3"]
                  [org.webjars/bootstrap "4.1.0"]
                  [org.webjars/font-awesome "5.0.10"]
+                 [org.webjars/webjars-locator "0.34"]
                  [re-frame "0.10.5"]
                  [reagent "0.8.0"]
                  [ring-webjars "0.2.0"]
@@ -41,9 +45,6 @@
                  [org.clojure/core.async "0.4.474"]]
 
   :min-lein-version "2.0.0"
-
-  ;; necessary workaround for working in java 9+
-  :jvm-opts ["--add-modules" "java.xml.bind"]
 
   :source-paths ["src/clj" "src/cljs" "src/cljc"]
   :test-paths ["test/clj"]

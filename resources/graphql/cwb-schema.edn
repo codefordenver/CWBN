@@ -1,0 +1,63 @@
+;WORK IN PROGRESS
+
+{:objects
+ {:Organization
+  {:description "An organization in the CWB network."
+   :fields
+   {:id {:type (non-null String)}
+    :name {:type (non-null String)}
+    :categories {:type (non-null (list :Category))
+                 :resolve :Organization/categories}
+    :services {:type (list :Service)
+               :resolve :Organization/services}
+    :org-type {:type String}
+    :tags {:type (list :Tag)
+           :resolve :Organization/tags}
+    :purpose-mission {:type String}
+    :target-population {:type String}
+    :area-served {:type String}
+    :website {:type String}
+    :contact-name {:type String}
+    :email-address {:type String}
+    :phone-number {:type String}
+    :address-street {:type String}
+    :address-city {:type String}
+    :address-state {:type String}
+    :address-zip-code {:type String}}}
+
+  :Category
+  {:description "A category of resources offered by organizations."
+   :fields
+   {:category-id {:type (non-null String)}
+    :name {:type (non-null String)}
+    :description {:type String}
+    :organizations {:type (list :Organization)
+                    :resolve :Category/organizations}
+    :services {:type (list :Service)
+               :resolve :Category/services}}}
+
+  :Service
+  {:description "A service within a category."
+   :fields
+   {:service-id {:type (non-null String)}
+    :name {:type (non-null String)}
+    :category {:type (non-null :Category)
+               :resolve :Service/category}
+    :organizations {:type (list :Organization)
+                    :resolve :Service/organizations}}}
+
+  :Tag
+  {:description "A tag associated with an organization."
+   :fields
+   {:tag-id {:type (non-null String)}
+    :name {:type (non-null String)}
+    :organizations {:type (list :Organization)
+                    :resolve :Tag/organizations}}}}
+
+ :queries
+ {:orgs-by-category
+  {:type (list :Organization)
+   :description "Return organizations by category."
+   :args
+   {:category {:type (non-null :Category)}}
+   :resolve :query/orgs-by-category}}}
