@@ -2,6 +2,7 @@
   (:require [compojure.core :refer [routes wrap-routes]]
             [cwbn.layout :refer [error-page]]
             [cwbn.routes.home :refer [home-routes]]
+            [cwbn.routes.services :refer [service-routes]]
             [cwbn.routes.api :refer [api-routes]]
             [compojure.route :as route]
             [cwbn.env :refer [defaults]]
@@ -21,6 +22,7 @@
           (wrap-routes middleware/wrap-formats))
       (-> #'api-routes
           (wrap-routes middleware/wrap-formats))
+      #'service-routes
       (route/not-found
         (:body
           (error-page {:status 404
