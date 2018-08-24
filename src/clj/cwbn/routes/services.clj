@@ -6,7 +6,9 @@
 
 (defapi service-routes
   (context "/api" []
-    :tags ["thingie"]
+
+    ;;for swagger docs
+    :tags []
 
     (POST "/graphql" [:as {body :body}]
           (ok (graphql/execute-request (slurp body))))))
