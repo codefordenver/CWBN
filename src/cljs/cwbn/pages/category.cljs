@@ -1,7 +1,30 @@
 (ns cwbn.pages.category
+  (:require-macros [cljs.core.async.macros :refer [go go-loop]])
   (:require [re-frame.core :as rf]
             [clojure.string :as s]
-            [reagent.core :as reagent]))
+            [reagent.core :as reagent]
+            [artemis.core :as a]
+            [cwbn.graphql :refer [client]]
+            [artemis.document :refer [parse-document]]))
+
+(defonce app-state (reagent/atom {}))
+
+(def get-hero-doc
+  (parse-document
+    "query {
+      hero(id: \"1000\") {
+        name appears_in
+      }
+    }"))
+
+
+(defn get-hero []
+  (let [get-hero-chan (a/query! client get-hero-doc :fetch-policy :remote-only)]
+    (go-loop []
+             (when-let [x (<! get-hero-chan)]
+               (reset! app-state x)
+               (recur)))))
+
 
 (defn org-details [{:keys [name
                            type
@@ -38,6 +61,8 @@
 (def current-letter (reagent/atom nil))
 
 (defn category-page []
+  (get-hero)
+  (prn @app-state)
   (let [services-by-category @(rf/subscribe [:services-by-category])
         category-route @(rf/subscribe [:category-route])
         category-name (s/replace category-route "-" " ")

@@ -11,4 +11,6 @@
     :tags []
 
     (POST "/graphql" [:as {body :body}]
-          (ok (graphql/execute-request (slurp body))))))
+          (fn []
+            (prn "ran")
+            (ok (graphql/execute-request (slurp body)))))))
