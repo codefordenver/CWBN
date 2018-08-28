@@ -60,9 +60,16 @@
 
 (def current-letter (reagent/atom nil))
 
+(add-watch app-state :watcher
+           (fn [key atom old-state new-state]
+             (prn "-- Atom Changed --")
+             (prn "key" key)
+             (prn "atom" atom)
+             (prn "old-state" old-state)
+             (prn "new-state" new-state)))
+
 (defn category-page []
   (get-hero)
-  (prn @app-state)
   (let [services-by-category @(rf/subscribe [:services-by-category])
         category-route @(rf/subscribe [:category-route])
         category-name (s/replace category-route "-" " ")

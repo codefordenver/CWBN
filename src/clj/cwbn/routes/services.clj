@@ -4,6 +4,10 @@
             [cwbn.routes.services.graphql :as graphql]
             [schema.core :as s]))
 
+(defn handle-graphql [req]
+  (prn "ran")
+  (ok (graphql/execute-request (slurp (req :body)))))
+
 (defapi service-routes
   (context "/api" []
 
@@ -11,6 +15,5 @@
     :tags []
 
     (POST "/graphql" [:as {body :body}]
-          (fn []
-            (prn "ran")
-            (ok (graphql/execute-request (slurp body)))))))
+      handle-graphql)))
+
