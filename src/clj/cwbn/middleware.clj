@@ -13,8 +13,7 @@
             [cwbn.config :refer [env]]
             [ring-ttl-session.core :refer [ttl-memory-store]]
             [ring.middleware.defaults :refer [site-defaults wrap-defaults]])
-  (:import [javax.servlet ServletContext]
-           [org.joda.time ReadableInstant]))
+  (:import [org.joda.time ReadableInstant]))
 
 (defn wrap-internal-error [handler]
   (fn [req]

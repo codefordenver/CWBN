@@ -98,8 +98,8 @@
 
 (defroutes api-routes
            (context "/api" []
-             (GET "/Organizations" {params :params} redis-handler)
-             (GET "/Categories" {params :params} redis-handler)
-             (GET "/Services" {params :params} redis-handler)
-             (GET "/Types" {params :params} redis-handler)
-             (GET "/Tags" {params :params} redis-handler)))
+             (GET "/Organizations" [] redis-handler)
+             (GET "/Categories" [] redis-handler)
+             (GET "/Services" [] redis-handler)
+             (GET "/Types" [] redis-handler)
+             (GET "/Tags" [] redis-handler)))

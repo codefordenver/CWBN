@@ -42,20 +42,15 @@
   (fn [db _]
     (:orgs db)))
 
-;; something
-
 (rf/reg-event-fx
   :get-api-data
-  (fn [{db :db} [_ [k v]]]
+  (fn [{db :db} [_ k v]]
     (when-not (seq (k db))
       {:http-xhrio {:method          :get
                     :uri             (str "/api" v)
                     :response-format (ajax/json-response-format {:keywords? true})
                     :on-success      [:get-api-data-success k]
                     :on-failure      [:get-api-data-failure k]}})))
-    
-      ;;{:dispatch [route-dispatch route-param]}
-      
 
 (rf/reg-event-db
   :get-api-data-success

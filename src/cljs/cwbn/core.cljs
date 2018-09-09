@@ -21,7 +21,7 @@
         :contact [contact-page]
         :category [category-page]
         :not-found [not-found-page]
-        [:div]))
+        [:div [:h1 "404"]]))
 
 (defn page []
   [:div.page-wrapper
@@ -29,14 +29,6 @@
    [:div {:class "content pv4-ns pv3 ph4-ns ph3"}
     (show-page @(rf/subscribe [:active-page]))]
    [footer-component]])
-
-;; Redis routes to fetch
-(def redis-records
-  {:organizations "/Organizations"
-   :categories "/Categories"
-   :services "/Services"
-   :types "/Types"
-   :tags "/Tags"})
 
 ;; -------------------------
 ;; Initialize app
@@ -48,11 +40,11 @@
 (defn init! []
   (rf/dispatch-sync [:initialize-db])
   (enable-re-frisk!)
-  (rf/dispatch [:get-api-data [:organizations "/Organizations"]])
-  (rf/dispatch [:get-api-data [:categories "/Categories"]])
-  (rf/dispatch [:get-api-data [:services "/Services"]])
-  (rf/dispatch [:get-api-data [:types "/Types"]])
-  (rf/dispatch [:get-api-data [:tags "/Tags"]])
+  (rf/dispatch [:get-api-data :organizations "/Organizations"])
+  (rf/dispatch [:get-api-data :categories "/Categories"])
+  (rf/dispatch [:get-api-data :services "/Services"])
+  (rf/dispatch [:get-api-data :types "/Types"])
+  (rf/dispatch [:get-api-data :tags "/Tags"])
   (load-interceptors!)
   (routes/app-routes)
   (mount-components))
