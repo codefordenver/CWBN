@@ -93,7 +93,7 @@
     ;; filter :draft orgs
     (if (= :organizations resource)
       (let [records (remove #(= (-> % :fields :Status) "Draft") (json/read-value redis-data mapper))]
-        (response/ok {:records records}))
+        (response/ok records))
       (response/ok (json/read-value redis-data mapper)))))
 
 (defroutes api-routes
