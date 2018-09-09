@@ -30,6 +30,7 @@
                  [org.webjars/bootstrap "4.1.0"]
                  [org.webjars/font-awesome "5.0.10"]
                  [re-frame "0.10.5"]
+                 [re-frisk "0.5.3"]
                  [reagent "0.8.0"]
                  [ring-webjars "0.2.0"]
                  [ring/ring-core "1.6.3"]
@@ -41,7 +42,8 @@
                  [com.taoensso/carmine "2.18.1"]
                  [http-kit "2.2.0"]
                  [metosin/jsonista "0.2.1"]
-                 [org.clojure/core.async "0.4.474"]]
+                 [org.clojure/core.async "0.4.474"]
+                 [day8.re-frame/http-fx "0.1.6"]]
 
   :min-lein-version "2.0.0"
 

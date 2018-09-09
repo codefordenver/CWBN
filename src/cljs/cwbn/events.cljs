@@ -1,6 +1,8 @@
 (ns cwbn.events
   (:require [cwbn.db :as db]
-            [re-frame.core :refer [dispatch reg-event-db reg-sub]]))
+            [re-frame.core :refer [dispatch reg-event-db reg-sub] :as rf]
+            [day8.re-frame.http-fx]
+            [ajax.core :as ajax :refer [GET POST PUT]]))
 
 ;;dispatchers
 
@@ -39,3 +41,29 @@
   :orgs
   (fn [db _]
     (:orgs db)))
+
+;; something
+
+(rf/reg-event-fx
+  :get-api-data
+  (fn [{db :db} [_ [k v]]]
+    (when-not (seq (k db))
+      {:http-xhrio {:method          :get
+                    :uri             (str "/api" v)
+                    :response-format (ajax/json-response-format {:keywords? true})
+                    :on-success      [:get-api-data-success k]
+                    :on-failure      [:get-api-data-failure k]}})))
+    
+      ;;{:dispatch [route-dispatch route-param]}
+      
+
+(rf/reg-event-db
+  :get-api-data-success
+  (fn [db [_ key data]]
+    (assoc db key data)))
+
+(rf/reg-event-db
+  :get-api-data-failure
+  (fn [db [_ k]]
+    (prn (str "Failed to fetch " k))
+    db))
