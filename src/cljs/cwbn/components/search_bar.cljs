@@ -4,26 +4,52 @@
 
 (declare test-data)
 
+(def typeahead-model (reagent/atom {}))
+
+;;TODO find more efficient way to compute the weight of a suggestion
+(defn suggestion-weight [data-str query]
+  ;;measures relevance of search result based on how early the query appears in the search data-string
+  ;;(let [regex (re-pattern (str "(?i)(^.*)" query))
+  ;;      m (re-matches regex data-str)
+  ;;  (min (map count m)))
+  (count data-str))
+
+;;TODO make this function query the database instead of test data
+;;TODO sort the query results to display matches at the beginning of the string earlier
 (defn suggestions-for-search [query]
-  (let [regex (re-pattern (str "(?i)" query))]
-    (into []
-      (take 10
-        (for
-          [data-string test-data :when (re-find regex data-string)]
-          data-string)))))
+    (let [regex (re-pattern (str "(?i)" query))]
+      (into []
+         (for [data-str test-data
+                :when (re-find regex data-str)]
+           {:name data-str
+            :weight (suggestion-weight data-str query)}))))
 
-(defn data-source-immediate [query]
-   (suggestions-for-search query))
+(defn data-source-immediate [n-results]
+   (fn [query]
+     (->> query
+          (suggestions-for-search)
+          (sort-by #(:weight %))
+          (take n-results))))
 
-;;TODO
+;;TODO implement using core.async library
 (def data-source-async
    nil)
+
+(defn render-suggestion [{:keys [name]}]
+  [:span
+   ;;TODO update css to style these elements
+   [:i {:style {:width "40px"}}]
+   name])
 
 (defn component []
   (fn []
     [:section.search-bar-wrapper
      [re-com/typeahead
-      :data-source data-source-immediate]]))
+      :model typeahead-model
+      :data-source (data-source-immediate 15)
+      :suggestion-to-string #(:name %)
+      :render-suggestion render-suggestion
+      :width "500px"]]))
 
 (def test-data
   ["google"
