@@ -1,49 +1,31 @@
 (ns cwbn.components.search-bar
-  (:require-macros [cljs.core.async.macros :refer [go]])
-  (:require [re-com.core :refer [typeahead]]
-            [cljs.core.async :refer [timeout]]
+  (:require [re-com.core :as re-com]
             [reagent.core :as reagent]))
 
-(declare demo-test-data)
+(declare test-data)
 
-(def status (reagent/atom nil)) ;; TODO: not sure what this does, maybe we dont need it
+(defn suggestions-for-search [query]
+  (let [regex (re-pattern (str "(?i)" query))]
+    (into []
+      (take 10
+        (for
+          [data-string test-data :when (re-find regex data-string)]
+          data-string)))))
 
-(def model (reagent/atom nil))
+(defn data-source-immediate [query]
+   (suggestions-for-search query))
+
+;;TODO
+(def data-source-async
+   nil)
 
 (defn component []
-  (let [format-result #(-> {:name %})
-        suggestions-for-search
-        (fn [s]
-          (into []
-                (take 16
-                      (for [n demo-test-data
-                            :when (re-find (re-pattern (str "(?i)" s)) n)]
-                        (format-result n)))))
-        ;suggestion-to-string #(:name %)
-        render-suggestion
-        (fn [{:keys [name]}] [:span name])
-        async-data-source
-        (fn [s callback]
-          (go
-            (<! (timeout 500)) ;; blocking operation
-            (callback
-              (suggestions-for-search s)))
-          ;; !!!
-          ;; return value must be falsey for async :data-source to work))]
-          nil)]
-    (fn []
-      [:section.search-bar-wrapper
-         [typeahead
-           :class "search-bar truncate"
-           :width "100%"
-           :model model
-           :render-suggestion render-suggestion
-           :status status
-           :data-source async-data-source
-           :placeholder "Search for companies & services you need"]])))
-           ;:suggestion-to-string suggestion-to-string]])))
+  (fn []
+    [:section.search-bar-wrapper
+     [re-com/typeahead
+      :data-source data-source-immediate]]))
 
-(def ^:test-data demo-test-data
+(def test-data
   ["google"
    "google-plus-box"
    "google-plus"
@@ -816,3 +798,42 @@
    "sec-10"
    "sec-3"
    "zero"])
+
+(comment
+  (def status (reagent/atom nil)) ;; TODO: not sure what this does, maybe we dont need it
+
+  (def model (reagent/atom nil)))
+
+(comment
+  (defn component []
+    (let [format-result #(-> {:name %})
+          suggestions-for-search
+          (fn [s]
+            (into []
+                  (take 16
+                        (for [n demo-test-data
+                              :when (re-find (re-pattern (str "(?i)" s)) n)]
+                          (format-result n)))))
+          ;suggestion-to-string #(:name %)
+          render-suggestion
+          (fn [{:keys [name]}] [:span name])
+          async-data-source
+          (fn [s callback]
+            (go
+              (<! (timeout 500)) ;; blocking operation
+              (callback
+                (suggestions-for-search s)))
+            ;; !!!
+            ;; return value must be falsey for async :data-source to work))]
+            nil)]
+      (fn []
+        [:section.search-bar-wrapper
+           [typeahead
+             :class "search-bar truncate"
+             :width "100%"
+             :model model
+             :render-suggestion render-suggestion
+             :status status
+             :data-source async-data-source
+             :placeholder "Search for companies & services you need"]]))))
+             ;:suggestion-to-string suggestion-to-string]])))
