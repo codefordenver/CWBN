@@ -9,13 +9,17 @@
 ;;TODO find more efficient way to compute the weight of a suggestion
 (defn suggestion-weight [data-str query]
   ;;measures relevance of search result based on how early the query appears in the search data-string
-  ;;(let [regex (re-pattern (str "(?i)(^.*)" query))
-  ;;      m (re-matches regex data-str)
-  ;;  (min (map count m)))
-  (count data-str))
+  ;;used to sort the search results
+  (let [len-query (count query)
+        len-data (count data-str)
+        n-chars-before-match (count
+                               (take-while
+                                #(not= % (vec query))
+                                (partition len-query 1 data-str)))]
+    [n-chars-before-match len-data]))
+
 
 ;;TODO make this function query the database instead of test data
-;;TODO sort the query results to display matches at the beginning of the string earlier
 (defn suggestions-for-search [query]
     (let [regex (re-pattern (str "(?i)" query))]
       (into []
@@ -46,10 +50,11 @@
     [:section.search-bar-wrapper
      [re-com/typeahead
       :model typeahead-model
-      :data-source (data-source-immediate 15)
+      :data-source (data-source-immediate 16)
       :suggestion-to-string #(:name %)
       :render-suggestion render-suggestion
-      :width "500px"]]))
+      :width "100%"
+      :placeholder "Search for companies & services you need."]]))
 
 (def test-data
   ["google"
