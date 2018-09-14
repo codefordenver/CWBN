@@ -19,7 +19,6 @@
                 :category-route category-route)
       (assoc db :active-page page))))
 
-
 ;;subscriptions
 
 (reg-sub

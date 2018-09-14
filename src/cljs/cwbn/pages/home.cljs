@@ -7,7 +7,7 @@
   (let [slug (s/replace (s/lower-case label) " " "-")
         img-name (first (s/split slug #"-"))]
     [:div {:class "category-link w-20-l w-30-m tc mv3"}
-     [:a {:href (str "/#/services/" slug)}
+     [:a {:href (str "/#/category/" slug)}
       [:img {:src (str "img/category-icons/" img-name ".png")
              :class "w-40 w-30-ns mb2"}]
       [:p {:class "fw7 ttu f6 lh-solid mt1"} label]]]))

@@ -30,7 +30,7 @@
   (defroute "/contact" []
             (rf/dispatch [:set-active-page :contact]))
 
-  (defroute "/services/:category" {:as params}
+  (defroute "/category/:category" {:as params}
             (rf/dispatch [:set-active-page :category params]))
 
   (defroute "/404" []

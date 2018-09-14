@@ -43,7 +43,7 @@
                         mount/start-with-args
                         :started)]
     (log/info component "started"))
-  (cwbn.routes.api/init-cache)
+  (cwbn.airtable/reset-or-init-redis-cache)
   (.addShutdownHook (Runtime/getRuntime) (Thread. stop-app)))
 
 (defn -main [& args]
