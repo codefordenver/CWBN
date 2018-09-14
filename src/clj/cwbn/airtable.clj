@@ -59,16 +59,27 @@
 (defn- find-by-id [id coll]
   (some #(when (= id (-> % :id)) %) coll))
 
-(defn- reconcile [table-key]
+(defn- reconcile-orgs [table-key]
   (let [org-records (table-lookup table-key)
-        cat-records (table-lookup :categories)]
+        category-records (table-lookup :categories)
+        service-records (table-lookup :services)
+        type-records (table-lookup :types)
+        tag-records (table-lookup :tags)]
     (map (fn [record]
-           (let [categories (-> record :fields :Categories)]
-             (if categories
-               (let [org-names (into [] (map #(-> (find-by-id % cat-records)
-                                                  :fields
-                                                  :Name) categories))]
-                 (assoc-in record [:fields :Categories] org-names))
+           (let [categories (-> record :fields :Categories)
+                 services (-> record :fields :Services)
+                 types (-> record :fields :Types)
+                 tags (-> record :fields :Tags)]
+             (if (or categories services types tags)
+               (let [org-names (map #(-> (find-by-id % category-records) :fields :Name) categories)
+                     service-names (map #(-> (find-by-id % service-records) :fields :Name) services)
+                     type-names (map #(-> (find-by-id % type-records) :fields :Name) types)
+                     tag-names (map #(-> (find-by-id % tag-records) :fields :Name) tags)]
+                 (-> record
+                     (assoc-in [:fields :Categories] (vec org-names))
+                     (assoc-in [:fields :Services] (vec service-names))
+                     (assoc-in [:fields :Type] (vec type-names))
+                     (assoc-in [:fields :Tags] (vec tag-names))))
                record))) org-records)))
 
 (defn normalize-records
@@ -81,7 +92,11 @@
   [table-key] ;; :Organizations, :tags, etc..
   (case table-key
     ;; airtable table record resolver
-    :organizations (reconcile table-key)
+    :organizations (reconcile-orgs table-key)
+    ;:services service-records
+    ;:categories category-records
+    ;:types type-records
+    ;:tags tag-records
     :default '()))
 
 (defn reset-or-init-redis-cache []

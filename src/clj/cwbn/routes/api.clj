@@ -7,15 +7,15 @@
 
 ;; TODO: add error handler to this function
 (defn redis-handler [{path-info :path-info}]
-  (let [[resource _] (filter (comp #{path-info} airtable-records) (keys airtable-records))
-        ;redis-data (wcar* (car/get path-info))
-        ;json-records (json/read-value redis-data mapper)
-        records (airtable/normalize-records resource)]
+  (let [[resource _] (filter (comp #{path-info} airtable-records) (keys airtable-records))]
     ;; filter :draft orgs
     (if (= :organizations resource)
-      (let [records (remove #(= (-> % :fields :Status) "Draft") records)]
-        (response/ok records))
-      (response/ok records))))
+      (let [records (airtable/normalize-records resource)
+            filtered-records (remove #(= (-> % :fields :Status) "Draft") records)]
+        (response/ok filtered-records))
+      (let [redis-data (wcar* (car/get path-info))
+            records (json/read-value redis-data mapper)]
+        (response/ok records)))))
 
 (defroutes api-routes
            (context "/api" []
