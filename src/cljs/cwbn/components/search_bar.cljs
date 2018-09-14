@@ -5,6 +5,14 @@
 (declare test-data)
 
 (def typeahead-model (reagent/atom {}))
+(def typeahead-on-change-value (reagent/atom nil))
+;;(def current-selection (reagent/atom nil))
+(def change-on-blur? (reagent/atom false))
+(def status (reagent/atom nil))
+(def rigid? (reagent/atom true))
+
+(defn css-classes [name] (str "suggestion" " "
+                          (when (= name @typeahead-on-change-value) "current-selection")))
 
 ;;TODO find more efficient way to compute the weight of a suggestion
 (defn suggestion-weight [data-str query]
@@ -40,21 +48,28 @@
    nil)
 
 (defn render-suggestion [{:keys [name]}]
-  [:span
-   ;;TODO update css to style these elements
-   [:i {:style {:width "40px"}}]
-   name])
+  [:div.suggestion-wrapper
+    [:i {:class (css-classes name)} name]])
+
+(defn typeahead []
+  (fn []
+    [re-com/typeahead
+     :model typeahead-model
+     :data-source (data-source-immediate 16)
+     :suggestion-to-string #(:name %)
+     :render-suggestion render-suggestion
+     :width "100%"
+     :placeholder "Search for companies & services you need."
+     :on-change #(reset! typeahead-on-change-value %)
+     :change-on-blur? change-on-blur?
+     :rigid? rigid?
+     :status @status]))
 
 (defn component []
   (fn []
+    ;;TODO wrap the typeahead in some other components to make it look nice
     [:section.search-bar-wrapper
-     [re-com/typeahead
-      :model typeahead-model
-      :data-source (data-source-immediate 16)
-      :suggestion-to-string #(:name %)
-      :render-suggestion render-suggestion
-      :width "100%"
-      :placeholder "Search for companies & services you need."]]))
+     [typeahead]]))
 
 (def test-data
   ["google"
