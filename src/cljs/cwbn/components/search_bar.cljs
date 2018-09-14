@@ -11,8 +11,6 @@
 (def status (reagent/atom nil))
 (def rigid? (reagent/atom true))
 
-(defn css-classes [name] (str "suggestion" " "
-                          (when (= name @typeahead-on-change-value) "current-selection")))
 
 ;;TODO find more efficient way to compute the weight of a suggestion
 (defn suggestion-weight [data-str query]
@@ -47,9 +45,14 @@
 (def data-source-async
    nil)
 
+(defn css-classes [name]
+  {:wrapper-classes (str "suggestion-wrapper" " " "suggestion-wrapper-" name)
+   :suggestion-classes (str "suggestion" " " "suggestion-" name)})
+
 (defn render-suggestion [{:keys [name]}]
-  [:div.suggestion-wrapper
-    [:i {:class (css-classes name)} name]])
+  (let [classes (css-classes name)]
+    [:div {:class (classes :wrapper-classes)}
+     [:i {:class (classes :suggestion-classes)} name]]))
 
 (defn typeahead []
   (fn []

@@ -70,21 +70,6 @@
       .search-bar-wrapper .search-bar {
         background-position: 95%; } }
 
-.suggestion-wrapper {
-  padding: .1em;
-  border: solid 1px #000066;
-  background: #cce6ff;
-}
-
-.current-selection {
-  color: red;
-}
-
-.search-bar-suggestion {
-  font-size: 1.2em;
-}
-
-
 .category-links a {
   text-decoration: none;
   color: #343a40; }

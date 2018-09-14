@@ -12,3 +12,17 @@
     }
   }
 }
+
+.suggestion-wrapper {
+  padding: .1em;
+  border: solid 1px #000066;
+  background: #cce6ff;
+}
+
+.active {
+  color : yellow;
+}
+
+.search-bar-suggestion {
+  font-size: 1.2em;
+}
