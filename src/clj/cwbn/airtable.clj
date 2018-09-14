@@ -52,7 +52,37 @@
    :types         "/Types"
    :tags          "/Tags"})
 
-(defn- normalize-records [records])
+(defn- table-lookup [table-key]
+  (-> (wcar* (car/get (table-key airtable-records)))
+      (json/read-value mapper)))
+
+(defn- find-by-id [id coll]
+  (some #(when (= id (-> % :id)) %) coll))
+
+(defn- reconcile [table-key]
+  (let [org-records (table-lookup table-key)
+        cat-records (table-lookup :categories)]
+    (map (fn [record]
+           (let [categories (-> record :fields :Categories)]
+             (if categories
+               (let [org-names (into [] (map #(-> (find-by-id % cat-records)
+                                                  :fields
+                                                  :Name) categories))]
+                 (assoc-in record [:fields :Categories] org-names))
+               record))) org-records)))
+
+(defn normalize-records
+  "
+  Normalizes records before sending them to the client,
+  mostly resolves :Categories, :Services, :Types and :Tags as names
+
+  ['recpldhESTs53VUvE', ...] -> [:category-name, ...] in category airtable"
+
+  [table-key] ;; :Organizations, :tags, etc..
+  (case table-key
+    ;; airtable table record resolver
+    :organizations (reconcile table-key)
+    :default '()))
 
 (defn reset-or-init-redis-cache []
   (log/info "_*_ Airtable Cache: STARTED _*_")
