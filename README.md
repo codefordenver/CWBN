@@ -27,7 +27,7 @@ You will need
 ## Running
 To start a web server for the application, run:
 
-_If you aren't running your redis server start it with `redis-server`_
+_If you aren't running your redis server, you'll need to. Start it with `redis-server`_
 
 - `lein run`
 - `lein figwheel` (can be started from a separate terminal)
