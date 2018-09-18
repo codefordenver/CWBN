@@ -13,9 +13,6 @@
        "About Us"]
       [:br]
       [:a {:href ""}
-       "Privacy Policy"]
-      [:br]
-      [:a {:href ""}
        "Terms & Conditions"]]]
     [:div#social "Stay in Touch"
      [:div#icons
