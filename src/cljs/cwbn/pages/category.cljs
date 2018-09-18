@@ -1,7 +1,8 @@
 (ns cwbn.pages.category
   (:require [re-frame.core :as rf]
             [clojure.string :as s]
-            [reagent.core :as reagent]))
+            [reagent.core :as reagent]
+            [cuerdas.core :as cuerdas]))
 
 (defn org-details [{:keys [name
                            type
@@ -11,29 +12,34 @@
                            website
                            contact-name
                            email
-                           phone]}]
-  [:div {:class "org mb4"}
-   [:h2 {:class "f4 fw6 ttc"} name]
-   [:h3.f6 [:i type]]
-   [:h3.f6.mb0 [:b "Services: "]
-               services]
-   (when-not (nil? population)
-     [:h3.f6.mb0 [:b "Target Population: "]
-                 population])
-   (when-not (nil? area)
-     [:h3.f6.mb0 [:b "Area Served: "]
-                 area])
-   (when-not (nil? website)
-     [:h3.f6 [:b "Website: "]
-             [:a {:href website}
-                 website]])
-   (when-not (nil? contact-name)
-     [:h3.f6.mb0 [:b "Contact: "]
-                 contact-name])
-   (when-not (nil? email)
-     [:h3.f6.mb0 [:a {:href (str "mailto:" email)} email]])
-   (when-not (nil? population)
-     [:h3.f6.mb0 phone])])
+                           phone-number]}]
+  (fn []
+    [:div {:class "org mb4 pt2"}
+     [:h2 {:class "f4 fw6 ttc"} name]
+     (for [t type]
+       ^{:key (gensym)}
+       [:h3.f6 [:i t]])
+     (when-not (empty? services)
+       [:h3.f6.mb0
+        [:b "Services: "]
+        (for [s services
+              :let [i (.indexOf services s)
+                    comma? (when (> (count services) (+ 1 i)) ", ")]]
+          ^{:key (gensym)}
+          [:span (str s comma?)])])
+     (when population
+       [:h3.f6.mb0 [:b "Target Population: "] population])
+     (when area
+       [:h3.f6.mb0 [:b "Area Served: "] area])
+     (when website
+       [:h3.f6 [:b "Website: "]
+        [:a {:href website :target "_blank"} website]])
+     (when contact-name
+       [:h3.f6.mb0 [:b "Contact: "] contact-name])
+     (when email
+       [:h3.f6.mb0 [:a {:href (str "mailto:" email)} email]])
+     (when phone-number
+       [:h3.f6.mb0 phone-number])]))
 
 (def current-letter (reagent/atom nil))
 
@@ -44,23 +50,21 @@
         category-img (str (first (s/split category-route #"-")) ".png")
         category-key (keyword category-route)
         category-services (services-by-category category-key)
-        all-orgs @(rf/subscribe [:orgs])
-        orgs (sort-by :name (filter (fn [org]
-                                      (some (fn [cat]
-                                              (when (= category-key cat)
-                                                    cat))
-                                            (:categories org)))
-                                   all-orgs))
+        all-orgs @(rf/subscribe [:Organizations])
+        filtered (filter (fn [org]
+                           (some #(when (= category-key (-> % cuerdas/kebab cuerdas/keyword))
+                                    %) (:categories org))) all-orgs)
+        orgs (sort-by :name filtered)
         org-letters (distinct (map #(first (:name %)) orgs))
         orgs-by-letter (as-> '{} os
-                         (map (fn [l]
-                                (assoc os (keyword l) (filter #(= l (first (:name %))) orgs)))
-                              org-letters)
-                         (apply merge os))]
+                             (map (fn [l]
+                                    (assoc os (keyword l) (filter #(= l (first (:name %))) orgs)))
+                                  org-letters)
+                             (apply merge os))]
     [:div.category-page
      [:div {:class "category-header flex items-center"}
       [:img {:class "category-icon"
-             :src (str "img/category-icons/" category-img)}]
+             :src   (str "img/category-icons/" category-img)}]
       [:div {:class "category-services flex flex-column"}
        [:h1 {:class "f3 b ttc"} category-name]
        [:div

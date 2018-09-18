@@ -3,6 +3,7 @@
             [clojure.tools.logging :as log]
             [jsonista.core :as json]
             [taoensso.carmine :as car :refer [wcar]]
+            [cuerdas.core :as cuerdas]
             [clojure.core.async :as async :refer [<! timeout chan go]]))
 
 (declare reset-or-init-redis-cache)
@@ -59,40 +60,40 @@
 (defn- find-by-id [id coll]
   (some #(when (= id (-> % :id)) %) coll))
 
-(defn- reconcile-orgs [table-key]
+(defn- name-reconciler [table-key]
   (let [org-records (table-lookup table-key)
         category-records (table-lookup :categories)
         service-records (table-lookup :services)
         type-records (table-lookup :types)
         tag-records (table-lookup :tags)]
     (map (fn [record]
-           (let [categories (-> record :fields :Categories)
-                 services (-> record :fields :Services)
-                 types (-> record :fields :Types)
-                 tags (-> record :fields :Tags)]
+           (let [categories (-> record :fields :categories)
+                 services (-> record :fields :services)
+                 types (-> record :fields :type)
+                 tags (-> record :fields :tags)]
              (if (or categories services types tags)
-               (let [org-names (map #(-> (find-by-id % category-records) :fields :Name) categories)
-                     service-names (map #(-> (find-by-id % service-records) :fields :Name) services)
-                     type-names (map #(-> (find-by-id % type-records) :fields :Name) types)
-                     tag-names (map #(-> (find-by-id % tag-records) :fields :Name) tags)]
+               (let [org-names (map #(-> (find-by-id % category-records) :fields :name) categories)
+                     service-names (map #(-> (find-by-id % service-records) :fields :name) services)
+                     type-names (map #(-> (find-by-id % type-records) :fields :name) types)
+                     tag-names (map #(-> (find-by-id % tag-records) :fields :name) tags)]
                  (-> record
-                     (assoc-in [:fields :Categories] (vec org-names))
-                     (assoc-in [:fields :Services] (vec service-names))
-                     (assoc-in [:fields :Type] (vec type-names))
-                     (assoc-in [:fields :Tags] (vec tag-names))))
+                     (assoc-in [:fields :categories] (vec org-names))
+                     (assoc-in [:fields :services] (vec service-names))
+                     (assoc-in [:fields :type] (vec type-names))
+                     (assoc-in [:fields :tags] (vec tag-names))))
                record))) org-records)))
 
 (defn normalize-records
   "
   Normalizes records before sending them to the client,
-  mostly resolves :Categories, :Services, :Types and :Tags as names
+  mostly resolves :Categories, :services, :types and :Tags as names
 
   ['recpldhESTs53VUvE', ...] -> [:category-name, ...] in category airtable"
 
   [table-key] ;; :Organizations, :tags, etc..
   (case table-key
     ;; airtable table record resolver
-    :organizations (reconcile-orgs table-key)
+    :organizations (name-reconciler table-key)
     ;:services service-records
     ;:categories category-records
     ;:types type-records
@@ -111,7 +112,7 @@
 
 (def mapper
   (json/object-mapper
-    {:decode-key-fn keyword
+    {:decode-key-fn (comp keyword cuerdas/kebab)
      :encode-key-fn name}))
 
 (defn fetch-airtable-records
