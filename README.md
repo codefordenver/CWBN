@@ -30,7 +30,8 @@ To start a web server for the application, run:
 _If you aren't running your redis server, you'll need to. Start it with `redis-server`_
 
 - `lein run`
-- `lein figwheel` (can be started from a separate terminal)
+- `lein figwheel` (in a separate terminal)
+- `lein auto sassc once` (in a separate terminal)
 ## Prerequisite Setup for Windows Users
 One of the crucial parts of efficient development for this project is **SassC**.  Unfortunately, **SassC** and **Windows** do not sit well together.  It is recommended to use **Ubuntu** system in a virtual environment.  The following instruction will guide you to set up the project in your Virtual Ubuntu System.
 #### (1) Virtual Environment
