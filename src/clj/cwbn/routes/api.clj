@@ -11,7 +11,7 @@
     ;; filter :draft orgs
     (if (= :organizations resource)
       (let [records (airtable/normalize-records resource)
-            filtered-records (remove #(= (-> % :fields :Status) "Draft") records)]
+            filtered-records (remove #(= (-> % :fields :status) "Draft") records)]
         (response/ok filtered-records))
       (let [redis-data (wcar* (car/get path-info))
             records (json/read-value redis-data mapper)]
