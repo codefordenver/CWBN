@@ -19,8 +19,12 @@
   background: #cce6ff;
 }
 
-.active {
-  color : yellow;
+.rc-typeahead-suggestion.active {
+  font-weight: 700;
+}
+
+.active .suggestion-wrapper {
+  background-color: #8EDFE8;
 }
 
 .search-bar-suggestion {
