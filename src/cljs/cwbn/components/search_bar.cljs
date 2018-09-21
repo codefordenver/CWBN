@@ -4,15 +4,11 @@
 
 (declare test-data)
 
-(def typeahead-model (reagent/atom {}))
 (def typeahead-on-change-value (reagent/atom nil))
-;;(def current-selection (reagent/atom nil))
 (def change-on-blur? (reagent/atom false))
 (def status (reagent/atom nil))
 (def rigid? (reagent/atom true))
 
-
-;;TODO find more efficient way to compute the weight of a suggestion
 (defn suggestion-weight [data-str query]
   ;;measures relevance of search result based on how early the query appears in the search data-string
   ;;used to sort the search results
@@ -23,7 +19,6 @@
                                 #(not= % (vec query))
                                 (partition len-query 1 data-str)))]
     [n-chars-before-match len-data]))
-
 
 ;;TODO make this function query the database instead of test data
 (defn suggestions-for-search [query]
@@ -57,7 +52,6 @@
 (defn typeahead []
   (fn []
     [re-com/typeahead
-     :model typeahead-model
      :data-source (data-source-immediate 16)
      :suggestion-to-string #(:name %)
      :render-suggestion render-suggestion
@@ -70,7 +64,6 @@
 
 (defn component []
   (fn []
-    ;;TODO wrap the typeahead in some other components to make it look nice
     [:section.search-bar-wrapper
      [typeahead]]))
 
@@ -847,42 +840,3 @@
    "sec-10"
    "sec-3"
    "zero"])
-
-(comment
-  (def status (reagent/atom nil)) ;; TODO: not sure what this does, maybe we dont need it
-
-  (def model (reagent/atom nil)))
-
-(comment
-  (defn component []
-    (let [format-result #(-> {:name %})
-          suggestions-for-search
-          (fn [s]
-            (into []
-                  (take 16
-                        (for [n demo-test-data
-                              :when (re-find (re-pattern (str "(?i)" s)) n)]
-                          (format-result n)))))
-          ;suggestion-to-string #(:name %)
-          render-suggestion
-          (fn [{:keys [name]}] [:span name])
-          async-data-source
-          (fn [s callback]
-            (go
-              (<! (timeout 500)) ;; blocking operation
-              (callback
-                (suggestions-for-search s)))
-            ;; !!!
-            ;; return value must be falsey for async :data-source to work))]
-            nil)]
-      (fn []
-        [:section.search-bar-wrapper
-           [typeahead
-             :class "search-bar truncate"
-             :width "100%"
-             :model model
-             :render-suggestion render-suggestion
-             :status status
-             :data-source async-data-source
-             :placeholder "Search for companies & services you need"]]))))
-             ;:suggestion-to-string suggestion-to-string]])))
