@@ -13,5 +13,4 @@
                 :alt "Community Wealth Building logo"}]]
    [:div#nav
     [nav-link "#/" "Home" :home]
-    [nav-link "#/about" "About" :about]
-    [nav-link "#/contact" "Contact" :contact]]])
+    [nav-link "#/about" "About" :about]]])

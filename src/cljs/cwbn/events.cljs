@@ -19,6 +19,27 @@
                 :category-route category-route)
       (assoc db :active-page page))))
 
+(rf/reg-event-fx
+  :get-api-data
+  (fn [{db :db} [_ k v]]
+    (when-not (seq (k db))
+      {:http-xhrio {:method          :get
+                    :uri             (str "/api" v)
+                    :response-format (ajax/json-response-format {:keywords? true})
+                    :on-success      [:get-api-data-success k]
+                    :on-failure      [:get-api-data-failure k]}})))
+
+(rf/reg-event-db
+  :get-api-data-success
+  (fn [db [_ key data]]
+    (let [fields (map :fields data)]
+      (assoc db key fields))))
+
+(rf/reg-event-db
+  :get-api-data-failure
+  (fn [db [_ k]]
+    (prn (str "Failed to fetch " k))
+    db))
 
 ;;subscriptions
 
@@ -38,27 +59,6 @@
     (:services-by-category db)))
 
 (reg-sub
-  :orgs
+  :Organizations
   (fn [db _]
-    (:orgs db)))
-
-(rf/reg-event-fx
-  :get-api-data
-  (fn [{db :db} [_ k v]]
-    (when-not (seq (k db))
-      {:http-xhrio {:method          :get
-                    :uri             (str "/api" v)
-                    :response-format (ajax/json-response-format {:keywords? true})
-                    :on-success      [:get-api-data-success k]
-                    :on-failure      [:get-api-data-failure k]}})))
-
-(rf/reg-event-db
-  :get-api-data-success
-  (fn [db [_ key data]]
-    (assoc db key data)))
-
-(rf/reg-event-db
-  :get-api-data-failure
-  (fn [db [_ k]]
-    (prn (str "Failed to fetch " k))
-    db))
+    (:Organizations db)))
