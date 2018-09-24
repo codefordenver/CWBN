@@ -12,3 +12,21 @@
     }
   }
 }
+
+.suggestion-wrapper {
+  padding: .1em;
+  border: solid 1px #000066;
+  background: #cce6ff;
+}
+
+.rc-typeahead-suggestion.active {
+  font-weight: 700;
+}
+
+.active .suggestion-wrapper {
+  background-color: #8EDFE8;
+}
+
+.search-bar-suggestion {
+  font-size: 1.2em;
+}

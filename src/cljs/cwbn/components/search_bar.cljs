@@ -1,49 +1,73 @@
 (ns cwbn.components.search-bar
-  (:require-macros [cljs.core.async.macros :refer [go]])
-  (:require [re-com.core :refer [typeahead]]
-            [cljs.core.async :refer [timeout]]
+  (:require [re-com.core :as re-com]
             [reagent.core :as reagent]))
 
-(declare demo-test-data)
+(declare test-data)
 
-(def status (reagent/atom nil)) ;; TODO: not sure what this does, maybe we dont need it
+(def typeahead-on-change-value (reagent/atom nil))
+(def change-on-blur? (reagent/atom false))
+(def status (reagent/atom nil))
+(def rigid? (reagent/atom true))
 
-(def model (reagent/atom nil))
+(defn suggestion-weight [data-str query]
+  ;;measures relevance of search result based on how early the query appears in the search data-string
+  ;;used to sort the search results
+  (let [len-query (count query)
+        len-data (count data-str)
+        n-chars-before-match (count
+                               (take-while
+                                #(not= % (vec query))
+                                (partition len-query 1 data-str)))]
+    [n-chars-before-match len-data]))
+
+;;TODO make this function query the database instead of test data
+(defn suggestions-for-search [query]
+    (let [regex (re-pattern (str "(?i)" query))]
+      (into []
+         (for [data-str test-data
+                :when (re-find regex data-str)]
+           {:name data-str
+            :weight (suggestion-weight data-str query)}))))
+
+(defn data-source-immediate [n-results]
+   (fn [query]
+     (->> query
+          (suggestions-for-search)
+          (sort-by #(:weight %))
+          (take n-results))))
+
+;;TODO implement using core.async library
+(def data-source-async
+   nil)
+
+(defn css-classes [name]
+  {:wrapper-classes (str "suggestion-wrapper" " " "suggestion-wrapper-" name)
+   :suggestion-classes (str "suggestion" " " "suggestion-" name)})
+
+(defn render-suggestion [{:keys [name]}]
+  (let [classes (css-classes name)]
+    [:div {:class (classes :wrapper-classes)}
+     [:i {:class (classes :suggestion-classes)} name]]))
+
+(defn typeahead []
+  (fn []
+    [re-com/typeahead
+     :data-source (data-source-immediate 16)
+     :suggestion-to-string #(:name %)
+     :render-suggestion render-suggestion
+     :width "100%"
+     :placeholder "Search for companies & services you need."
+     :on-change #(reset! typeahead-on-change-value %)
+     :change-on-blur? change-on-blur?
+     :rigid? rigid?
+     :status @status]))
 
 (defn component []
-  (let [format-result #(-> {:name %})
-        suggestions-for-search
-        (fn [s]
-          (into []
-                (take 16
-                      (for [n demo-test-data
-                            :when (re-find (re-pattern (str "(?i)" s)) n)]
-                        (format-result n)))))
-        ;suggestion-to-string #(:name %)
-        render-suggestion
-        (fn [{:keys [name]}] [:span name])
-        async-data-source
-        (fn [s callback]
-          (go
-            (<! (timeout 500)) ;; blocking operation
-            (callback
-              (suggestions-for-search s)))
-          ;; !!!
-          ;; return value must be falsey for async :data-source to work))]
-          nil)]
-    (fn []
-      [:section.search-bar-wrapper
-         [typeahead
-           :class "search-bar truncate"
-           :width "100%"
-           :model model
-           :render-suggestion render-suggestion
-           :status status
-           :data-source async-data-source
-           :placeholder "Search for companies & services you need"]])))
-           ;:suggestion-to-string suggestion-to-string]])))
+  (fn []
+    [:section.search-bar-wrapper
+     [typeahead]]))
 
-(def ^:test-data demo-test-data
+(def test-data
   ["google"
    "google-plus-box"
    "google-plus"

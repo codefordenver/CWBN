@@ -20,3 +20,4 @@ cwbn_test.db.mv.db
 cwbn_test.db.trace.db
 figwheel_server.log
 dump.rdb
+deps-tree.txt
