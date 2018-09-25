@@ -5,7 +5,7 @@
 (declare test-data)
 
 (def typeahead-on-change-value (reagent/atom nil))
-(def change-on-blur? (reagent/atom false))
+(def change-on-blur? (reagent/atom true))
 (def status (reagent/atom nil))
 (def rigid? (reagent/atom true))
 
