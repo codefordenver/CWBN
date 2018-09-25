@@ -43,7 +43,8 @@
                  [http-kit "2.2.0"]
                  [metosin/jsonista "0.2.1"]
                  [org.clojure/core.async "0.4.474"]
-                 [day8.re-frame/http-fx "0.1.6"]]
+                 [day8.re-frame/http-fx "0.1.6"]
+                 [funcool/cuerdas "2.0.5"]]
 
   :min-lein-version "2.0.0"
 
@@ -129,8 +130,8 @@
                       :source-map true
                       :optimizations :none
                       :pretty-print true
-                      :closure-defines {"re_frame.trace.trace_enabled_QMARK_" true}
-                      :preloads [day8.re-frame-10x.preload]}}}}
+                      :closure-defines {"re_frame.trace.trace_enabled_QMARK_" true}}}}}
+                      ;;:preloads [day8.re-frame-10x.preload]}}}}
 
 
 
