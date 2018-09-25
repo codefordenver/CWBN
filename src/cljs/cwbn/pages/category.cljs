@@ -60,7 +60,8 @@
                              (map (fn [l]
                                     (assoc os (keyword l) (filter #(= l (first (:name %))) orgs)))
                                   org-letters)
-                             (apply merge os))]
+                             (apply merge os)
+                             (into (sorted-map) os))]
     [:div.category-page
      [:div {:class "category-header flex items-center"}
       [:img {:class "category-icon"
