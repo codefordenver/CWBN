@@ -122,7 +122,8 @@
         options {:query-params (when offset {:offset offset})
                  :headers      {"Authorization" (str "Bearer " AIRTABLE_API_KEY)}}
         endpoint (str endpoint (get airtable-records resource))]
-    (let [{:keys [error body]} @(http/get endpoint options)]
+    (let [{:keys [error body]} @(http/get endpoint options)
+          body (clojure.string/replace body "\\n" "")]
       (if-not error
         (let [{:keys [offset records]} (json/read-value body mapper)]
           (if offset
