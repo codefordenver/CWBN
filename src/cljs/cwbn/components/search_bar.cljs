@@ -60,6 +60,7 @@
      :on-change #(reset! typeahead-on-change-value %)
      :change-on-blur? change-on-blur?
      :rigid? rigid?
+     :debounce-delay 500
      :status @status]))
 
 (defn component []
