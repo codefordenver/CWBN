@@ -53,14 +53,14 @@
    :types         "/Types"
    :tags          "/Tags"})
 
-(defn- table-lookup [table-key]
-  (-> (wcar* (car/get (table-key airtable-records)))
+(defn- table-lookup [table-name]
+  (-> (wcar* (car/get (table-name airtable-records)))
       (json/read-value mapper)))
 
 (defn- find-by-id [id coll]
   (some #(when (= id (-> % :id)) %) coll))
 
-(defmulti name-reconciler (fn [{table :table}] table))
+(defmulti name-reconciler (fn [{key :key}] key))
 
 (defmethod name-reconciler :services [data]
   (let [{:keys [org-records category-records service-records type-records tag-records]} (:tables data)]
@@ -100,6 +100,25 @@
                      (assoc-in [:fields :tags] (vec tag-names))))
                record))) org-records)))
 
+(defmethod name-reconciler :categories [data]
+  (let [{:keys [org-records category-records service-records type-records tag-records]} (:tables data)]
+    (map (fn [record]
+           (let [organizations (-> record :fields :organizations)
+                 services (-> record :fields :services)
+                 types (-> record :fields :type)
+                 tags (-> record :fields :tags)]
+             (if (or organizations services types tags)
+               (let [service-names (map #(-> (find-by-id % service-records) :fields :name) services)
+                     type-names (map #(-> (find-by-id % type-records) :fields :name) types)
+                     tag-names (map #(-> (find-by-id % tag-records) :fields :name) tags)
+                     organization-names (map #(-> (find-by-id % org-records) :fields :name) organizations)]
+                 (-> record
+                     (assoc-in [:fields :organizations] (vec organization-names))
+                     (assoc-in [:fields :services] (vec service-names))
+                     (assoc-in [:fields :type] (vec type-names))
+                     (assoc-in [:fields :tags] (vec tag-names))))
+               record))) category-records)))
+
 (defn normalize-records
   "
   Normalizes records before sending them to the client,
@@ -107,17 +126,17 @@
 
   ['recpldhESTs53VUvE', ...] -> [:category-name, ...] in category airtable"
 
-  [table-key]                                               ;; :Organizations, :tags, etc..
+  [table-name]                                               ;; :Organizations, :tags, etc..
   (let [tables {:org-records      (table-lookup :organizations)
                 :category-records (table-lookup :categories)
                 :service-records  (table-lookup :services)
                 :type-records     (table-lookup :types)
                 :tag-records      (table-lookup :tags)}]
-    (case table-key
+    (case table-name
       ;; airtable table record resolver
-      :organizations (name-reconciler {:table :organizations :tables tables})
-      :services (name-reconciler {:table :services :tables tables})
-      ;:categories category-records
+      :organizations (name-reconciler {:key :organizations :tables tables})
+      :services (name-reconciler {:key :services :tables tables})
+      :categories (name-reconciler {:key :categories :tables tables})
       ;:types type-records
       ;:tags tag-records
       :default '())))
