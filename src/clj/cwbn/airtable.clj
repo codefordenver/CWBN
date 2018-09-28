@@ -60,17 +60,10 @@
 (defn- find-by-id [id coll]
   (some #(when (= id (-> % :id)) %) coll))
 
-(defmulti name-reconciler
-          (fn [table-name]
-            (prn table-name)
-            table-name))
+(defmulti name-reconciler (fn [{table :table}] table))
 
-(defmethod name-reconciler :services [_]
-  (let [org-records (table-lookup :organizations)
-        category-records (table-lookup :categories)
-        service-records (table-lookup :services)
-        type-records (table-lookup :types)
-        tag-records (table-lookup :tags)]
+(defmethod name-reconciler :services [data]
+  (let [{:keys [org-records category-records service-records type-records tag-records]} (:tables data)]
     (map (fn [record]
            (let [categories (-> record :fields :categories)
                  orgs (-> record :fields :organizations)
@@ -88,12 +81,8 @@
                      (assoc-in [:fields :tags] (vec tag-names))))
                record))) service-records)))
 
-(defmethod name-reconciler :organizations [_]
-  (let [org-records (table-lookup :organizations)
-        category-records (table-lookup :categories)
-        service-records (table-lookup :services)
-        type-records (table-lookup :types)
-        tag-records (table-lookup :tags)]
+(defmethod name-reconciler :organizations [data]
+  (let [{:keys [org-records category-records service-records type-records tag-records]} (:tables data)]
     (map (fn [record]
            (let [categories (-> record :fields :categories)
                  services (-> record :fields :services)
@@ -119,14 +108,19 @@
   ['recpldhESTs53VUvE', ...] -> [:category-name, ...] in category airtable"
 
   [table-key]                                               ;; :Organizations, :tags, etc..
-  (case table-key
-    ;; airtable table record resolver
-    :organizations (name-reconciler :organizations)
-    :services (name-reconciler :services)
-    ;:categories category-records
-    ;:types type-records
-    ;:tags tag-records
-    :default '()))
+  (let [tables {:org-records      (table-lookup :organizations)
+                :category-records (table-lookup :categories)
+                :service-records  (table-lookup :services)
+                :type-records     (table-lookup :types)
+                :tag-records      (table-lookup :tags)}]
+    (case table-key
+      ;; airtable table record resolver
+      :organizations (name-reconciler {:table :organizations :tables tables})
+      :services (name-reconciler {:table :services :tables tables})
+      ;:categories category-records
+      ;:types type-records
+      ;:tags tag-records
+      :default '())))
 
 (defn reset-or-init-redis-cache []
   (log/info "_*_ Airtable Cache: STARTED _*_")
