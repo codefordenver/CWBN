@@ -138,6 +138,25 @@
                      (assoc-in [:fields :tags] (vec tag-names))))
                record))) type-records)))
 
+(defmethod name-reconciler :tags [data]
+  (let [{:keys [org-records category-records service-records type-records tag-records]} (:tables data)]
+    (map (fn [record]
+           (let [organizations (-> record :fields :organizations)
+                 services (-> record :fields :services)
+                 types (-> record :fields :type)
+                 categories (-> record :fields :tags)]
+             (if (or organizations services types categories)
+               (let [service-names (map #(-> (find-by-id % service-records) :fields :name) services)
+                     type-names (map #(-> (find-by-id % type-records) :fields :name) types)
+                     category-names (map #(-> (find-by-id % category-records) :fields :name) categories)
+                     organization-names (map #(-> (find-by-id % org-records) :fields :name) organizations)]
+                 (-> record
+                     (assoc-in [:fields :organizations] (vec organization-names))
+                     (assoc-in [:fields :services] (vec service-names))
+                     (assoc-in [:fields :type] (vec type-names))
+                     (assoc-in [:fields :categories] (vec category-names))))
+               record))) tag-records)))
+
 (defn normalize-records
   "
   Normalizes records before sending them to the client,
@@ -157,7 +176,7 @@
       :services (name-reconciler {:key :services :tables tables})
       :categories (name-reconciler {:key :categories :tables tables})
       :types (name-reconciler {:key :types :tables tables})
-      ;:tags tag-records
+      :tags (name-reconciler {:key :tags :tables tables})
       :default '())))
 
 (defn reset-or-init-redis-cache []
