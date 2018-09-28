@@ -60,28 +60,54 @@
 (defn- find-by-id [id coll]
   (some #(when (= id (-> % :id)) %) coll))
 
-(defn- name-reconciler [table-key]
-  (let [org-records (table-lookup table-key)
-        category-records (table-lookup :categories)
-        service-records (table-lookup :services)
-        type-records (table-lookup :types)
-        tag-records (table-lookup :tags)]
+(defmulti name-reconciler
+          (fn [table-name]
+            (prn table-name)
+            table-name))
+
+(defmethod name-reconciler :services
+  [table]
+  (let [orgs (table-lookup :organizations)
+        categories (table-lookup :categories)
+        services (table-lookup :services)
+        types (table-lookup :types)
+        tags (table-lookup :tags)]
     (map (fn [record]
-           (let [categories (-> record :fields :categories)
-                 services (-> record :fields :services)
-                 types (-> record :fields :type)
-                 tags (-> record :fields :tags)]
-             (if (or categories services types tags)
-               (let [org-names (map #(-> (find-by-id % category-records) :fields :name) categories)
-                     service-names (map #(-> (find-by-id % service-records) :fields :name) services)
-                     type-names (map #(-> (find-by-id % type-records) :fields :name) types)
-                     tag-names (map #(-> (find-by-id % tag-records) :fields :name) tags)]
-                 (-> record
-                     (assoc-in [:fields :categories] (vec org-names))
-                     (assoc-in [:fields :services] (vec service-names))
-                     (assoc-in [:fields :type] (vec type-names))
-                     (assoc-in [:fields :tags] (vec tag-names))))
-               record))) org-records)))
+           (let [_categories (-> record :fields :categories)
+                 _orgs (-> record :fields :organizations)
+                 _types (-> record :fields :type)
+                 _tags (-> record :fields :tags)]
+             (let [categories (map #(-> (find-by-id % categories) :fields :name) _categories)
+                   org-names (map #(-> (find-by-id % orgs) :fields :name) _orgs)
+                   type-names (map #(-> (find-by-id % types) :fields :name) _types)
+                   tag-names (map #(-> (find-by-id % tags) :fields :name) tags)]
+               (-> record
+                   (assoc-in [:fields :categories] (vec categories))
+                   (assoc-in [:fields :organizations] (vec org-names))
+                   (assoc-in [:fields :type] (vec type-names))
+                   (assoc-in [:fields :tags] (vec tag-names)))))) services)))
+
+(defmethod name-reconciler :organizations
+  [table]
+  (let [orgs (table-lookup :organizations)
+        categories (table-lookup :categories)
+        services (table-lookup :services)
+        types (table-lookup :types)
+        tags (table-lookup :tags)]
+    (map (fn [record]
+           (let [_categories (-> record :fields :categories)
+                 _services (-> record :fields :services)
+                 _types (-> record :fields :type)
+                 _tags (-> record :fields :tags)]
+             (let [category-names (map #(-> (find-by-id % categories) :fields :name) _categories)
+                   service-names (map #(-> (find-by-id % services) :fields :name) _services)
+                   type-names (map #(-> (find-by-id % types) :fields :name) _types)
+                   tag-names (map #(-> (find-by-id % tags) :fields :name) tags)]
+               (-> record
+                   (assoc-in [:fields :categories] (vec category-names))
+                   (assoc-in [:fields :services] (vec service-names))
+                   (assoc-in [:fields :type] (vec type-names))
+                   (assoc-in [:fields :tags] (vec tag-names)))))) orgs)))
 
 (defn normalize-records
   "
@@ -90,11 +116,11 @@
 
   ['recpldhESTs53VUvE', ...] -> [:category-name, ...] in category airtable"
 
-  [table-key] ;; :Organizations, :tags, etc..
+  [table-key]                                               ;; :Organizations, :tags, etc..
   (case table-key
     ;; airtable table record resolver
-    :organizations (name-reconciler table-key)
-    ;:services service-records
+    :organizations (name-reconciler :organizations)
+    :services (name-reconciler :services)
     ;:categories category-records
     ;:types type-records
     ;:tags tag-records
