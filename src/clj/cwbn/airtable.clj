@@ -77,10 +77,10 @@
                  types (-> record :fields :type)
                  tags (-> record :fields :tags)]
              (if (or categories orgs types tags)
-               (let [org-names (map #(-> (find-by-id % orgs) :fields :name) org-records)
-                     category-names (map #(-> (find-by-id % categories) :fields :name) category-records)
-                     type-names (map #(-> (find-by-id % types) :fields :name) type-records)
-                     tag-names (map #(-> (find-by-id % tags) :fields :name) tag-records)]
+               (let [org-names (map #(-> (find-by-id % org-records) :fields :name) orgs)
+                     category-names (map #(-> (find-by-id % category-records) :fields :name) categories)
+                     type-names (map #(-> (find-by-id % type-records) :fields :name) types)
+                     tag-names (map #(-> (find-by-id % tag-records) :fields :name) tags)]
                  (-> record
                      (assoc-in [:fields :categories] (vec category-names))
                      (assoc-in [:fields :organizations] (vec org-names))
@@ -100,12 +100,12 @@
                  types (-> record :fields :type)
                  tags (-> record :fields :tags)]
              (if (or categories services types tags)
-               (let [org-names (map #(-> (find-by-id % categories) :fields :name) category-records)
-                     service-names (map #(-> (find-by-id % services) :fields :name) service-records)
-                     type-names (map #(-> (find-by-id % types) :fields :name) type-records)
-                     tag-names (map #(-> (find-by-id % tags) :fields :name) tag-records)]
+               (let [service-names (map #(-> (find-by-id % service-records) :fields :name) services)
+                     type-names (map #(-> (find-by-id % type-records) :fields :name) types)
+                     tag-names (map #(-> (find-by-id % tag-records) :fields :name) tags)
+                     category-names (map #(-> (find-by-id % category-records) :fields :name) categories)]
                  (-> record
-                     (assoc-in [:fields :categories] (vec org-names))
+                     (assoc-in [:fields :categories] (vec category-names))
                      (assoc-in [:fields :services] (vec service-names))
                      (assoc-in [:fields :type] (vec type-names))
                      (assoc-in [:fields :tags] (vec tag-names))))
