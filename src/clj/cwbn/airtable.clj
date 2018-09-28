@@ -62,8 +62,8 @@
 
 (defmulti name-reconciler (fn [{key :key}] key))
 
-(defmethod name-reconciler :services [data]
-  (let [{:keys [org-records category-records service-records type-records tag-records]} (:tables data)]
+(defmethod name-reconciler :services [{tables :tables}]
+  (let [{:keys [org-records category-records service-records type-records tag-records]} tables]
     (map (fn [record]
            (let [categories (-> record :fields :categories)
                  orgs (-> record :fields :organizations)
@@ -81,8 +81,8 @@
                      (assoc-in [:fields :tags] (vec tag-names))))
                record))) service-records)))
 
-(defmethod name-reconciler :organizations [data]
-  (let [{:keys [org-records category-records service-records type-records tag-records]} (:tables data)]
+(defmethod name-reconciler :organizations [{tables :tables}]
+  (let [{:keys [org-records category-records service-records type-records tag-records]} tables]
     (map (fn [record]
            (let [categories (-> record :fields :categories)
                  services (-> record :fields :services)
@@ -100,8 +100,8 @@
                      (assoc-in [:fields :tags] (vec tag-names))))
                record))) org-records)))
 
-(defmethod name-reconciler :categories [data]
-  (let [{:keys [org-records category-records service-records type-records tag-records]} (:tables data)]
+(defmethod name-reconciler :categories [{tables :tables}]
+  (let [{:keys [org-records category-records service-records type-records tag-records]} tables]
     (map (fn [record]
            (let [organizations (-> record :fields :organizations)
                  services (-> record :fields :services)
@@ -119,8 +119,8 @@
                      (assoc-in [:fields :tags] (vec tag-names))))
                record))) category-records)))
 
-(defmethod name-reconciler :types [data]
-  (let [{:keys [org-records category-records service-records type-records tag-records]} (:tables data)]
+(defmethod name-reconciler :types [{tables :tables}]
+  (let [{:keys [org-records service-records type-records tag-records]} tables]
     (map (fn [record]
            (let [organizations (-> record :fields :organizations)
                  services (-> record :fields :services)
@@ -138,8 +138,8 @@
                      (assoc-in [:fields :tags] (vec tag-names))))
                record))) type-records)))
 
-(defmethod name-reconciler :tags [data]
-  (let [{:keys [org-records category-records service-records type-records tag-records]} (:tables data)]
+(defmethod name-reconciler :tags [{tables :tables}]
+  (let [{:keys [org-records category-records service-records type-records tag-records]} tables]
     (map (fn [record]
            (let [organizations (-> record :fields :organizations)
                  services (-> record :fields :services)
