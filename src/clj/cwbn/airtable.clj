@@ -58,7 +58,7 @@
       (json/read-value mapper)))
 
 (defn- find-by-id [id coll]
-  (some #(when (= id (-> % :id)) %) coll))
+  (some #(when (= id (-> % :id)) (-> % :fields :name)) coll))
 
 (defmulti name-reconciler (fn [{key :key}] key))
 
@@ -70,10 +70,10 @@
                  types (-> record :fields :type)
                  tags (-> record :fields :tags)]
              (if (or categories orgs types tags)
-               (let [org-names (map #(-> (find-by-id % org-records) :fields :name) orgs)
-                     category-names (map #(-> (find-by-id % category-records) :fields :name) categories)
-                     type-names (map #(-> (find-by-id % type-records) :fields :name) types)
-                     tag-names (map #(-> (find-by-id % tag-records) :fields :name) tags)]
+               (let [org-names (map #(find-by-id % org-records) orgs)
+                     category-names (map #(find-by-id % category-records) categories)
+                     type-names (map #(find-by-id % type-records) types)
+                     tag-names (map #(find-by-id % tag-records) tags)]
                  (-> record
                      (assoc-in [:fields :categories] (vec category-names))
                      (assoc-in [:fields :organizations] (vec org-names))
@@ -89,10 +89,10 @@
                  types (-> record :fields :type)
                  tags (-> record :fields :tags)]
              (if (or categories services types tags)
-               (let [service-names (map #(-> (find-by-id % service-records) :fields :name) services)
-                     type-names (map #(-> (find-by-id % type-records) :fields :name) types)
-                     tag-names (map #(-> (find-by-id % tag-records) :fields :name) tags)
-                     category-names (map #(-> (find-by-id % category-records) :fields :name) categories)]
+               (let [service-names (map #(find-by-id % service-records) services)
+                     type-names (map #(find-by-id % type-records) types)
+                     tag-names (map #(find-by-id % tag-records) tags)
+                     category-names (map #(find-by-id % category-records) categories)]
                  (-> record
                      (assoc-in [:fields :categories] (vec category-names))
                      (assoc-in [:fields :services] (vec service-names))
@@ -108,10 +108,10 @@
                  types (-> record :fields :type)
                  tags (-> record :fields :tags)]
              (if (or organizations services types tags)
-               (let [service-names (map #(-> (find-by-id % service-records) :fields :name) services)
-                     type-names (map #(-> (find-by-id % type-records) :fields :name) types)
-                     tag-names (map #(-> (find-by-id % tag-records) :fields :name) tags)
-                     organization-names (map #(-> (find-by-id % org-records) :fields :name) organizations)]
+               (let [service-names (map #(find-by-id % service-records) services)
+                     type-names (map #(find-by-id % type-records) types)
+                     tag-names (map #(find-by-id % tag-records) tags)
+                     organization-names (map #(find-by-id % org-records) organizations)]
                  (-> record
                      (assoc-in [:fields :organizations] (vec organization-names))
                      (assoc-in [:fields :services] (vec service-names))
@@ -127,10 +127,10 @@
                  categories (-> record :fields :categories)
                  tags (-> record :fields :tags)]
              (if (or organizations services categories tags)
-               (let [service-names (map #(-> (find-by-id % service-records) :fields :name) services)
-                     category-names (map #(-> (find-by-id % type-records) :fields :name) categories)
-                     tag-names (map #(-> (find-by-id % tag-records) :fields :name) tags)
-                     organization-names (map #(-> (find-by-id % org-records) :fields :name) organizations)]
+               (let [service-names (map #(find-by-id % service-records) services)
+                     category-names (map #(find-by-id % type-records) categories)
+                     tag-names (map #(find-by-id % tag-records) tags)
+                     organization-names (map #(find-by-id % org-records) organizations)]
                  (-> record
                      (assoc-in [:fields :organizations] (vec organization-names))
                      (assoc-in [:fields :services] (vec service-names))
