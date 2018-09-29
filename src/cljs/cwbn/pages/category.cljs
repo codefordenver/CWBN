@@ -15,7 +15,7 @@
                            phone-number]}]
   (fn []
     [:div {:class "org mb4 pt2"}
-     [:h2 {:class "f4 fw6 ttc"} name]
+     [:h2 {:class "f4 fw6 ttc underline"} name]
      (for [t type]
        ^{:key (gensym)}
        [:h3.f6 [:i t]])
