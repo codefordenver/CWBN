@@ -43,8 +43,11 @@
                         mount/start-with-args
                         :started)]
     (log/info component "started"))
-  (cwbn.airtable/reset-or-init-redis-cache)
   (cwbn.search/setup)
+  (cwbn.airtable/reset-or-init-redis-cache)
+  ;; begin indexing
+  (let [orgs (cwbn.airtable/normalize-records :organizations)]
+    (cwbn.search/index orgs))
   (.addShutdownHook (Runtime/getRuntime) (Thread. stop-app)))
 
 (defn -main [& args]

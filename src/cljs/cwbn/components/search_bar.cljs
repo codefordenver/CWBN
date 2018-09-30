@@ -56,7 +56,7 @@
      :suggestion-to-string #(:name %)
      :render-suggestion render-suggestion
      :width "100%"
-     :placeholder "Search for companies & services you need."
+     :placeholder "Search Community"
      :on-change #(reset! typeahead-on-change-value %)
      :change-on-blur? change-on-blur?
      :rigid? rigid?

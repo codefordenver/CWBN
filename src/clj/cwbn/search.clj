@@ -14,21 +14,17 @@
   (try
     (let [conn (esr/connect elastic-search-endpoint)]
       (idx/delete conn index-name)
-      (idx/create conn index-name)
-      (doc/create conn index-name _type {:fields  {:name "Article 1"}
-                                         :date    "2015-12-13T14:11:19"
-                                         :message "Testing"})
-      (doc/create conn index-name _type {:fields  {:name "Article 1"}
-                                         :date    "2015-04-13T14:11:19"
-                                         :message "Test"})
-      (doc/create conn index-name _type {:fields  {:name "Third"}
-                                         :date    "2015-11-13T14:12:19"
-                                         :message "Other"}))
+      (idx/create conn index-name))
     (catch Exception e
       (throw e))))
 
 (defn search [query]
   (let [conn (esr/connect elastic-search-endpoint)]
     ((comp (partial map :_source) :hits :hits)
-     (doc/search conn index-name _type
-                 {:query (q/match "fields.name" query)}))))
+     (doc/search conn index-name _type {:query (q/match "fields.name" query)}))))
+
+(defn index [data]
+  (let [conn (esr/connect elastic-search-endpoint)]
+    (doall
+      (for [d data]
+        (doc/create conn index-name _type d)))))
