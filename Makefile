@@ -2,6 +2,7 @@ IMAGE = cwbn
 COMMIT = $$(git rev-parse --short HEAD)
 TAG = $(COMMIT)
 CWBN_STAGE_REPO_URL = mmmanyfold/cfd:$(TAG)
+ELASTIC_SEARCH_IMAGE = docker.elastic.co/elasticsearch/elasticsearch:6.4.1
 
 .PHONY: build
 build:
@@ -19,3 +20,8 @@ shell:
 deploy:
 	docker tag $(IMAGE) $(CWBN_STAGE_REPO_URL)
 	docker push $(CWBN_STAGE_REPO_URL)
+
+.PHONY: search
+search:
+	docker pull $(ELASTIC_SEARCH_IMAGE)
+	docker run -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" $(ELASTIC_SEARCH_IMAGE)

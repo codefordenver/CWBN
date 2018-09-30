@@ -44,6 +44,7 @@
                         :started)]
     (log/info component "started"))
   (cwbn.airtable/reset-or-init-redis-cache)
+  (cwbn.search/setup)
   (.addShutdownHook (Runtime/getRuntime) (Thread. stop-app)))
 
 (defn -main [& args]
