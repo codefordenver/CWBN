@@ -7,7 +7,7 @@ ENV AIRTABLE_API_KEY $AIRTABLE_API_KEY
 ENV APP_SRC=/usr/src/app
 RUN mkdir -p ${APP_SRC}
 
-RUN apk --update add redis
+#RUN apk --update add redis
 
 RUN mkdir -p ${APP_SRC}
 WORKDIR ${APP_SRC}
