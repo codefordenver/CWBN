@@ -1,24 +1,27 @@
 # cwbn
-generated using Luminus version "2.9.12.52"
+generated using [Luminus](http://www.luminusweb.net/) version "2.9.12.52"
+
 ## Prerequisites
-You will need
-- Java
+
+- [Java 8](https://www.oracle.com/technetwork/java/javase/downloads/jre8-downloads-2133155.html)
 - [Leiningen][1] 2.0 or above
-- sassc (on a Mac it can be installed via homebrew: `brew install sassc`)
-- [redis](https://redis.io/) (on a Mac it can be installed via homebrew: `brew install redis`)
+- [sassc](https://sass-lang.com) on a Mac it can be installed via homebrew: `brew install sassc`
+- [redis](https://redis.io/) on a Mac it can be installed via homebrew: `brew install redis`
+- [docker](https://docs.docker.com/v17.09/engine/installation/)
 
 [1]: https://github.com/technomancy/leiningen
 - For Windows users, follow the Prerequisite Setup below.
-## Setup
+
+## Environment variables
+- Get the api key from a [code-for-denver](mailto:hello@codefordenver.org) core-contributor
+- In your .bashrc file (or the analagous config file for non-bash terminals), add the line: `export AIRTABLE_API_KEY=<api-key>`
+
+## Relational DB Setup (optional)
 - Create file at root called "dev-config.edn" and populate the following database connection information `{:database-url "jdbc:h2:./cwbn_dev.db"}`
 - `lein repl`
 - `(restart)`
 - `(migrate)`
 - exit lein repl (ctrl-d)
-
-### Environment variables
-- Get the api key from a DfD core-contributor
-- In your .bashrc file (or the analagous config file for non-bash terminals), add the line: `export AIRTABLE_API_KEY=<api-key>`
 
 ## Test (After running setup)
 - Create file at root called "test-config.edn" and populate the following database connection information `{:database-url "jdbc:h2:./cwbn_test.db"}`
@@ -29,9 +32,10 @@ To start a web server for the application, run:
 
 _If you aren't running your redis server, you'll need to. Start it with `redis-server`_
 
-- `lein run`
-- `lein figwheel` (in a separate terminal)
-- `lein auto sassc once` (in a separate terminal)
+- `make search` (runs elastic-search server)
+- `lein run` (runs clojure backend)
+- `lein figwheel` (runs live-reload frontend server)
+
 ## Prerequisite Setup for Windows Users
 One of the crucial parts of efficient development for this project is **SassC**.  Unfortunately, **SassC** and **Windows** do not sit well together.  It is recommended to use **Ubuntu** system in a virtual environment.  The following instruction will guide you to set up the project in your Virtual Ubuntu System.
 #### (1) Virtual Environment
@@ -172,5 +176,3 @@ In your project folder (which should include CWBN folder), type the following to
 ```sh
 $ sudo chmod -R a+rwx /usr/local/{your-project-folder}
 ```
-
-Copyright © 2018 FIXME

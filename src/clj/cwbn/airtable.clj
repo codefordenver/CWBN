@@ -53,35 +53,109 @@
    :types         "/Types"
    :tags          "/Tags"})
 
-(defn- table-lookup [table-key]
-  (-> (wcar* (car/get (table-key airtable-records)))
+(defn- table-lookup [table-name]
+  (-> (wcar* (car/get (table-name airtable-records)))
       (json/read-value mapper)))
 
 (defn- find-by-id [id coll]
-  (some #(when (= id (-> % :id)) %) coll))
+  (some #(when (= id (-> % :id)) (-> % :fields :name)) coll))
 
-(defn- name-reconciler [table-key]
-  (let [org-records (table-lookup table-key)
-        category-records (table-lookup :categories)
-        service-records (table-lookup :services)
-        type-records (table-lookup :types)
-        tag-records (table-lookup :tags)]
+(defmulti name-reconciler (fn [{key :key}] key))
+
+(defmethod name-reconciler :services [{tables :tables}]
+  (let [{:keys [org-records category-records service-records type-records tag-records]} tables]
+    (map (fn [record]
+           (let [categories (-> record :fields :categories)
+                 orgs (-> record :fields :organizations)
+                 types (-> record :fields :type)
+                 tags (-> record :fields :tags)]
+             (if (or categories orgs types tags)
+               (let [org-names (map #(find-by-id % org-records) orgs)
+                     category-names (map #(find-by-id % category-records) categories)
+                     type-names (map #(find-by-id % type-records) types)
+                     tag-names (map #(find-by-id % tag-records) tags)]
+                 (-> record
+                     (assoc-in [:fields :categories] (vec category-names))
+                     (assoc-in [:fields :organizations] (vec org-names))
+                     (assoc-in [:fields :type] (vec type-names))
+                     (assoc-in [:fields :tags] (vec tag-names))))
+               record))) service-records)))
+
+(defmethod name-reconciler :organizations [{tables :tables}]
+  (let [{:keys [org-records category-records service-records type-records tag-records]} tables]
     (map (fn [record]
            (let [categories (-> record :fields :categories)
                  services (-> record :fields :services)
                  types (-> record :fields :type)
                  tags (-> record :fields :tags)]
              (if (or categories services types tags)
-               (let [org-names (map #(-> (find-by-id % category-records) :fields :name) categories)
-                     service-names (map #(-> (find-by-id % service-records) :fields :name) services)
-                     type-names (map #(-> (find-by-id % type-records) :fields :name) types)
-                     tag-names (map #(-> (find-by-id % tag-records) :fields :name) tags)]
+               (let [service-names (map #(find-by-id % service-records) services)
+                     type-names (map #(find-by-id % type-records) types)
+                     tag-names (map #(find-by-id % tag-records) tags)
+                     category-names (map #(find-by-id % category-records) categories)]
                  (-> record
-                     (assoc-in [:fields :categories] (vec org-names))
+                     (assoc-in [:fields :categories] (vec category-names))
                      (assoc-in [:fields :services] (vec service-names))
                      (assoc-in [:fields :type] (vec type-names))
                      (assoc-in [:fields :tags] (vec tag-names))))
                record))) org-records)))
+
+(defmethod name-reconciler :categories [{tables :tables}]
+  (let [{:keys [org-records category-records service-records type-records tag-records]} tables]
+    (map (fn [record]
+           (let [organizations (-> record :fields :organizations)
+                 services (-> record :fields :services)
+                 types (-> record :fields :type)
+                 tags (-> record :fields :tags)]
+             (if (or organizations services types tags)
+               (let [service-names (map #(find-by-id % service-records) services)
+                     type-names (map #(find-by-id % type-records) types)
+                     tag-names (map #(find-by-id % tag-records) tags)
+                     organization-names (map #(find-by-id % org-records) organizations)]
+                 (-> record
+                     (assoc-in [:fields :organizations] (vec organization-names))
+                     (assoc-in [:fields :services] (vec service-names))
+                     (assoc-in [:fields :type] (vec type-names))
+                     (assoc-in [:fields :tags] (vec tag-names))))
+               record))) category-records)))
+
+(defmethod name-reconciler :types [{tables :tables}]
+  (let [{:keys [org-records service-records type-records tag-records]} tables]
+    (map (fn [record]
+           (let [organizations (-> record :fields :organizations)
+                 services (-> record :fields :services)
+                 categories (-> record :fields :categories)
+                 tags (-> record :fields :tags)]
+             (if (or organizations services categories tags)
+               (let [service-names (map #(find-by-id % service-records) services)
+                     category-names (map #(find-by-id % type-records) categories)
+                     tag-names (map #(find-by-id % tag-records) tags)
+                     organization-names (map #(find-by-id % org-records) organizations)]
+                 (-> record
+                     (assoc-in [:fields :organizations] (vec organization-names))
+                     (assoc-in [:fields :services] (vec service-names))
+                     (assoc-in [:fields :categories] (vec category-names))
+                     (assoc-in [:fields :tags] (vec tag-names))))
+               record))) type-records)))
+
+(defmethod name-reconciler :tags [{tables :tables}]
+  (let [{:keys [org-records category-records service-records type-records tag-records]} tables]
+    (map (fn [record]
+           (let [organizations (-> record :fields :organizations)
+                 services (-> record :fields :services)
+                 types (-> record :fields :type)
+                 categories (-> record :fields :tags)]
+             (if (or organizations services types categories)
+               (let [service-names (map #(-> (find-by-id % service-records) :fields :name) services)
+                     type-names (map #(-> (find-by-id % type-records) :fields :name) types)
+                     category-names (map #(-> (find-by-id % category-records) :fields :name) categories)
+                     organization-names (map #(-> (find-by-id % org-records) :fields :name) organizations)]
+                 (-> record
+                     (assoc-in [:fields :organizations] (vec organization-names))
+                     (assoc-in [:fields :services] (vec service-names))
+                     (assoc-in [:fields :type] (vec type-names))
+                     (assoc-in [:fields :categories] (vec category-names))))
+               record))) tag-records)))
 
 (defn normalize-records
   "
@@ -90,15 +164,20 @@
 
   ['recpldhESTs53VUvE', ...] -> [:category-name, ...] in category airtable"
 
-  [table-key] ;; :Organizations, :tags, etc..
-  (case table-key
-    ;; airtable table record resolver
-    :organizations (name-reconciler table-key)
-    ;:services service-records
-    ;:categories category-records
-    ;:types type-records
-    ;:tags tag-records
-    :default '()))
+  [table-name]                                               ;; :Organizations, :tags, etc..
+  (let [tables {:org-records      (table-lookup :organizations)
+                :category-records (table-lookup :categories)
+                :service-records  (table-lookup :services)
+                :type-records     (table-lookup :types)
+                :tag-records      (table-lookup :tags)}]
+    (case table-name
+      ;; airtable table record resolver
+      :organizations (name-reconciler {:key :organizations :tables tables})
+      :services (name-reconciler {:key :services :tables tables})
+      :categories (name-reconciler {:key :categories :tables tables})
+      :types (name-reconciler {:key :types :tables tables})
+      :tags (name-reconciler {:key :tags :tables tables})
+      :default '())))
 
 (defn reset-or-init-redis-cache []
   (log/info "_*_ Airtable Cache: STARTED _*_")
@@ -122,7 +201,8 @@
         options {:query-params (when offset {:offset offset})
                  :headers      {"Authorization" (str "Bearer " AIRTABLE_API_KEY)}}
         endpoint (str endpoint (get airtable-records resource))]
-    (let [{:keys [error body]} @(http/get endpoint options)]
+    (let [{:keys [error body]} @(http/get endpoint options)
+          body (clojure.string/replace body "\\n " "")]
       (if-not error
         (let [{:keys [offset records]} (json/read-value body mapper)]
           (if offset
