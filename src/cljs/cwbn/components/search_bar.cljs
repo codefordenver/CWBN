@@ -71,6 +71,7 @@
      :change-on-blur? change-on-blur?
      :rigid? rigid?
      :status @status]))
+     ;:debounce-delay 200]))
 
 (defn component []
   (fn []

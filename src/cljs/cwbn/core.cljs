@@ -21,6 +21,7 @@
         :contact [contact-page]
         :category [category-page]
         :not-found [not-found-page]
+        :org [org-page]
         [:div [:h1 "404"]]))
 
 (defn page []
