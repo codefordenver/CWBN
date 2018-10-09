@@ -1,6 +1,9 @@
 (ns cwbn.components.search-bar
   (:require [re-com.core :as re-com]
-            [reagent.core :as reagent]))
+            [reagent.core :as reagent]
+            [cljs-http.client :as http]
+            [cljs.core.async :refer [<! timeout]])
+  (:require-macros [cljs.core.async.macros :refer [go]]))
 
 (declare test-data)
 
@@ -38,7 +41,14 @@
 
 ;;TODO implement using core.async library
 (def data-source-async
-   nil)
+   (fn [s callback]
+    (go
+      (let [response-channel (http/get "/api/search" {:query-params {"q" s}})
+            response (<! response-channel)
+            names (map #(-> % :fields) (:body response))]
+        (callback names)))
+    ;; important! return value must be falsey for an async :data-source
+    nil))
 
 (defn css-classes [name]
   {:wrapper-classes (str "suggestion-wrapper" " " "suggestion-wrapper-" name)
@@ -52,7 +62,7 @@
 (defn typeahead []
   (fn []
     [re-com/typeahead
-     :data-source (data-source-immediate 16)
+     :data-source data-source-async
      :suggestion-to-string #(:name %)
      :render-suggestion render-suggestion
      :width "100%"
