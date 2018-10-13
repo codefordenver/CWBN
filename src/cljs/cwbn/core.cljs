@@ -9,6 +9,7 @@
             [cwbn.pages.contact :refer [contact-page]]
             [cwbn.pages.home :refer [home-page]]
             [cwbn.pages.category :refer [category-page]]
+            [cwbn.pages.search-results :refer [search-results-page]]
             [cwbn.pages.not-found :refer [not-found-page]]
             [cwbn.components.footer :refer [footer-component]]
             [cwbn.components.top-bar :refer [top-bar-component]]
@@ -21,7 +22,7 @@
         :contact [contact-page]
         :category [category-page]
         :not-found [not-found-page]
-        :org [org-page]
+        :search [search-results-page]
         [:div [:h1 "404"]]))
 
 (defn page []

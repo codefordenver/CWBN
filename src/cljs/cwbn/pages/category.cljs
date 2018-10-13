@@ -1,47 +1,9 @@
 (ns cwbn.pages.category
   (:require [re-frame.core :as rf]
             [clojure.string :as s]
-            [reagent.core :as reagent]
+            [cwbn.components.details :as details]
+            [cwbn.components.search-bar :as search-bar]
             [cuerdas.core :as cuerdas]))
-
-(defn org-details [{:keys [name
-                           type
-                           services
-                           population
-                           area
-                           website
-                           contact-name
-                           email
-                           phone-number]}]
-  (fn []
-    [:div {:class "org mb4 pt2"}
-     [:h2 {:class "f4 fw6 ttc underline"} name]
-     (for [t type]
-       ^{:key (gensym)}
-       [:h3.f6 [:i t]])
-     (when-not (empty? services)
-       [:h3.f6.mb0
-        [:b "Services: "]
-        (for [s services
-              :let [i (.indexOf services s)
-                    comma? (when (> (count services) (+ 1 i)) ", ")]]
-          ^{:key (gensym)}
-          [:span (str s comma?)])])
-     (when population
-       [:h3.f6.mb0 [:b "Target Population: "] population])
-     (when area
-       [:h3.f6.mb0 [:b "Area Served: "] area])
-     (when website
-       [:h3.f6 [:b "Website: "]
-        [:a {:href website :target "_blank"} website]])
-     (when contact-name
-       [:h3.f6.mb0 [:b "Contact: "] contact-name])
-     (when email
-       [:h3.f6.mb0 [:a {:href (str "mailto:" email)} email]])
-     (when phone-number
-       [:h3.f6.mb0 phone-number])]))
-
-(def current-letter (reagent/atom nil))
 
 (defn category-page []
   (let [services-by-category @(rf/subscribe [:services-by-category])
@@ -63,6 +25,7 @@
                              (apply merge os)
                              (into (sorted-map) os))]
     [:div.category-page
+     [search-bar/component]
      [:div {:class "category-header flex items-center"}
       [:img {:class "category-icon"
              :src   (str "img/category-icons/" category-img)}]
@@ -83,4 +46,4 @@
            [:div {:class "orgs w-80 w-90-l"}
             (for [org (nth letter 1)]
               ^{:key (gensym "org-")}
-              [org-details org])]]))]]))
+              [details/component org])]]))]]))
