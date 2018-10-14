@@ -41,6 +41,11 @@
     (prn (str "Failed to fetch " k))
     db))
 
+(rf/reg-event-db
+  :update-search-results
+  (fn [db [_ r]]
+    (assoc db :search-results r)))
+
 ;;subscriptions
 
 (reg-sub
@@ -62,3 +67,8 @@
   :Organizations
   (fn [db _]
     (:Organizations db)))
+
+(reg-sub
+  :search-results
+  (fn [db _]
+    (:search-results db)))

@@ -1,6 +1,7 @@
 (ns cwbn.components.search-bar
   (:require [re-com.core :as re-com]
             [reagent.core :as reagent]
+            [re-frame.core :as rf]
             [cljs-http.client :as http]
             [cljs.core.async :refer [<! timeout]])
   (:require-macros [cljs.core.async.macros :refer [go]]))
@@ -19,9 +20,9 @@
     (go
       (let [response-channel (http/get "/api/search" {:query-params {"q" s}})
             response (<! response-channel)
-            names (map #(-> % :fields) (:body response))]
-        (prn names)
-        (callback names)))
+            results (map #(-> % :fields) (:body response))]
+        (rf/dispatch [:update-search-results results])
+        (callback results)))
     ;; important! return value must be falsey for an async :data-source
     nil))
 
@@ -42,7 +43,9 @@
      :render-suggestion render-suggestion
      :width "100%"
      :placeholder "Search Community"
-     :on-change #(reset! typeahead-on-change-value %)
+     :on-change (fn [e]
+                  (prn "arg" e)
+                  (rf/dispatch [:set-active-page :search "foo"]))
      :change-on-blur? change-on-blur?
      :rigid? rigid?
      :status @status]))
