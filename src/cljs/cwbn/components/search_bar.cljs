@@ -43,9 +43,7 @@
      :render-suggestion render-suggestion
      :width "100%"
      :placeholder "Search Community"
-     :on-change (fn [e]
-                  (prn "arg" e)
-                  (rf/dispatch [:set-active-page :search "foo"]))
+     :on-change #(rf/dispatch [:set-active-page :search "foo"])
      :change-on-blur? change-on-blur?
      :rigid? rigid?
      :status @status]))

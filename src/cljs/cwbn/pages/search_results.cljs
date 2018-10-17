@@ -7,7 +7,6 @@
   (let [search-results (rf/subscribe [:search-results])]
     (fn []
       [:div
-       (prn search-results)
        [search-bar/component]
-       [:h2 "Search Results"]
+       [:h2.ph4 "Search Results"]
        [sorted-list/component @search-results]])))
