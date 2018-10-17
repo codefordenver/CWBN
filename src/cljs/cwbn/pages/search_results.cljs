@@ -4,9 +4,8 @@
             [cwbn.components.sorted-list :as sorted-list]))
 
 (defn search-results-page []
-  (let [search-results (rf/subscribe [:search-results])]
-    (fn []
-      [:div
-       [search-bar/component]
-       [:h2.ph4 "Search Results"]
-       [sorted-list/component @search-results]])))
+  (fn []
+    [:div
+     [search-bar/component]
+     [:h2.ph4 "Search Results"]
+     [sorted-list/component @(rf/subscribe [:search-results])]]))
