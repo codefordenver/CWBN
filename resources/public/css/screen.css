@@ -84,6 +84,10 @@
 .search-bar-suggestion {
   font-size: 1.2em; }
 
+#search-suggestions {
+  position: absolute;
+  cursor: pointer; }
+
 .category-links a {
   text-decoration: none;
   color: #343a40; }
