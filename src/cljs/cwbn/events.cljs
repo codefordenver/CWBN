@@ -72,3 +72,13 @@
   :search-results
   (fn [db _]
     (:search-results db)))
+
+(reg-sub
+ :categories
+ (fn [db _]
+   (:categories db)))
+
+(reg-sub
+ :category-order
+ (fn [db _]
+   (:category-order db)))
