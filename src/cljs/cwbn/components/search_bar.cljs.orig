@@ -6,7 +6,15 @@
             [cljs.core.async :refer [<! timeout]])
   (:require-macros [cljs.core.async.macros :refer [go]]))
 
+<<<<<<< Updated upstream
+(def change-on-blur? (reagent/atom true))
+
+(def status (reagent/atom nil))
+
+(def rigid? (reagent/atom true))
+=======
 (def r (reagent/atom []))
+>>>>>>> Stashed changes
 
 ;;TODO implement using core.async library
 (def data-source-async
@@ -25,28 +33,22 @@
 
 (defn render-suggestion [{:keys [name]}]
   (let [classes (css-classes name)]
-    ^{:key (gensym "suggestion-")}
-    [:div {:class (classes :wrapper-classes)
-           :on-click (fn []
-                       (data-source-async name)
-                       (reset! r nil))}
+    [:div {:class (classes :wrapper-classes)}
      [:i {:class (classes :suggestion-classes)} name]]))
 
 (defn search-fn [e]
   (let [text (-> e .-target .-value)]
-    (data-source-async text)))
+    (data-source-async text)
+    (rf/dispatch [:set-active-page :search ""])))
+
+
 
 (defn search-bar []
   [:div
    [:input {:type      "text"
-            :on-change search-fn
-            :on-key-press (fn [e]
-                            (when (= (.-key e) "Enter")
-                              (reset! r nil)
-                              (rf/dispatch [:set-active-page :search ""])
-                              (.preventDefault e)))}]
-
+            :on-change search-fn}]
    (for [result (take 10 @r)]
+     ^{:key (gensym "suggestion-")}
      (render-suggestion result))])
 
 
