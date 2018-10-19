@@ -6,8 +6,6 @@
             [cljs.core.async :refer [<! timeout]])
   (:require-macros [cljs.core.async.macros :refer [go]]))
 
-(def typeahead-on-change-value (reagent/atom nil))
-
 (def change-on-blur? (reagent/atom true))
 
 (def status (reagent/atom nil))
