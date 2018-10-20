@@ -1,5 +1,5 @@
 (ns cwbn.pages.home
-  (:require [re-frame.core :as rf]
+  (:require [re-frame.core]
             [clojure.string :as s]
             [cwbn.components.search-bar :as search-bar]))
 

@@ -9,17 +9,17 @@
 (def r (reagent/atom []))
 
 ;;TODO implement using core.async library
-(def data-source-async
-  (fn [s show-suggestions?]
+(def search
+  (fn [term show-suggestions?]
     (go
-      (let [response-channel (http/get "/api/search" {:query-params {"q" s}})
+      (let [response-channel (http/get "/api/search" {:query-params {"q" term}})
             response (<! response-channel)
             results (map #(-> % :fields) (:body response))]
-        (rf/dispatch [:update-search-results results])
         (if show-suggestions?
           (reset! r results)
-          (reset! r nil))))))
-;; important! return value must be falsey for an async :data-source))
+          (do
+            (reset! r nil)
+            (rf/dispatch [:update-search-results results])))))))
 
 (defn css-classes [name]
   {:wrapper-classes    (str "suggestion-wrapper" " " "suggestion-wrapper-" name)
@@ -29,16 +29,15 @@
   (let [classes (css-classes name)]
     ^{:key (gensym "suggestion-")}
     [:div {:class (classes :wrapper-classes)
-           :on-click (fn [e]
-                       (prn name)
-                       (data-source-async name false)
+           :on-click (fn []
+                       (search name false)
                        (set! (.-value (js/document.getElementById "search-input")) name)
                        (rf/dispatch [:set-active-page :search ""]))}
      [:i {:class (classes :suggestion-classes)} name]]))
 
 (defn search-fn [e]
   (let [text (-> e .-target .-value)]
-    (data-source-async text true)))
+    (search text true)))
 
 (defn search-bar []
   [:div
@@ -46,7 +45,7 @@
                          :on-change search-fn
                          :on-key-press (fn [e]
                                          (when (= (.-key e) "Enter")
-                                           (data-source-async (-> e .-target .-value) false)
+                                           (search (-> e .-target .-value) false)
                                            (rf/dispatch [:set-active-page :search ""])
                                            (.preventDefault e)))}]
    [:div#search-suggestions
@@ -55,6 +54,5 @@
 
 
 (defn component []
-  (fn []
-    [:section.search-bar-wrapper
-     [search-bar]]))
+  [:section.search-bar-wrapper
+   [search-bar]])
