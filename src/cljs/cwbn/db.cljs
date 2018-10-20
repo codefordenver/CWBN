@@ -55,6 +55,4 @@
     :organizing
     :workforce-development
     :education
-    :social-enterprise]
-   }
-  )
+    :social-enterprise]})

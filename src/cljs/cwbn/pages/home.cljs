@@ -21,5 +21,4 @@
        [:div {:class "category-links flex flex-wrap justify-between"}
         (for [category (map @categories @category-order)]
           ^{:key (:slug category)}
-          [category-link category])
-        ]])))
+          [category-link category])]])))
