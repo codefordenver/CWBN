@@ -9,8 +9,7 @@
 (defn search-results-page []
   (let [search-results @(rf/subscribe [:search-results])
         search-term @(rf/subscribe [:search-term])
-        exact-match? (> (count (filter #(= (lower-case (:name %)) (lower-case search-term)) search-results)) 0)
-        _ (prn exact-match?)]
+        exact-match? (> (count (filter #(= (lower-case (:name %)) (lower-case search-term)) search-results)) 0)]
     [:div
      [search-bar/component]
      (when exact-match?
