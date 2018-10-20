@@ -19,6 +19,7 @@
           (reset! r results)
           (do
             (reset! r nil)
+            (rf/dispatch [:update-search-term term])
             (rf/dispatch [:update-search-results results])))))))
 
 (defn css-classes [name]
