@@ -57,36 +57,41 @@
         margin-bottom: 10px;
         font-size: 0.9em; } }
 
-.search-bar-wrapper {
-  padding: 2em; }
-  .search-bar-wrapper .search-bar {
-    font-size: 1.5em;
-    padding: 1em 3em 1em 1em !important;
-    background-image: url("../img/search.png");
-    background-size: auto 45%;
-    background-repeat: no-repeat;
-    background-position: 98%; }
-    @media screen and (max-width: 800px) {
-      .search-bar-wrapper .search-bar {
-        background-position: 95%; } }
-
 .suggestion-wrapper {
   padding: .1em;
   border: solid 1px #000066;
   background: #cce6ff; }
 
-.rc-typeahead-suggestion.active {
-  font-weight: 700; }
+.search-bar-wrapper {
+  padding: 2em; }
 
-.active .suggestion-wrapper {
-  background-color: #8EDFE8; }
+.search-bar-wrapper > div {
+  position: relative; }
 
-.search-bar-suggestion {
-  font-size: 1.2em; }
+#search-input {
+  display: block;
+  width: 100%;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: .25rem;
+  transition: border-color .15s ease-in-out; }
+  #search-input:focus {
+    border-color: #5E9ED6;
+    outline: none; }
+
+#search-input.active {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0; }
 
 #search-suggestions {
   position: absolute;
-  cursor: pointer; }
+  cursor: pointer;
+  width: 100%; }
 
 .category-links a {
   text-decoration: none;

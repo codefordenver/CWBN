@@ -1,6 +1,5 @@
 (ns cwbn.components.search-bar
-  (:require [re-com.core :as re-com]
-            [reagent.core :as reagent]
+  (:require [reagent.core :as reagent]
             [re-frame.core :as rf]
             [cljs-http.client :as http]
             [cljs.core.async :refer [<! timeout]])
@@ -43,6 +42,9 @@
 (defn search-bar []
   [:div
    [:input#search-input {:type      "text"
+                         :placeholder "Search community"
+                         :class (when-not (empty? @r)
+                                  "active")
                          :on-change search-fn
                          :on-key-press (fn [e]
                                          (when (= (.-key e) "Enter")
