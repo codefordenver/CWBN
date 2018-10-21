@@ -4,6 +4,7 @@
                          type
                          services
                          population
+                         categories
                          area
                          status
                          website
@@ -35,8 +36,13 @@
    (when website
      [:h3.f6 [:b "Website: "]
       [:a {:href website :target "_blank"} website]])
+   (when categories
+     [:h3.f6.mb0.pv1 [:b "categories:"]]
+     (for [c categories]
+       ^{:key (gensym)}
+       [:a.f7.link.dim.br-pill.ba.ph1.pv0.mb2.mr1.dib.mid-gray c]))
    (when contact-name
-     [:h3.f6.mb0.pv1 [:b "Contact: "] contact-name])
+    [:h3.f6.mb0.pv1 [:b "Contact: "] contact-name])
    (when email
      [:h3.f6.mb0.pv1 [:a {:href (str "mailto:" email)} email]])
    (when phone-number
