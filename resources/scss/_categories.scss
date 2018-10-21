@@ -23,8 +23,11 @@
       }
     }
     span.service-link {
-      a {
+      a.service-selected {
         color: $indigo;
+      }
+      a.service-not-selected{
+        color: black;
       }
       padding-right: 0.5em;
       &:not(:first-child) {

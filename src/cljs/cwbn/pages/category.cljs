@@ -3,37 +3,60 @@
             [clojure.string :as s]
             [cuerdas.core :as cuerdas]
             [cwbn.components.search-bar :as search-bar]
-            [cwbn.components.sorted-list :as sorted-list]))
+            [cwbn.components.sorted-list :as sorted-list]
+            [cwbn.routes :as routes]))
 
 (declare services-by-category)
+
+(defn sub-category-link [category sub-category current-sub-categories]
+  (let [active? (some #{sub-category} current-sub-categories)
+        next-query (if active?
+                     (remove #{sub-category} current-sub-categories)
+                     (conj current-sub-categories sub-category))
+        query-string (if-not (empty? next-query)
+                       (str "?sub-categories=" (s/join "+" next-query))
+                       "")
+        class (if active?
+                "service-selected"
+                "service-not-selected")]
+    [:a {:class class :href (str "/#/category/" category query-string)} sub-category])
+)
 
 (defn category-page []
   (let [all-orgs (rf/subscribe [:Organizations])
         category-route @(rf/subscribe [:category-route])
-        category-name (when category-route (s/replace category-route "-" " "))
-        category-img (str (first (s/split category-route #"-")) ".png")
+        sub-categories @(rf/subscribe [:sub-categories])
+        categories @(rf/subscribe [:categories])
         category-key (keyword category-route)
+        {category-name :label
+         category-slug :slug
+         category-image :image} (category-key categories)
         category-services (services-by-category category-key)
-        filtered-orgs (filter (fn [org]
+        orgs-in-category (filter (fn [org]
                                 (some #(when
                                          (= category-key (-> % cuerdas/kebab cuerdas/keyword))
                                          %)
                                       (:categories org)))
                               @all-orgs)
-        orgs (sort-by :name filtered-orgs)]
+        orgs-with-services (if (empty? sub-categories)
+                             orgs-in-category
+                             (filter (fn [org]
+                                       (some (set sub-categories) (:services org)))
+                                     orgs-in-category))
+        orgs (sort-by :name orgs-with-services)]
     [:div
      [search-bar/component]
      [:div.category-page
       [:div {:class "category-header flex items-center"}
        [:img {:class "category-icon"
-              :src   (str "img/category-icons/" category-img)}]
+              :src   (str "img/category-icons/" category-image)}]
        [:div {:class "category-services flex flex-column"}
         [:h1 {:class "f3 b ttc"} category-name]
         [:div
          (for [service category-services]
            ^{:key (gensym "service-")}
            [:span {:class "service-link fw6"}
-            [:a {:href category-route} service]])]]]
+            [sub-category-link category-route service sub-categories]])]]]
       [sorted-list/component orgs]]]))
 
 (def services-by-category
