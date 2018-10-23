@@ -23,10 +23,10 @@
    (assoc db
           :active-page :category
           :category-route category
-          :sub-categories
-          (if (nil? (:sub-categories query-params))
+          :selected-services
+          (if (nil? (:selected-services query-params))
             []
-            (s/split (:sub-categories query-params) "+")))))
+            (s/split (:selected-services query-params) "+")))))
 
 (rf/reg-event-fx
   :get-api-data
@@ -103,6 +103,6 @@
    (:category-order db)))
 
 (reg-sub
- :sub-categories
+ :selected-services
  (fn [db _]
-   (:sub-categories db)))
+   (:selected-services db)))
