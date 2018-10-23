@@ -23,7 +23,7 @@
 
 (defn css-classes [name]
   {:wrapper-classes    (str "suggestion-wrapper" " " "suggestion-wrapper-" name)
-   :suggestion-classes (str "suggestion" " " "suggestion-" name)})
+   :suggestion-classes (str "suggestion" " " "suggestion-" name)})`
 
 (defn render-suggestion [{:keys [name]}]
   (let [classes (css-classes name)]
