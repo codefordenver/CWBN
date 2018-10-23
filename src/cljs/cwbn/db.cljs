@@ -1,56 +1,58 @@
 (ns cwbn.db)
 
 (def default-db
-  {:active-page :home
-   :services-by-category
-    {:business-development ["Pre-Idea",
-                            "Business Plan",
-                            "Launch",
-                            "Support",
-                            "Growth",
-                            "Business Exit",
-                            "Business Lending"]
-     :cooperatives ["Principles Education/Pre-Idea",
-                    "Business Plan",
-                    "Launch",
-                    "Business Support",
-                    "Legal Support",
-                    "Growth",
-                    "Cooperative Lending"]
-     :housing ["Affordable Housing",
-               "Community Land Trusts",
-               "Down-Payment Assistance"],
-     :workforce-development ["Skill Development",
-                             "Apprenticeship",
-                             "On-the-job Training"]
-     :organizing ["Economic Justice",
-                  "Education",
-                  "Environmental Justice",
-                  "Food Justice",
-                  "Health Justice",
-                  "Immigration",
-                  "Labor",
-                  "Racial Justice"]
-     :advocacy ["Advocacy",
-                "Policy"]
-     :education ["Arts",
-                 "Computer Classes",
-                 "Financial Education",
-                 "GED Classes",
-                 "Youth Development",
-                 "Citizenship Classes"]
-     :social-enterprise ["Food Bank",
-                      "Healthy Food Access",
-                      "Shared Space",
-                      "Transit/Transportation",
-                      "Volunteer Service",
-                      "Health Care"]
-     :anchor-institution ["Local Hire Program",
-                          "Local Procurement",
-                          "Local Investment"]
-     :financial-investment ["Micro-Loans",
-                            "Capital Investment",
-                            "Individual Development Accounts",
-                            "Community Loans",
-                            "Lending Circles"]}
-    :Organizations []})
+  {:active-page    :home
+   :search-results []
+  :Organizations  [],
+   :categories
+    {:financial-investment
+     {:label "Financial Investment",
+      :image "financial.png",
+      :slug "financial-investment"},
+     :cooperatives
+     {:label "Cooperatives",
+      :image "cooperatives.png",
+      :slug "cooperatives"},
+     :business-development
+     {:label "Business Development",
+      :image "business.png",
+      :slug "business-development"},
+     :housing
+     {:label "Housing",
+      :image "housing.png",
+      :slug "housing"},
+     :advocacy
+     {:label "Advocacy",
+      :image "advocacy.png",
+      :slug "advocacy"},
+     :anchor-institution
+     {:label "Anchor Institution",
+      :image "anchor.png",
+      :slug "anchor-institution"},
+     :organizing
+     {:label "Organizing",
+      :image "organizing.png",
+      :slug "organizing"},
+     :workforce-development
+     {:label "Workforce Development",
+      :image "workforce.png",
+      :slug "workforce-development"},
+     :education
+     {:label "Education",
+      :image "education.png",
+      :slug "education"},
+     :social-enterprise
+     {:label "Social Enterprise",
+      :image "social.png",
+      :slug "social-enterprise"}},
+   :category-order
+   [:financial-investment
+    :cooperatives
+    :business-development
+    :housing
+    :advocacy
+    :anchor-institution
+    :organizing
+    :workforce-development
+    :education
+    :social-enterprise]})

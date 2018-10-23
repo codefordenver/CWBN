@@ -33,7 +33,10 @@
   (defroute "/category/:category" {:as params}
             (rf/dispatch [:set-active-page :category params]))
 
-  (defroute "/404" []
+  (defroute "/search/:search" {:as params}
+            (rf/dispatch [:set-active-page :search params]))
+
+  (defroute "*" []
             (rf/dispatch [:set-active-page :not-found]))
 
   ;; --------------------

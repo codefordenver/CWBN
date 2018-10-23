@@ -16,11 +16,11 @@
        "Terms & Conditions"]]]
     [:div#social "Stay in Touch"
      [:div#icons
-      [:a {:href "https://www.facebook.com/cwbndenver/"}
+      [:a {:href "https://www.facebook.com/cwbndenver/" :target "_blank"}
        [:i.fab.fa-facebook-f]]
-      [:a {:href "https://twitter.com/cwbnetwork"}
+      [:a {:href "https://twitter.com/cwbnetwork" :target "_blank"}
        [:i.fab.fa-twitter]]
-      [:a {:href "mailto:connect@communitywealthbuilding.org"}
+      [:a {:href "mailto:connect@communitywealthbuilding.org" :target "_blank"}
        [:i.fa.fa-envelope]]]]]
    [:div.footer-row {:style {:text-transform "none"}}
     [:div#copyright (str (s/unescapeEntities "&copy;") " 2018 Community Wealth Building")]
