@@ -111,8 +111,11 @@
 
 .category-page .category-header span.service-link {
   padding-right: 0.5em; }
-  .category-page .category-header span.service-link a {
+  .category-page .category-header span.service-link a.service-selected {
     color: #2C208C; }
+  .category-page .category-header span.service-link a.service-not-selected {
+    color: grey;
+    text-decoration: line-through; }
   .category-page .category-header span.service-link:not(:first-child) {
     padding-left: 0.5em; }
   .category-page .category-header span.service-link:not(:last-child) {
