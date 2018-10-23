@@ -21,21 +21,20 @@
                                       (:categories org)))
                               @all-orgs)
         orgs (sort-by :name filtered-orgs)]
-    (fn []
-      [:div
-       [search-bar/component]
-       [:div.category-page
-        [:div {:class "category-header flex items-center"}
-         [:img {:class "category-icon"
-                :src   (str "img/category-icons/" category-img)}]
-         [:div {:class "category-services flex flex-column"}
-          [:h1 {:class "f3 b ttc"} category-name]
-          [:div
-           (for [service category-services]
-             ^{:key (gensym "service-")}
-             [:span {:class "service-link fw6"}
-              [:a {:href category-route} service]])]]]
-        [sorted-list/component orgs]]])))
+    [:div
+     [search-bar/component]
+     [:div.category-page
+      [:div {:class "category-header flex items-center"}
+       [:img {:class "category-icon"
+              :src   (str "img/category-icons/" category-img)}]
+       [:div {:class "category-services flex flex-column"}
+        [:h1 {:class "f3 b ttc"} category-name]
+        [:div
+         (for [service category-services]
+           ^{:key (gensym "service-")}
+           [:span {:class "service-link fw6"}
+            [:a {:href category-route} service]])]]]
+      [sorted-list/component orgs]]]))
 
 (def services-by-category
   {:business-development  ["Pre-Idea",
