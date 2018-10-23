@@ -16,11 +16,10 @@
         query-string (if-not (empty? next-query)
                        (str "?sub-categories=" (s/join "+" next-query))
                        "")
-        class (if active?
+        class (if (or active? (empty? current-sub-categories))
                 "service-selected"
                 "service-not-selected")]
-    [:a {:class class :href (str "/#/category/" category query-string)} sub-category])
-)
+    [:a {:class class :href (str "/#/category/" category query-string)} sub-category]))
 
 (defn category-page []
   (let [all-orgs (rf/subscribe [:Organizations])
@@ -56,7 +55,10 @@
          (for [service category-services]
            ^{:key (gensym "service-")}
            [:span {:class "service-link fw6"}
-            [sub-category-link category-route service sub-categories]])]]]
+            [sub-category-link category-route service sub-categories]])
+         (when-not (empty? sub-categories)
+           [:span {:class "service-link fw6 reset"}
+            [:a {:class "service-selected" :href (str "/#/category/" category-route)} "Reset"]])]]]
       [sorted-list/component orgs]]]))
 
 (def services-by-category

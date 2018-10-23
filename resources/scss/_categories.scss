@@ -27,7 +27,8 @@
         color: $indigo;
       }
       a.service-not-selected{
-        color: black;
+        color: grey;
+        text-decoration: line-through;
       }
       padding-right: 0.5em;
       &:not(:first-child) {
