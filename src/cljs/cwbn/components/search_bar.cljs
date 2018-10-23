@@ -5,7 +5,8 @@
             [cljs.core.async :refer [<! timeout]])
   (:require-macros [cljs.core.async.macros :refer [go]]))
 
-(def r (reagent/atom []))
+(def c-results (reagent/atom []))
+(def o-results (reagent/atom []))
 
 ;;TODO implement using core.async library
 (def search
@@ -13,13 +14,18 @@
     (go
       (let [response-channel (http/get "/api/search" {:query-params {"q" term}})
             response (<! response-channel)
-            results (map #(-> % :fields) (:body response))]
+            category-results (map #(-> % :fields) (get-in response [:body :category-results]))
+            organization-results (map #(-> % :fields) (get-in response [:body :organization-results]))]
         (if show-suggestions?
-          (reset! r results)
           (do
-            (reset! r nil)
+            (reset! c-results category-results)
+            (reset! o-results organization-results))
+          (do
+            (prn organization-results)
+            (reset! c-results nil)
+            (reset! o-results nil)
             (rf/dispatch [:update-search-term term])
-            (rf/dispatch [:update-search-results results])
+            (rf/dispatch [:update-search-results (concat category-results organization-results)])
             (rf/dispatch [:set-active-page :search ""])))))))
 
 (defn css-classes [name]
@@ -44,7 +50,8 @@
    [:input#search-input {:type      "text"
                          :placeholder "Search community"
                          :default-value text
-                         :class (when-not (empty? @r)
+                         :class (when-not (and (empty? @c-results)
+                                               (empty? @o-results))
                                   "active")
                          :on-change search-fn
                          :on-key-press (fn [e]
@@ -52,7 +59,9 @@
                                            (search (-> e .-target .-value) false)
                                            (.preventDefault e)))}]
    [:div#search-suggestions
-    (for [result (take 10 @r)]
+    (for [result (take 10 @c-results)]
+      (render-suggestion result))
+    (for [result (take 10 @o-results)]
       (render-suggestion result))]])
 
 (defn component [text]
