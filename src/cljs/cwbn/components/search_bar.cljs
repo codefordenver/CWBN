@@ -19,7 +19,8 @@
           (do
             (reset! r nil)
             (rf/dispatch [:update-search-term term])
-            (rf/dispatch [:update-search-results results])))))))
+            (rf/dispatch [:update-search-results results])
+            (rf/dispatch [:set-active-page :search ""])))))))
 
 (defn css-classes [name]
   {:wrapper-classes    (str "suggestion-wrapper" " " "suggestion-wrapper-" name)
@@ -31,31 +32,29 @@
     [:div {:class (classes :wrapper-classes)
            :on-click (fn []
                        (search name false)
-                       (set! (.-value (js/document.getElementById "search-input")) name)
-                       (rf/dispatch [:set-active-page :search ""]))}
+                       (set! (.-value (js/document.getElementById "search-input")) name))}
      [:i {:class (classes :suggestion-classes)} name]]))
 
 (defn search-fn [e]
   (let [text (-> e .-target .-value)]
     (search text true)))
 
-(defn search-bar []
+(defn search-bar [text]
   [:div
    [:input#search-input {:type      "text"
                          :placeholder "Search community"
+                         :default-value text
                          :class (when-not (empty? @r)
                                   "active")
                          :on-change search-fn
                          :on-key-press (fn [e]
                                          (when (= (.-key e) "Enter")
                                            (search (-> e .-target .-value) false)
-                                           (rf/dispatch [:set-active-page :search ""])
                                            (.preventDefault e)))}]
    [:div#search-suggestions
     (for [result (take 10 @r)]
       (render-suggestion result))]])
 
-
-(defn component []
+(defn component [text]
   [:section.search-bar-wrapper
-   [search-bar]])
+   [search-bar text]])

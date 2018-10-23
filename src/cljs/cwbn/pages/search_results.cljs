@@ -11,7 +11,7 @@
         search-term @(rf/subscribe [:search-term])
         exact-match? (> (count (filter #(= (lower-case (:name %)) (lower-case search-term)) search-results)) 0)]
     [:div
-     [search-bar/component]
+     [search-bar/component search-term]
      (when exact-match?
        [:div.ph4
         [:h2 "Exact match"]
