@@ -143,6 +143,9 @@ html, body {
   height: 100%;
   color: #343a40; }
 
+a {
+  color: #2C208C; }
+
 b {
   font-weight: 600; }
 

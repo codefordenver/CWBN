@@ -21,6 +21,7 @@
 (defn search [query]
   (let [conn (esr/connect elastic-search-endpoint)]
     ((comp (partial map :_source) :hits :hits)
+     ;(doc/search conn index-name _type {:query (q/match "fields.categories" query)})
      (doc/search conn index-name _type {:query (q/match "fields.name" query)}))))
 
 (defn index [data]
