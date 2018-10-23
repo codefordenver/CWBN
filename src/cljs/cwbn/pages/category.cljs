@@ -32,17 +32,17 @@
          category-image :image} (category-key categories)
         category-services (services-by-category category-key)
         orgs-in-category (filter (fn [org]
-                                (some #(when
-                                         (= category-key (-> % cuerdas/kebab cuerdas/keyword))
-                                         %)
+                                (some #(= category-key (-> % cuerdas/kebab cuerdas/keyword))
                                       (:categories org)))
                               @all-orgs)
+        services (reduce #(clojure.set.union %1 (set (:services %2))) #{} orgs-in-category)
         orgs-with-services (if (empty? selected-services)
                              orgs-in-category
                              (filter (fn [org]
                                        (some (set selected-services) (:services org)))
                                      orgs-in-category))
         orgs (sort-by :name orgs-with-services)]
+    (js/console.log services)
     [:div
      [search-bar/component]
      [:div.category-page
@@ -52,7 +52,7 @@
        [:div {:class "category-services flex flex-column"}
         [:h1 {:class "f3 b ttc"} category-name]
         [:div
-         (for [service category-services]
+         (for [service services]
            ^{:key (gensym "service-")}
            [:span {:class "service-link fw6"}
             [sub-category-link category-route service selected-services]])
