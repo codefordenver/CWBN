@@ -13,13 +13,14 @@
         next-query (if active?
                      (remove #{service} selected-services)
                      (conj selected-services service))
-        query-string (if-not (empty? next-query)
-                       (str "?selected-services=" (s/join "+" next-query))
-                       "")
+        query-params (when-not (empty? next-query)
+                       {:selected-services (s/join "+" next-query)})
         class (if (or active? (empty? selected-services))
                 "service-selected"
-                "service-not-selected")]
-    [:a {:class class :href (str "/#/category/" category query-string)} service]))
+                "service-not-selected")
+        url (routes/category-path {:category category
+                                   :query-params query-params})]
+  [:a {:class class :href url} service]))
 
 (defn category-page []
   (let [all-orgs (rf/subscribe [:Organizations])
@@ -58,7 +59,7 @@
             [sub-category-link category-route service selected-services]])
          (when-not (empty? selected-services)
            [:span {:class "service-link fw6 reset"}
-            [:a {:class "service-selected" :href (str "/#/category/" category-route)} "Reset"]])]]]
+            [:a {:class "service-selected" :href (routes/category-path {:category category-route})} "Reset"]])]]]
       [sorted-list/component orgs]]]))
 
 (def services-by-category

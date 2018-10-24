@@ -21,22 +21,22 @@
 (defn app-routes []
   (secretary/set-config! :prefix "#")
 
-  (defroute "/" []
+  (defroute home-path "/" []
             (rf/dispatch [:set-active-page :home]))
 
-  (defroute "/about" []
+  (defroute about-path "/about" []
             (rf/dispatch [:set-active-page :about]))
 
-  (defroute "/contact" []
+  (defroute contact-path "/contact" []
             (rf/dispatch [:set-active-page :contact]))
 
-  (defroute "/category/:category" {:as params}
+  (defroute category-path "/category/:category" {:as params}
             (rf/dispatch [:set-catogory-page-as-active params]))
 
-  (defroute "/search/:search" {:as params}
+  (defroute search-path "/search/:search" {:as params}
             (rf/dispatch [:set-active-page :search params]))
 
-  (defroute "*" []
+  (defroute not-found-path "*" []
             (rf/dispatch [:set-active-page :not-found]))
 
   ;; --------------------
