@@ -1,7 +1,7 @@
 (ns cwbn.core
   (:require [cwbn.handler :as handler]
             [luminus.repl-server :as repl]
-            [luminus.http-server :as http]
+            [org.httpkit.server :as http-kit]
             [luminus-migrations.core :as migrations]
             [cwbn.config :refer [env]]
             [clojure.tools.cli :refer [parse-opts]]
@@ -15,13 +15,34 @@
 
 (mount/defstate ^{:on-reload :noop} http-server
   :start
-  (http/start
-    (-> env
-        (assoc  :handler #'handler/app)
-        (update :io-threads #(or % (* 2 (.availableProcessors (Runtime/getRuntime)))))
-        (update :port #(or (-> env :options :port) %))))
-  :stop
-  (http/stop http-server))
+  ;;
+  ;; Here, we inline luminus.http-server/start so we can replace
+  ;; dependency [luminus-http-kit "0.1.6"] with
+  ;; [http-kit "2.3.0-beta2"], which contains a necessary fix
+  ;; (https://github.com/http-kit/http-kit/issues/356),
+  ;; but does not contain luminus.http-server.
+  (let [{:keys [handler host port] :as opts}
+        (-> env
+            (assoc :handler (handler/app))
+            (update :io-threads
+              #(or % (* 2 (.availableProcessors (Runtime/getRuntime)))))
+            (update :port #(or (-> env :options :port) %)))]
+    (try
+      (log/info "starting HTTP server on port" port)
+      (http-kit/run-server
+        handler
+        (dissoc opts :handler :init))
+      (catch Throwable t
+        (log/error t (str "server failed to start on" host "port" port))
+        (throw t)))
+
+    :stop
+    ;;
+    ;; Here, we inline luminus.http-server/stop as above for start.
+    (do
+      (http-server :timeout 100)
+      (log/info "HTTP server stopped"))))
+
 
 (mount/defstate ^{:on-reload :noop} repl-server
   :start
