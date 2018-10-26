@@ -31,7 +31,7 @@
             (rf/dispatch [:set-active-page :contact]))
 
   (defroute "/category/:category" {:as params}
-            (rf/dispatch [:set-catogory-page-as-active params]))
+            (rf/dispatch [:set-category-page-as-active params]))
 
   (defroute "/search/:search" {:as params}
             (rf/dispatch [:set-active-page :search params]))

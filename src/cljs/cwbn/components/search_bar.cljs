@@ -2,7 +2,8 @@
   (:require [reagent.core :as reagent]
             [re-frame.core :as rf]
             [cljs-http.client :as http]
-            [cljs.core.async :refer [<! timeout]])
+            [cljs.core.async :refer [<! timeout]]
+            [camel-snake-kebab.core :refer [->kebab-case]])
   (:require-macros [cljs.core.async.macros :refer [go]]))
 
 (def c-results (reagent/atom []))
@@ -31,14 +32,17 @@
   {:wrapper-classes    (str "suggestion-wrapper" " " "suggestion-wrapper-" name)
    :suggestion-classes (str "suggestion" " " "suggestion-" name)})
 
-(defn render-suggestion [{:keys [name]}]
+(defn render-suggestion [{:keys [name]}
+                         type]
   (let [classes (css-classes name)]
     ^{:key (gensym "suggestion-")}
     [:div {:class (classes :wrapper-classes)
-           :on-mouse-down (fn [e]
-                            (search name false)
-                            (set! (.-value (js/document.getElementById "search-input")) name)
-                            (.preventDefault e))}
+           :on-mouse-down (fn []
+                            (if (= type :organization)
+                              (do
+                                (search name false)
+                                (set! (.-value (js/document.getElementById "search-input")) name))
+                              (set! (.-hash js/window.location) (str "/category/" (->kebab-case name)))))}
      [:i {:class (classes :suggestion-classes)} name]]))
 
 (defn search-fn [e]
@@ -72,13 +76,13 @@
        [:div.suggestion-header-wrapper
         [:b "Categories"]]
        (for [result (take 10 @c-results)]
-         (render-suggestion result))])
+         (render-suggestion result :category))])
     (when-not (empty? @o-results)
       [:div
         [:div.suggestion-header-wrapper
          [:b "Organizations"]]
         (for [result (take 10 @o-results)]
-          (render-suggestion result))])]])
+          (render-suggestion result :organization))])]])
 
 (defn component [text]
   [:section.search-bar-wrapper

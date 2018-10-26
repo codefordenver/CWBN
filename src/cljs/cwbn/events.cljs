@@ -18,7 +18,7 @@
     (assoc db :active-page page)))
 
 (reg-event-db
- :set-catogory-page-as-active
+ :set-category-page-as-active
  (fn [db [_ {:keys [category query-params]}]]
    (assoc db
           :active-page :category
