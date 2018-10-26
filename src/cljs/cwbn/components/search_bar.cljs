@@ -21,7 +21,6 @@
             (reset! c-results category-results)
             (reset! o-results organization-results))
           (do
-            (prn organization-results)
             (reset! c-results nil)
             (reset! o-results nil)
             (rf/dispatch [:update-search-term term])
@@ -36,9 +35,10 @@
   (let [classes (css-classes name)]
     ^{:key (gensym "suggestion-")}
     [:div {:class (classes :wrapper-classes)
-           :on-click (fn []
-                       (search name false)
-                       (set! (.-value (js/document.getElementById "search-input")) name))}
+           :on-mouse-down (fn [e]
+                            (search name false)
+                            (set! (.-value (js/document.getElementById "search-input")) name)
+                            (.preventDefault e))}
      [:i {:class (classes :suggestion-classes)} name]]))
 
 (defn search-fn [e]
@@ -57,12 +57,28 @@
                          :on-key-press (fn [e]
                                          (when (= (.-key e) "Enter")
                                            (search (-> e .-target .-value) false)
-                                           (.preventDefault e)))}]
+                                           (.preventDefault e)))
+                         :on-blur (fn [e]
+                                     (when (.-target e)
+                                       (reset! c-results nil)
+                                       (reset! o-results nil)))
+                         :on-focus (fn [e]
+                                     (search-fn e)
+                                     (.select (.-target e)))}]
+
    [:div#search-suggestions
-    (for [result (take 10 @c-results)]
-      (render-suggestion result))
-    (for [result (take 10 @o-results)]
-      (render-suggestion result))]])
+    (when-not (empty? @c-results)
+      [:div
+       [:div.suggestion-header-wrapper
+        [:b "Categories"]]
+       (for [result (take 10 @c-results)]
+         (render-suggestion result))])
+    (when-not (empty? @o-results)
+      [:div
+        [:div.suggestion-header-wrapper
+         [:b "Organizations"]]
+        (for [result (take 10 @o-results)]
+          (render-suggestion result))])]])
 
 (defn component [text]
   [:section.search-bar-wrapper
