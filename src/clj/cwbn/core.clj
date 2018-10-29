@@ -34,14 +34,13 @@
         (dissoc opts :handler :init))
       (catch Throwable t
         (log/error t (str "server failed to start on" host "port" port))
-        (throw t)))
-
-    :stop
-    ;;
-    ;; Here, we inline luminus.http-server/stop as above for start.
-    (do
-      (http-server :timeout 100)
-      (log/info "HTTP server stopped"))))
+        (throw t))))
+  :stop
+  ;;
+  ;; Here, we inline luminus.http-server/stop as above for start.
+  (do
+    (http-server :timeout 100)
+    (log/info "HTTP server stopped")))
 
 
 (mount/defstate ^{:on-reload :noop} repl-server
