@@ -55,4 +55,4 @@
          (when-not (empty? selected-services)
            [:span {:class "service-link fw6 reset"}
             [:a {:class "service-selected" :href (str "/#/category/" category-route)} "Reset"]])]]]
-      [sorted-list/component orgs]]]))
+      [sorted-list/component orgs true]]]))

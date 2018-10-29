@@ -11,12 +11,15 @@
                          website
                          contact-name
                          email
-                         phone-number]}]
+                         phone-number]}
+                 org?]
   [:div {:class "org mb4 pt2"}
    [:h2 {:class "f4 fw6 ttc underline"}
     (if website
       [:a {:href website :target "_blank"} name]
-      name)]
+      (if-not org?
+        [:a {:href (str "/#/category/" (cuerdas/kebab name))} name]
+        name))]
    (for [t type]
      ^{:key (gensym)}
      [:h3.f6 [:i t]])
@@ -26,8 +29,11 @@
       (for [s services
             :let [i (.indexOf services s)
                   comma? (when (> (count services) (+ 1 i)) ", ")]]
-        ^{:key (gensym)}
-        [:span (str s comma?)])])
+        (if-not org?
+          ^{:key (gensym)}
+          [:span [:a {:href (str "/#/category/" (cuerdas/kebab name) "?selected-services=" (cuerdas/kebab s))} s] comma?]
+          ^{:key (gensym)}
+          [:span (str s comma?)]))])
    (when status
      [:h3.f6.mb0.pv1 [:b "Status: "] status])
    (when population

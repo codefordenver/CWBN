@@ -3,7 +3,7 @@
             [re-frame.core :as rf]
             [cljs-http.client :as http]
             [cljs.core.async :refer [<! timeout]]
-            [camel-snake-kebab.core :refer [->kebab-case]])
+            [cuerdas.core :as cuerdas])
   (:require-macros [cljs.core.async.macros :refer [go]]))
 
 (def c-results (reagent/atom []))
@@ -25,7 +25,8 @@
             (reset! c-results nil)
             (reset! o-results nil)
             (rf/dispatch [:update-search-term term])
-            (rf/dispatch [:update-search-results (concat category-results organization-results)])
+            (rf/dispatch [:update-search-results {:category-results category-results
+                                                  :organization-results organization-results}])
             (rf/dispatch [:set-active-page :search ""])))))))
 
 (defn css-classes [name]
@@ -42,7 +43,7 @@
                               (do
                                 (search name false)
                                 (set! (.-value (js/document.getElementById "search-input")) name))
-                              (set! (.-hash js/window.location) (str "/category/" (->kebab-case name)))))}
+                              (set! (.-hash js/window.location) (str "/category/" (cuerdas/kebab name)))))}
      [:i {:class (classes :suggestion-classes)} name]]))
 
 (defn search-fn [e]

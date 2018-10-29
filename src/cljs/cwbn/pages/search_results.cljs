@@ -8,18 +8,25 @@
 
 (defn search-results-page []
   (let [search-results @(rf/subscribe [:search-results])
+        {category-results :category-results
+         organization-results :organization-results} search-results
+        all-search-results (concat category-results organization-results)
         search-term @(rf/subscribe [:search-term])
-        exact-match? (> (count (filter #(= (lower-case (:name %)) (lower-case search-term)) search-results)) 0)]
+        exact-match (first (filter #(= (lower-case (:name %)) (lower-case search-term)) all-search-results))
+        category-results (remove #(= % exact-match) category-results)
+        organization-results (remove #(= % exact-match) organization-results)
+        exact-match-org? (= (count category-results) (count (:category-results search-results)))]
     [:div
      [search-bar/component search-term]
-     (when exact-match?
+     (when exact-match
        [:div.ph4
         [:h2 "Exact match"]
-        [details/component (first search-results)]])
-     (when (or (> (count search-results) 1)
-               (not exact-match?))
+        [details/component exact-match exact-match-org?]])
+     (when-not (empty? category-results)
        [:div
-        [:h2.ph4 "Search results"]
-        [sorted-list/component (if exact-match?
-                                 (drop 1 search-results)
-                                 search-results)]])]))
+        [:h2.ph4 "Categories"]
+        [sorted-list/component category-results false]])
+     (when-not (empty? organization-results)
+       [:div
+        [:h2.ph4 "Organizations"]
+        [sorted-list/component organization-results true]])]))
