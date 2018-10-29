@@ -63,6 +63,9 @@
                                          (when (= (.-key e) "Enter")
                                            (search (-> e .-target .-value) false)
                                            (.preventDefault e)))
+                         :on-key-up (fn [e]
+                                      (when (= (.-key e) "Escape")
+                                        (.blur (.-target e))))
                          :on-blur (fn [e]
                                      (when (.-target e)
                                        (reset! c-results nil)
