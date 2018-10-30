@@ -9,7 +9,6 @@
 (def c-results (reagent/atom []))
 (def o-results (reagent/atom []))
 
-;;TODO implement using core.async library
 (def search
   (fn [term show-suggestions?]
     (go
