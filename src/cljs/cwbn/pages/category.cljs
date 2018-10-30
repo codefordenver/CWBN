@@ -3,14 +3,13 @@
             [clojure.string :as s]
             [cuerdas.core :as cuerdas]
             [cwbn.components.search-bar :as search-bar]
-            [cwbn.components.sorted-list :as sorted-list]
-            [cwbn.routes :as routes]))
+            [cwbn.components.sorted-list :as sorted-list]))
 
 (defn sub-category-link [category service selected-services]
-  (let [active? (some #{service} selected-services)
+  (let [active? (some #{(cuerdas/kebab service)} selected-services)
         next-query (if active?
-                     (remove #{service} selected-services)
-                     (conj selected-services service))
+                     (remove #{(cuerdas/kebab service)} selected-services)
+                     (conj selected-services (cuerdas/kebab service)))
         query-string (if-not (empty? next-query)
                        (str "?selected-services=" (s/join "+" next-query))
                        "")
@@ -37,7 +36,7 @@
         orgs-with-services (if (empty? selected-services)
                              orgs-in-category
                              (filter (fn [org]
-                                       (some (set selected-services) (:services org)))
+                                       (some (set selected-services) (map cuerdas/kebab (:services org))))
                                      orgs-in-category))
         orgs (sort-by :name orgs-with-services)]
     [:div
