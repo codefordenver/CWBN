@@ -58,7 +58,8 @@
                                   "active")
                          :on-change search-fn
                          :on-key-press (fn [e]
-                                         (when (= (.-key e) "Enter")
+                                         (when (and (= (.-key e) "Enter")
+                                                    (> (count (-> e .-target .-value)) 0))
                                            (search (-> e .-target .-value) false)
                                            (.preventDefault e)))
                          :on-key-up (fn [e]
