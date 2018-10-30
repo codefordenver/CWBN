@@ -7,12 +7,11 @@
 (def index-name "cwbn")
 
 (def _type "organizations")
-
-(def elastic-search-endpoint "http://127.0.0.1:9200")
+(def elastic-search-endpoint "http://elasticsearch:9200")
 
 (defn setup []
   (try
-    (let [conn (esr/connect elastic-search-endpoint)]
+    (let [conn (esr/connect elastic-search-endpoint {:content-type :json})]
       (idx/delete conn index-name)
       (idx/create conn index-name))
     (catch Exception e

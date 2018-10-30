@@ -39,7 +39,7 @@
 
 (def AIRTABLE_API_KEY (System/getenv "AIRTABLE_API_KEY"))
 
-(def server1-conn {:pool {} :spec {:uri "redis://127.0.0.1:6379"}})
+(def server1-conn {:spec {:host "redis" :port 6379}})
 
 (defmacro wcar* [& body] `(car/wcar server1-conn ~@body))
 
