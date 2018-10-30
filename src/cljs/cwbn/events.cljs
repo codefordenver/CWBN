@@ -59,7 +59,7 @@
                                                             (map (comp set :services)
                                                                  orgs-in-category))
                                            category (first (filter #(= (:name c) (:label (second %))) (:categories db)))]
-                                       {(first category) (assoc (second category) :services services)}))
+                                       {(first category) (assoc (assoc (second category) :services services) :organizations orgs-in-category)}))
                                    data))]
       (assoc db :categories categories))))
 

@@ -25,7 +25,9 @@
         categories @(rf/subscribe [:categories])
         category-key (keyword category-route)
         {category-name :label
-         category-image :image} (category-key categories)
+         category-image :image
+         orgs-in-category :organizations
+         services :services} (category-key categories)
         orgs-with-services (if (empty? selected-services)
                              orgs-in-category
                              (filter (fn [org]
