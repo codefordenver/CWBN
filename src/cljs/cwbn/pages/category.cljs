@@ -26,13 +26,6 @@
         category-key (keyword category-route)
         {category-name :label
          category-image :image} (category-key categories)
-        orgs-in-category (filter (fn [org]
-                                   (some #(= category-key (-> % cuerdas/kebab cuerdas/keyword))
-                                         (:categories org)))
-                                 @all-orgs)
-        services (reduce clojure.set.union
-                         (map (comp set :services)
-                              orgs-in-category))
         orgs-with-services (if (empty? selected-services)
                              orgs-in-category
                              (filter (fn [org]

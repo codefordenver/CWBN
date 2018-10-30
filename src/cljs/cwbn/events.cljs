@@ -3,7 +3,8 @@
             [re-frame.core :refer [dispatch reg-event-db reg-sub] :as rf]
             [day8.re-frame.http-fx]
             [ajax.core :as ajax :refer [GET POST PUT]]
-            [clojure.string :as s]))
+            [clojure.string :as s]
+            [cuerdas.core :as cuerdas]))
 
 ;;dispatchers
 
@@ -35,7 +36,9 @@
       {:http-xhrio {:method          :get
                     :uri             (str "/api" v)
                     :response-format (ajax/json-response-format {:keywords? true})
-                    :on-success      [:get-api-data-success k]
+                    :on-success      (if (= k :Categories)
+                                       [:handle-category-data]
+                                       [:get-api-data-success k])
                     :on-failure      [:get-api-data-failure k]}})))
 
 (rf/reg-event-db
@@ -43,6 +46,22 @@
   (fn [db [_ key data]]
     (let [fields (map :fields data)]
       (assoc db key fields))))
+
+(rf/reg-event-db
+  :handle-category-data
+  (fn [db [_ data]]
+    (let [categories (into {} (map (fn [{c :fields}]
+                                     (let [orgs-in-category (filter (fn [org]
+                                                                      (some #(= (:name c) %)
+                                                                            (:categories org)))
+                                                                    (:Organizations db))
+                                           services (reduce clojure.set.union
+                                                            (map (comp set :services)
+                                                                 orgs-in-category))
+                                           category (first (filter #(= (:name c) (:label (second %))) (:categories db)))]
+                                       {(first category) (assoc (second category) :services services)}))
+                                   data))]
+      (assoc db :categories categories))))
 
 (rf/reg-event-db
   :get-api-data-failure
