@@ -16,12 +16,14 @@
     (catch Exception e
       (throw e))))
 
+(defn query [conn index type]
+  ((comp (partial map :_source) :hits :hits
+   (doc/search conn index type {:query (q/match "fields.name" query)}))))
+
 (defn search [query]
   (let [conn (esr/connect elastic-search-endpoint)
-        results {:organization-results ((comp (partial map :_source) :hits :hits)
-                                        (doc/search conn "cwbn-organizations" "organizations" {:query (q/match "fields.name" query)}))
-                 :category-results ((comp (partial map :_source) :hits :hits)
-                                    (doc/search conn "cwbn-categories" "categories" {:query (q/match "fields.name" query)}))}]
+        results {:organization-results (query conn "cwbn-organizations" "organizations")
+                 :category-results (query conn "cwbn-categories" "categories")}]
     results))
 
 
