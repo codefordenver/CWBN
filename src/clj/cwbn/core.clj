@@ -66,10 +66,15 @@
   (cwbn.search/setup)
   (cwbn.airtable/reset-or-init-redis-cache)
   ;; begin indexing
+<<<<<<< HEAD
   (let [orgs (cwbn.airtable/normalize-records :organizations)
         categories (cwbn.airtable/normalize-records :categories)]
     (cwbn.search/index orgs "cwbn-organizations")
     (cwbn.search/index categories "cwbn-categories"))
+=======
+  (let [orgs (cwbn.airtable/normalize-records :organizations)]
+    (cwbn.search/index orgs))
+>>>>>>> Revert back to master
   (.addShutdownHook (Runtime/getRuntime) (Thread. stop-app)))
 
 (defn -main [& args]
