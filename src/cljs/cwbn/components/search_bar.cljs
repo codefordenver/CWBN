@@ -32,8 +32,7 @@
   {:wrapper-classes    (str "suggestion-wrapper" " " "suggestion-wrapper-" name)
    :suggestion-classes (str "suggestion" " " "suggestion-" name)})
 
-(defn render-suggestion [{:keys [name]}
-                         type]
+(defn render-suggestion [name type]
   (let [classes (css-classes name)]
     ^{:key (gensym "suggestion-")}
     [:div {:class (classes :wrapper-classes)
@@ -79,13 +78,13 @@
        [:div.suggestion-header-wrapper
         [:b "Categories"]]
        (for [result (take 10 @c-results)]
-         (render-suggestion result :category))])
+         (render-suggestion (:name result) :category))])
     (when-not (empty? @o-results)
       [:div
         [:div.suggestion-header-wrapper
          [:b "Organizations"]]
         (for [result (take 10 @o-results)]
-          (render-suggestion result :organization))])]])
+          (render-suggestion (:name result) :organization))])]])
 
 (defn component [text]
   [:section.search-bar-wrapper
