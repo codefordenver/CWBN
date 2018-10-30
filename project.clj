@@ -45,6 +45,7 @@
                  [org.clojure/core.async "0.4.474"]
                  [day8.re-frame/http-fx "0.1.6"]
                  [funcool/cuerdas "2.0.5"]
+                 [camel-snake-kebab "0.4.0"]
                  [org.clojars.sergeyminaev/elastisch "6.0.0"]]
 
   :min-lein-version "2.0.0"
