@@ -5,8 +5,14 @@ services:
     build: .
     ports:
     - "3000:3000"
+    depends_on:
+      - redis
+      - elasticsearch
   redis:
     image: "redis:alpine"
-    hostname: localhost
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+    ports:
+      - "6379:6379"
   elasticsearch:
     image: "docker.elastic.co/elasticsearch/elasticsearch:6.4.1"

@@ -4,6 +4,7 @@
             [clojurewerkz.elastisch.rest.document :as doc]
             [clojurewerkz.elastisch.query :as q]))
 
+<<<<<<< HEAD
 (def elastic-search-endpoint "http://127.0.0.1:9200")
 
 (defn setup []
@@ -13,6 +14,18 @@
       (idx/create conn "cwbn-organizations")
       (idx/delete conn "cwbn-categories")
       (idx/create conn "cwbn-categories"))
+=======
+(def index-name "cwbn")
+
+(def _type "organizations")
+(def elastic-search-endpoint "http://elasticsearch:9200")
+
+(defn setup []
+  (try
+    (let [conn (esr/connect elastic-search-endpoint {:content-type :json})]
+      (idx/delete conn index-name)
+      (idx/create conn index-name))
+>>>>>>> Config fixes (hopefully) with docker/elasticsearch connections for docker
     (catch Exception e
       (throw e))))
 
