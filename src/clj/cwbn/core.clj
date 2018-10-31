@@ -23,7 +23,7 @@
   ;; but does not contain luminus.http-server.
   (let [{:keys [handler host port] :as opts}
         (-> env
-            (assoc :handler (handler/app))
+            (assoc :handler #'handler/app)
             (update :io-threads
               #(or % (* 2 (.availableProcessors (Runtime/getRuntime)))))
             (update :port #(or (-> env :options :port) %)))]
