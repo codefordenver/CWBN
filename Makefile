@@ -3,6 +3,7 @@ COMMIT = $$(git rev-parse --short HEAD)
 TAG = $(COMMIT)
 CWBN_STAGE_REPO_URL = mmmanyfold/cfd:$(TAG)
 ELASTIC_SEARCH_IMAGE = docker.elastic.co/elasticsearch/elasticsearch:6.4.1
+REDIS_IMAGE = redis:5.0.0-alpine
 
 .PHONY: build
 build:
@@ -42,3 +43,8 @@ swarn: .droplet-remote
 
 .compile:
 	@  lein uberjar
+
+.PHONY: redis
+redis:
+	docker pull $(REDIS_IMAGE)
+	docker run -p 6379:6379 $(REDIS_IMAGE)

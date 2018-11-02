@@ -2,7 +2,8 @@
   (:require [cwbn.db :as db]
             [re-frame.core :refer [dispatch reg-event-db reg-sub] :as rf]
             [day8.re-frame.http-fx]
-            [ajax.core :as ajax :refer [GET POST PUT]]))
+            [ajax.core :as ajax :refer [GET POST PUT]]
+            [clojure.string :as s]))
 
 ;;dispatchers
 
@@ -14,10 +15,18 @@
 (reg-event-db
   :set-active-page
   (fn [db [_ page & [params]]]
-    (if-let [category-route (:category params)]
-      (assoc db :active-page page
-                :category-route category-route)
-      (assoc db :active-page page))))
+    (assoc db :active-page page)))
+
+(reg-event-db
+ :set-category-page-as-active
+ (fn [db [_ {:keys [category query-params]}]]
+   (assoc db
+          :active-page :category
+          :category-route category
+          :selected-services
+          (if (nil? (:selected-services query-params))
+            []
+            (s/split (:selected-services query-params) "+")))))
 
 (rf/reg-event-fx
   :get-api-data
@@ -92,3 +101,8 @@
  :category-order
  (fn [db _]
    (:category-order db)))
+
+(reg-sub
+ :selected-services
+ (fn [db _]
+   (:selected-services db)))
