@@ -8,7 +8,7 @@
 
 (defn setup []
   (try
-    (let [conn (esr/connect elastic-search-endpoint)]
+    (let [conn (esr/connect elastic-search-endpoint {:content-type :json})]
       (idx/delete conn "cwbn-organizations")
       (idx/create conn "cwbn-organizations")
       (idx/delete conn "cwbn-categories")
