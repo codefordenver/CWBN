@@ -8,7 +8,7 @@ ENV APP_SRC=/usr/src/app
 RUN mkdir -p ${APP_SRC}
 
 WORKDIR ${APP_SRC}
-COPY . .
+COPY . ${APP_SRC}
 RUN lein deps
 RUN lein uberjar
 
