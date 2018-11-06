@@ -4,7 +4,7 @@
             [clojurewerkz.elastisch.rest.document :as doc]
             [clojurewerkz.elastisch.query :as q]))
 
-(def elastic-search-endpoint "http://127.0.0.1:9200")
+(def elastic-search-endpoint "http://elasticsearch:9200")
 
 (defn setup []
   (try
