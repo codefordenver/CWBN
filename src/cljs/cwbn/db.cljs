@@ -3,7 +3,7 @@
 (def default-db
   {:active-page    :home
    :search-results []
-   :Organizations  [],
+   :organizations  [],
    :category-meta-data
     {:financial-investment
      {:label "Financial Investment",
