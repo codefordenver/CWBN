@@ -8,8 +8,8 @@
 (defn sub-category-link [category service selected-services]
   (let [active? (some #{(cuerdas/kebab service)} selected-services)
         next-query (if active?
-                     (remove #{(cuerdas/kebab service)} selected-services)
-                     (conj selected-services (cuerdas/kebab service)))
+                      (remove #{(cuerdas/kebab service)} selected-services)
+                      (conj selected-services (cuerdas/kebab service)))
         query-string (if-not (empty? next-query)
                        (str "?selected-services=" (s/join "+" next-query))
                        "")
@@ -19,21 +19,12 @@
     [:a {:class class :href (str "/#/category/" category query-string)} service]))
 
 (defn category-page []
-  (let [all-orgs (rf/subscribe [:Organizations])
-        category-route @(rf/subscribe [:category-route])
-        selected-services @(rf/subscribe [:selected-services])
-        categories @(rf/subscribe [:categories])
-        category-key (keyword category-route)
+  (let [orgs @(rf/subscribe [:organizations-in-current-category])
+        selected-services @(rf/subscribe [:selected-services-filtered])
         {category-name :label
          category-image :image
-         orgs-in-category :organizations
-         services :services} (category-key categories)
-        orgs-with-services (if (empty? selected-services)
-                             orgs-in-category
-                             (filter (fn [org]
-                                       (some (set selected-services) (map cuerdas/kebab (:services org))))
-                                     orgs-in-category))
-        orgs (sort-by :name orgs-with-services)]
+         category-route :slug} @(rf/subscribe [:current-category])
+        services @(rf/subscribe [:services-in-current-category])]
     [:div
      [search-bar/component]
      [:div.category-page
