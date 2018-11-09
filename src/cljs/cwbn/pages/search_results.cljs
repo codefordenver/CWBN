@@ -17,7 +17,7 @@
         organization-results (remove #(= % exact-match) organization-results)
         exact-match-org? (= (count category-results) (count (:category-results search-results)))]
     [:div
-     [search-bar/component search-term]
+     [search-bar/component]
      (when (empty? all-search-results)
        [:h2.ph4 (str "No search results found for term \"" search-term "\"")])
      (when exact-match

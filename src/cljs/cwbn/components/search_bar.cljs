@@ -26,7 +26,8 @@
             (rf/dispatch [:update-search-term term])
             (rf/dispatch [:update-search-results {:category-results category-results
                                                   :organization-results organization-results}])
-            (rf/dispatch [:set-active-page :search ""])))))))
+            (set! (.-hash js/window.location) (str "/search/" term))
+            (rf/dispatch [:set-active-page :search])))))))
 
 (defn css-classes [name]
   {:wrapper-classes    (str "suggestion-wrapper" " " "suggestion-wrapper-" name)
@@ -44,49 +45,57 @@
                               (set! (.-hash js/window.location) (str "/category/" (cuerdas/kebab name)))))}
      [:i {:class (classes :suggestion-classes)} name]]))
 
-(defn search-fn [e]
+(defn search-fn [value-atom e]
   (let [text (-> e .-target .-value)]
+    (reset! value-atom text)
     (search text true)))
 
-(defn search-bar [text]
-  [:div
-   [:input#search-input {:type      "text"
-                         :placeholder "Search community"
-                         :default-value text
-                         :class (when-not (and (empty? @c-results)
-                                               (empty? @o-results))
-                                  "active")
-                         :on-change search-fn
-                         :on-key-press (fn [e]
-                                         (when (and (= (.-key e) "Enter")
-                                                    (> (count (-> e .-target .-value)) 0))
-                                           (search (-> e .-target .-value) false)
-                                           (.preventDefault e)))
-                         :on-key-up (fn [e]
-                                      (when (= (.-key e) "Escape")
-                                        (.blur (.-target e))))
-                         :on-blur (fn [e]
-                                     (when (.-target e)
-                                       (reset! c-results nil)
-                                       (reset! o-results nil)))
-                         :on-focus (fn [e]
-                                     (search-fn e)
-                                     (.select (.-target e)))}]
+(defn search-bar []
+  (let [search-value (reagent/atom nil)]
+    (reagent/create-class
+      {:component-did-mount          #(reset! search-value @(rf/subscribe [:search-term]))
+       :component-will-receive-props #(reset! search-value @(rf/subscribe [:search-term]))
+       :key                          @(rf/subscribe [:search-term])
+       :reagent-render
+       (fn []
+         [:div
+          [:input#search-input {:type         "text"
+                                :placeholder  "Search community"
+                                :value        @search-value
+                                :class        (when-not (and (empty? @c-results)
+                                                             (empty? @o-results))
+                                                "active")
+                                :on-change    #(search-fn search-value %)
+                                :on-key-press (fn [e]
+                                                (when (and (= (.-key e) "Enter")
+                                                           (> (count (-> e .-target .-value)) 0))
+                                                  (search (-> e .-target .-value) false)
+                                                  (.preventDefault e)))
+                                :on-key-up    (fn [e]
+                                                (when (= (.-key e) "Escape")
+                                                  (.blur (.-target e))))
+                                :on-blur      (fn [e]
+                                                (when (.-target e)
+                                                  (reset! c-results nil)
+                                                  (reset! o-results nil)))
+                                :on-focus     (fn [e]
+                                                (search-fn search-value e)
+                                                (.select (.-target e)))}]
 
-   [:div#search-suggestions
-    (when-not (empty? @c-results)
-      [:div
-       [:div.suggestion-header-wrapper
-        [:b "Categories"]]
-       (for [result (take 10 @c-results)]
-         (render-suggestion (:name result) :category))])
-    (when-not (empty? @o-results)
-      [:div
-        [:div.suggestion-header-wrapper
-         [:b "Organizations"]]
-        (for [result (take 10 @o-results)]
-          (render-suggestion (:name result) :organization))])]])
+          [:div#search-suggestions
+           (when-not (empty? @c-results)
+             [:div
+              [:div.suggestion-header-wrapper
+               [:b "Categories"]]
+              (for [result (take 10 @c-results)]
+                (render-suggestion (:name result) :category))])
+           (when-not (empty? @o-results)
+             [:div
+              [:div.suggestion-header-wrapper
+               [:b "Organizations"]]
+              (for [result (take 10 @o-results)]
+                (render-suggestion (:name result) :organization))])]])})))
 
-(defn component [text]
+(defn component []
   [:section.search-bar-wrapper
-   [search-bar text]])
+   [search-bar]])

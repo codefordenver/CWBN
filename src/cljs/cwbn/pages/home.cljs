@@ -17,7 +17,7 @@
     (fn []
       [:div
        [:h1.tc.f2.fw6.mt4.mb3 "Let's build a stronger local economy"]
-       [search-bar/component ""]
+       [search-bar/component]
        [:div {:class "category-links flex flex-wrap justify-between"}
         (for [category (map @categories @category-order)]
           ^{:key (:slug category)}
