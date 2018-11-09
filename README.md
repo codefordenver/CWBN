@@ -1,4 +1,8 @@
-# cwbn
+# Community Wealth Building Network Database
+A tool for finding cooperative businesses in Denver partnered with [Community Wealth Building](https://www.communitywealthbuilding.org/)
+
+![](./screenshot_2018-11-05.png)
+
 generated using [Luminus](http://www.luminusweb.net/) version "2.9.12.52"
 
 ## Prerequisites
