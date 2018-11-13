@@ -6,8 +6,8 @@
             [cuerdas.core :as cuerdas])
   (:require-macros [cljs.core.async.macros :refer [go]]))
 
-(def c-results (reagent/atom []))
-(def o-results (reagent/atom []))
+(def category-results (reagent/atom []))
+(def organization-results (reagent/atom []))
 
 (def search
   (fn [term show-suggestions?]
@@ -18,11 +18,11 @@
             organization-results (map #(-> % :fields) (get-in response [:body :organization-results]))]
         (if show-suggestions?
           (do
-            (reset! c-results category-results)
-            (reset! o-results organization-results))
+            (reset! category-results category-results)
+            (reset! organization-results organization-results))
           (do
-            (reset! c-results nil)
-            (reset! o-results nil)
+            (reset! category-results nil)
+            (reset! organization-results nil)
             (rf/dispatch [:update-search-term term])
             (rf/dispatch [:update-search-results {:category-results category-results
                                                   :organization-results organization-results}])
@@ -62,8 +62,8 @@
           [:input#search-input {:type         "text"
                                 :placeholder  "Search community"
                                 :value        @search-value
-                                :class        (when-not (and (empty? @c-results)
-                                                             (empty? @o-results))
+                                :class        (when-not (and (empty? @category-results)
+                                                             (empty? @organization-results))
                                                 "active")
                                 :on-change    #(search-fn search-value %)
                                 :on-key-press (fn [e]
@@ -76,24 +76,24 @@
                                                   (.blur (.-target e))))
                                 :on-blur      (fn [e]
                                                 (when (.-target e)
-                                                  (reset! c-results nil)
-                                                  (reset! o-results nil)))
+                                                  (reset! category-results nil)
+                                                  (reset! organization-results nil)))
                                 :on-focus     (fn [e]
                                                 (search-fn search-value e)
                                                 (.select (.-target e)))}]
 
           [:div#search-suggestions
-           (when-not (empty? @c-results)
+           (when-not (empty? @category-results)
              [:div
               [:div.suggestion-header-wrapper
                [:b "Categories"]]
-              (for [result (take 10 @c-results)]
+              (for [result (take 10 @category-results)]
                 (render-suggestion (:name result) :category))])
-           (when-not (empty? @o-results)
+           (when-not (empty? @organization-results)
              [:div
               [:div.suggestion-header-wrapper
                [:b "Organizations"]]
-              (for [result (take 10 @o-results)]
+              (for [result (take 10 @organization-results)]
                 (render-suggestion (:name result) :organization))])]])})))
 
 (defn component []
