@@ -3,7 +3,8 @@
   (:require [re-frame.core :as rf]
             [secretary.core :as secretary]
             [goog.events :as events]
-            [goog.history.EventType :as HistoryEventType])
+            [goog.history.EventType :as HistoryEventType]
+            [cwbn.components.search-bar :refer [search]])
   (:import goog.History))
 
 ;; History
@@ -22,6 +23,7 @@
   (secretary/set-config! :prefix "#")
 
   (defroute "/" []
+            (rf/dispatch [:update-search-term nil])
             (rf/dispatch [:set-active-page :home]))
 
   (defroute "/about" []
@@ -34,7 +36,7 @@
             (rf/dispatch [:set-category-page-as-active params]))
 
   (defroute "/search/:search" {:as params}
-            (rf/dispatch [:set-active-page :search params]))
+            (search (:search params) false))
 
   (defroute "*" []
             (rf/dispatch [:set-active-page :not-found]))

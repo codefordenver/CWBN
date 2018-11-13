@@ -8,7 +8,7 @@
 
 (defn top-bar-component []
   [:div#top-bar {:class "flex flex-wrap items-center justify-between ml1"}
-   [:a {:href "#" :on-click #(rf/dispatch [:set-active-page :home])}
+   [:a {:href "#/"}
     [:img#logo {:src "img/logo.png"
                 :alt "Community Wealth Building logo"}]]
    [:div#nav

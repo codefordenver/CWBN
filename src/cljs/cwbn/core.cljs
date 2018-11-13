@@ -42,7 +42,7 @@
 (defn init! []
   (rf/dispatch-sync [:initialize-db])
   (enable-re-frisk!)
-  (rf/dispatch [:get-api-data :Organizations "/Organizations"])
+  (rf/dispatch [:get-api-data :organizations "/Organizations"])
   ;(rf/dispatch [:get-api-data :Categories "/Categories"])
   ;(rf/dispatch [:get-api-data :Services "/Services"])
   ;(rf/dispatch [:get-api-data :Types "/Types"])

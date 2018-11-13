@@ -68,7 +68,6 @@
   background: #fff;
   cursor: default;
   border-bottom: 1px solid #ced4da;
-  border-top: 1px solid #ced4da;
   font-size: 1.1em; }
 
 .suggestion-wrapper:hover {
@@ -96,8 +95,7 @@
 
 #search-input.active {
   border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-  border-bottom: none; }
+  border-bottom-right-radius: 0; }
 
 #search-suggestions {
   position: absolute;
