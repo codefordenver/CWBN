@@ -63,8 +63,8 @@
                         mount/start-with-args
                         :started)]
     (log/info component "started"))
-  (cwbn.search/setup)
   (cwbn.airtable/reset-or-init-redis-cache)
+  (cwbn.search/setup)
   ;; begin indexing
   (let [orgs (cwbn.airtable/normalize-records :organizations)
         categories (cwbn.airtable/normalize-records :categories)]
