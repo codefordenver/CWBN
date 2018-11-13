@@ -16,7 +16,7 @@
 
 (reg-event-db
   :set-active-page
-  (fn [db [_ page & [params]]]
+  (fn [db [_ page]]
     (assoc db :active-page page)))
 
 (reg-event-db
