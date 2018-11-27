@@ -7,7 +7,7 @@ REDIS_IMAGE = redis:5.0.0-alpine
 
 .PHONY: build
 build:
-	@docker build --build-arg AIRTABLE_API_KEY=$(AIRTABLE_API_KEY) -t $(IMAGE) .
+	@docker build --build-arg CWBN_AIRTABLE_API_KEY=$(CWBN_AIRTABLE_API_KEY) -t $(IMAGE) .
 
 .PHONY: run
 run:

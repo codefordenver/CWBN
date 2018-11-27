@@ -37,11 +37,11 @@
 
 (declare get-airtable-data)
 
-(def AIRTABLE_API_KEY (System/getenv "AIRTABLE_API_KEY"))
+(def CWBN_AIRTABLE_API_KEY (System/getenv "CWBN_AIRTABLE_API_KEY"))
 
-(def server1-conn {:spec {:host "redis" :port 6379}})
+(def redis-conn {:spec {:host (System/getenv "CWBN_REDIS_HOST") :port 6379}})
 
-(defmacro wcar* [& body] `(car/wcar server1-conn ~@body))
+(defmacro wcar* [& body] `(car/wcar redis-conn ~@body))
 
 ;; TODO
 ;; - use clojure.spec to validate key in map - explain when key is not in airtable-records map
@@ -199,7 +199,7 @@
   [resource & [offset]]
   (let [endpoint "https://api.airtable.com/v0/appIy3ycDv8Xf4dR3" ;; root api domain
         options {:query-params (when offset {:offset offset})
-                 :headers      {"Authorization" (str "Bearer " AIRTABLE_API_KEY)}}
+                 :headers      {"Authorization" (str "Bearer " CWBN_AIRTABLE_API_KEY)}}
         endpoint (str endpoint (get airtable-records resource))]
     (let [{:keys [error body]} @(http/get endpoint options)
           body (clojure.string/replace body "\\n " "")]
