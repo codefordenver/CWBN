@@ -13,9 +13,8 @@
             [cwbn.pages.not-found :refer [not-found-page]]
             [cwbn.components.footer :refer [footer-component]]
             [cwbn.components.top-bar :refer [top-bar-component]]
-            [re-frisk.core :refer [enable-re-frisk!]]))
-
-
+            [re-frisk.core :refer [enable-re-frisk!]]
+            [cwbn.config :as config]))
 
 (defn- show-page [page-name]
   (case page-name
@@ -43,7 +42,8 @@
 
 (defn init! []
   (rf/dispatch-sync [:initialize-db])
-  (enable-re-frisk!)
+  (when config/debug?
+    (enable-re-frisk!))
   (rf/dispatch [:get-api-data :organizations "/Organizations"])
   ;(rf/dispatch [:get-api-data :Categories "/Categories"])
   ;(rf/dispatch [:get-api-data :Services "/Services"])
