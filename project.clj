@@ -91,6 +91,7 @@
                  :source-map "target/cljsbuild/public/js/app.js.map"
                  :optimizations :advanced
                  :pretty-print false
+                 :closure-defines {goog.DEBUG false}
                  :closure-warnings
                  {:externs-validation :off :non-standard-jsdoc :off}
                  :externs ["react/externs/react.js"]}}}}
@@ -131,7 +132,8 @@
                       :source-map true
                       :optimizations :none
                       :pretty-print true
-                      :closure-defines {"re_frame.trace.trace_enabled_QMARK_" true}}}}}
+                      :closure-defines {"re_frame.trace.trace_enabled_QMARK_" true
+                                        goog.DEBUG true}}}}}
                       ;;:preloads [day8.re-frame-10x.preload]}}}}
 
 
