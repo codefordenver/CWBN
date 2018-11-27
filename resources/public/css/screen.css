@@ -154,6 +154,13 @@
     justify-content: center;
     align-items: center; }
 
+@media screen and (max-width: 500px) {
+  .about-content-wrapper {
+    padding-left: 0rem !important;
+    padding-right: 0rem !important; }
+  #contact_information {
+    margin-top: 3rem !important; } }
+
 html, body {
   background: #2C208C;
   font-family: 'Open Sans', sans-serif;
