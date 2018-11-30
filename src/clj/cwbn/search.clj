@@ -4,11 +4,11 @@
             [clojurewerkz.elastisch.rest.document :as doc]
             [clojurewerkz.elastisch.query :as q]))
 
-(def elastic-search-endpoint "http://127.0.0.1:9200")
+(def elastic-search-endpoint (System/getenv "CWBN_ELASTICSEARCH_HOST"))
 
 (defn setup []
   (try
-    (let [conn (esr/connect elastic-search-endpoint)]
+    (let [conn (esr/connect elastic-search-endpoint {:content-type :json})]
       (idx/delete conn "cwbn-organizations")
       (idx/create conn "cwbn-organizations")
       (idx/delete conn "cwbn-categories")

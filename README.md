@@ -18,7 +18,14 @@ generated using [Luminus](http://www.luminusweb.net/) version "2.9.12.52"
 
 ## Environment variables
 - Get the api key from a [code-for-denver](mailto:hello@codefordenver.org) core-contributor
-- In your .bashrc file (or the analagous config file for non-bash terminals), add the line: `export AIRTABLE_API_KEY=<api-key>`
+- In your .bashrc file (or the analagous config file for non-bash terminals) add the following lines:
+
+```
+export CWBN_AIRTABLE_API_KEY=<api-key>
+export CWBN_REDIS_HOST=localhost
+export CWBN_ELASTICSEARCH_HOST=http://127.0.0.1:9200
+export CWBN_GH_TOKEN=<gh-token>
+```
 
 ## Relational DB Setup (optional)
 - Create file at root called "dev-config.edn" and populate the following database connection information `{:database-url "jdbc:h2:./cwbn_dev.db"}`
