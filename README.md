@@ -22,7 +22,7 @@ generated using [Luminus](http://www.luminusweb.net/) version "2.9.12.52"
 
 ```
 export CWBN_AIRTABLE_API_KEY=<api-key>
-export CWBN_REDIS_HOST=redis
+export CWBN_REDIS_HOST=localhost
 export CWBN_ELASTICSEARCH_HOST=http://127.0.0.1:9200
 export CWBN_GH_TOKEN=<gh-token>
 ```
