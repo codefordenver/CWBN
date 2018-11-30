@@ -11,23 +11,24 @@
 
 (def search
   (fn [term show-suggestions?]
-    (go
-      (let [response-channel (http/get "/api/search" {:query-params {"q" term}})
-            response (<! response-channel)
-            category-results (map #(-> % :fields) (get-in response [:body :category-results]))
-            organization-results (map #(-> % :fields) (get-in response [:body :organization-results]))]
-        (if show-suggestions?
-          (do
-            (reset! category-suggestions category-results)
-            (reset! organization-suggestions organization-results))
-          (do
-            (reset! category-suggestions nil)
-            (reset! organization-suggestions nil)
-            (rf/dispatch [:update-search-term term])
-            (rf/dispatch [:update-search-results {:category-results category-results
-                                                  :organization-results organization-results}])
-            (set! (.-hash js/window.location) (str "/search/" term))
-            (rf/dispatch [:set-active-page :search])))))))
+    (let [term (clojure.string/trim term)]
+      (go
+        (let [response-channel (http/get "/api/search" {:query-params {"q" term}})
+              response (<! response-channel)
+              category-results (map #(-> % :fields) (get-in response [:body :category-results]))
+              organization-results (map #(-> % :fields) (get-in response [:body :organization-results]))]
+          (if show-suggestions?
+            (do
+              (reset! category-suggestions category-results)
+              (reset! organization-suggestions organization-results))
+            (do
+              (reset! category-suggestions nil)
+              (reset! organization-suggestions nil)
+              (rf/dispatch [:update-search-term term])
+              (rf/dispatch [:update-search-results {:category-results category-results
+                                                    :organization-results organization-results}])
+              (set! (.-hash js/window.location) (str "/search/" term))
+              (rf/dispatch [:set-active-page :search]))))))))
 
 (defn css-classes [name]
   {:wrapper-classes    (str "suggestion-wrapper" " " "suggestion-wrapper-" name)

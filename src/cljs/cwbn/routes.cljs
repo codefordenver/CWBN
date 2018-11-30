@@ -24,6 +24,7 @@
 
   (defroute "/" []
             (rf/dispatch [:update-search-term nil])
+            (rf/dispatch [:update-search-results nil])
             (rf/dispatch [:set-active-page :home]))
 
   (defroute "/about" []
