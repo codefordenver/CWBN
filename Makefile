@@ -47,4 +47,4 @@ swarn: .droplet-remote
 .PHONY: redis
 redis:
 	docker pull $(REDIS_IMAGE)
-	docker run -p 6379:6379 $(REDIS_IMAGE)
+	docker run -v redis.conf:/usr/local/etc/redis/redis.conf -p 6379:6379 $(REDIS_IMAGE) /usr/local/etc/redis/redis.conf
