@@ -8,6 +8,7 @@ jobs:
     - setup_remote_docker
     - run: |
         make compose-build
+        docker push mmmanyfold/cfd:project_web:latest
 workflows:
   version: 2
   build_and_deploy:
