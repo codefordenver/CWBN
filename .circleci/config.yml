@@ -10,7 +10,7 @@ jobs:
     - run: echo $CWB_ENV | base64 --decode >> .env
     - run: |
         make compose-build
-        docker push mmmanyfold/cfd:project_web
+        docker-compose push project_web:latest
 workflows:
   version: 2
   build_and_deploy:
