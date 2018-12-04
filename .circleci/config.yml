@@ -1,0 +1,10 @@
+version: 2
+jobs:
+  build:
+    machine: true
+    steps:
+    - checkout
+    # start proprietary DB using private Docker image
+    # with credentials stored in the UI
+    - run: |
+        make build
