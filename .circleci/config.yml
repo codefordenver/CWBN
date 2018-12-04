@@ -1,10 +1,10 @@
 version: 2
 jobs:
   build:
-    machine: true
+    docker:
+      - image: circleci/ruby:2.1.10-node-browsers
     steps:
     - checkout
-    # start proprietary DB using private Docker image
-    # with credentials stored in the UI
+    - setup_remote_docker
     - run: |
-        make build
+        sudo make build
