@@ -5,6 +5,10 @@ CWBN_STAGE_REPO_URL = mmmanyfold/cfd:$(TAG)
 ELASTIC_SEARCH_IMAGE = docker.elastic.co/elasticsearch/elasticsearch:6.4.1
 REDIS_IMAGE = redis:5.0.0-alpine
 
+.PHONY: compose-build
+compose-build:
+	@docker-compose build --no-cache
+
 .PHONY: build
 build:
 	@docker build --build-arg CWBN_AIRTABLE_API_KEY=$(CWBN_AIRTABLE_API_KEY) -t $(IMAGE) .

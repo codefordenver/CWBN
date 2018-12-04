@@ -7,4 +7,16 @@ jobs:
     - checkout
     - setup_remote_docker
     - run: |
-        sudo make build
+        sudo make compose-build
+workflows:
+  version: 2
+  build_and_deploy:
+    jobs:
+    - build
+    - deploy_prod:
+        requires:
+        - build
+        filters:
+          branches:
+            only:
+            - feat-circle
