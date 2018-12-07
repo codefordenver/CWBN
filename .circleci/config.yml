@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/ruby:2.1.10-node-browsers
+    - image: circleci/ruby:2.1.10-node-browsers
     steps:
     - checkout
     - setup_remote_docker
@@ -17,8 +17,7 @@ workflows:
   build_and_deploy:
     jobs:
     - build:
-      filters:
-        branches:
-          only:
-          - feat-circle
-
+        filters:
+          branches:
+            only:
+            - feat-circle
