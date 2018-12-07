@@ -9,6 +9,7 @@ jobs:
     # Base64 decode our config
     - run: echo $CWB_ENV | base64 --decode >> .env
     - run: |
+        echo $DOCKER_PASSWD | docker login -u $DOCKER_USERNANEM --password-stdin
         make compose-build
         docker push mmmanyfold/cfd:latest
 workflows:
