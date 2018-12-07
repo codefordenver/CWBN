@@ -54,7 +54,7 @@ redis:
 	docker run -v redis.conf:/usr/local/etc/redis/redis.conf -p 6379:6379 $(REDIS_IMAGE) /usr/local/etc/redis/redis.conf
 
 watchtower:
-	docker run -d \
+	docker run -d --rm \
     --name watchtower \
     -v /var/run/docker.sock:/var/run/docker.sock \
     v2tec/watchtower cwbn_web
