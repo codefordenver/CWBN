@@ -3,9 +3,11 @@
             [reagent.core :as reagent]
             [markdown.core :refer [md->html]]))
 
+(def content (reagent/atom nil))
+
 (defn about-page []
-  (let [content (reagent/atom "")]
-    (GET "https://raw.githubusercontent.com/wiki/codefordenver/cwbn/About-Page.md" {:handler #(reset! content %)})
-    (fn []
-      [:div {"dangerouslySetInnerHTML"
-             #js{:__html (md->html @content)}}])))
+  (when (nil? @content)
+    (GET "https://raw.githubusercontent.com/wiki/codefordenver/cwbn/About-Page.md" {:handler #(reset! content %)}))
+  (fn []
+    [:div {"dangerouslySetInnerHTML"
+           #js{:__html (md->html @content)}}]))
