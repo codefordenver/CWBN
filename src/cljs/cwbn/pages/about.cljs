@@ -3,9 +3,6 @@
             [reagent.core :as reagent]
             [markdown.core :refer [md->html]]))
 
-(defn on-success [content]
-  (prn content))
-
 (defn about-page []
   (let [content (reagent/atom "")]
     (GET "https://raw.githubusercontent.com/wiki/codefordenver/cwbn/About-Page.md" {:handler #(reset! content %)})
