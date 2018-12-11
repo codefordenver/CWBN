@@ -1,0 +1,23 @@
+version: 2
+jobs:
+  build:
+    docker:
+    - image: circleci/ruby:2.1.10-node-browsers
+    steps:
+    - checkout
+    - setup_remote_docker
+    # Base64 decode our config
+    - run: echo $CWB_ENV | base64 --decode >> .env
+    - run: |
+        docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWD
+        make compose-build
+        docker push mmmanyfold/cfd:latest
+workflows:
+  version: 2
+  build_and_deploy:
+    jobs:
+    - build:
+        filters:
+          branches:
+            only:
+            - feat-circle
